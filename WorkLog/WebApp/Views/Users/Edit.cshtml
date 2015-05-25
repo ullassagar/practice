@@ -1,0 +1,20 @@
+﻿
+@model WebApp.Models.UserModel
+
+@using (Html.BeginForm("Update","Users",FormMethod.Post))
+{
+   @Html.HiddenFor(u=>u.UserID)
+    
+    <span>EmployeeNo:</span>
+    @Html.TextBoxFor(u=>u.EmployeeID)
+    
+    <span>EmployeeName:</span>
+    @Html.TextBoxFor(u => u.UserName)
+    
+        
+     <span>EmployeeDesignation:</span>
+    @Html.TextBoxFor(u => u.Password)
+    
+    <input type="submit" value="Submit" />
+
+}

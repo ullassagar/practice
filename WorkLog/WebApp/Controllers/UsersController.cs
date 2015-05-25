@@ -34,8 +34,19 @@ namespace WebApp.Controllers
             return View(model);
         }
 
+        public ActionResult Add(UserModel model)
+        {
+            var user = UserModelIMapper.MapToUser(model);
+            UserHandler.Add(user);
 
-   
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult NewUser()
+        {
+            UserModel u = new UserModel();
+            return View(u);
+        }  
 
     }
 }

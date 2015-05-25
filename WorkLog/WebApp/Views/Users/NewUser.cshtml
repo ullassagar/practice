@@ -1,20 +1,19 @@
 ﻿@model WebApp.Models.UserModel
-           
-@using (Html.BeginForm("ADD", "User", FormMethod.Post))
-{
-    <table style="text-align:left; width:600px" border="1" cellpadding="2" cellspacing="2">
-        @Html.HiddenFor(u=>u.UserID)
-        
-        <tr>
-            <td>
-                @Html.LabelFor(u=>u.EmployeeID)
-            </td>
-            <td>
-                @Html.TextBoxFor(u=>u.EmployeeID)
 
-            </td>
-        </tr>
-        
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Users</h2>
+
+ @using (Html.BeginForm("Add", "Users", FormMethod.Post))
+      { 
+            @Html.HiddenFor(u => u.UserID)
+           @Html.HiddenFor(u=>u.EmployeeID)
+          @Html.HiddenFor(u=>u.Password)
+                
+            <table class="table table-bordered table-striped">        
+
         <tr>
             <td>
                 @Html.LabelFor(u => u.UserName)
@@ -24,18 +23,29 @@
 
             </td>
         </tr>
-        
-        <tr>
-            <td>
-                @Html.LabelFor(u => u.Password)
-            </td>
-            <td>
-                @Html.TextBoxFor(u => u.Password)
 
-            </td>
+         <tr>
+                 <td>
+                        @Html.LabelFor(u => u.EmployeeName)
+                </td>
+                <td>
+                        @Html.TextBoxFor(u => u.EmployeeName)
+                </td>
         </tr>
 
+           <tr>
+               <td>
+                   @Html.LabelFor(u => u.EmployeeEmailID)
+               </td>
+               <td>
+                   @Html.TextBoxFor(u => u.EmployeeEmailID)
+               </td> 
+           </tr>
+
     </table>
-    <br/>
-    <input type="submit" value="submit">
-}
+
+            <input type="submit" value="submit" class="btn btn-primary">
+ }
+        </div>
+    </div>
+</div>

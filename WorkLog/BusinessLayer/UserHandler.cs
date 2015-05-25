@@ -16,7 +16,8 @@ namespace BusinessLayer
         {
             List<User> userList = new List<User>();
 
-            var sql = "SELECT UserID,UserName,UserPassword,EmployeeID FROM IndproAttendance.dbo.IP_User";
+            var sql =string.Format( @"SELECT IP_User.UserID, IP_User.EmployeeID, IP_User.UserName, IP_Employee.EmployeeName,IP_User.Password, IP_Employee.EmployeeEmailID
+                                    FROM IP_User join IP_Employee on IP_User.EmployeeID=IP_Employee.EmployeeID");
             using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
             {
                 while (reader.Read())
@@ -30,8 +31,8 @@ namespace BusinessLayer
         public static User GetUser(int UserId)
         {
             User user = null;
-            var sql = string.Format(@"SELECT UserID,UserName,UserPassword,EmployeeID FROM IndproAttendance.dbo.IP_User
-                                    Where UserId={0}", UserId);
+            var sql = string.Format(@"SELECT  IP_User.UserID, IP_User.EmployeeID, IP_User.UserName, IP_Employee.EmployeeName,IP_User.Password, IP_Employee.EmployeeEmailID
+                                    FROM IP_User join IP_Employee on IP_User.EmployeeID=IP_Employee.EmployeeID", UserId);
 
             using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
             {
@@ -41,6 +42,15 @@ namespace BusinessLayer
                 }
             }
             return user;
+        }
+
+        public static void Add(User user)
+        {
+            var sql = string.Format(@"INSERT INTO IndproAttendance.dbo.IP_User (EmployeeID,UserName,Password)
+                                     VALUES({0},'{1}','{2}')",user.EmployeeID,user.UserName,user.Password);
+
+            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
+
         }
     }
 }

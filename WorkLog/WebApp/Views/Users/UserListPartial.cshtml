@@ -2,18 +2,26 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th>UserID</th>
-        <th>EmployeeID</th>
-        <th>Name</th>
-        <th>Password</th>
+        @*<th>UserID</th>
+        <th>EmployeeID</th>*@
+        <th>UserName</th>
+        <th>EmployeeName</th>
+        @*<th>Password</th>*@
+        <th>EmailID</th>
     </tr>
     @foreach (var u in Model)
     {
         <tr>
-            <td>@u.UserID</td>
-            <td>@u.EmployeeID</td>
+            @*<td>@u.UserID</td>
+            <td>@u.EmployeeID</td>*@            
             <td>@u.UserName</td>
-            <td>@u.Password</td>
+            <td>@u.EmployeeName</td>
+            @*<td>@u.Password</td>*@
+            <td>@u.EmployeeEmailID</td>
+
+            <td>@Html.ActionLink("Edit", "Edit", "Users", new { id = u.UserID })</td>
+            <td>@Html.ActionLink("Delete", "Delete", "Users", new { id = u.UserID })</td>
+
         </tr>
     }
 </table>

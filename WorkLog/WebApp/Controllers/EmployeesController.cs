@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Common;
@@ -53,5 +53,16 @@ namespace WebApp.Controllers
             EmployeeModel u = new EmployeeModel();
             return View(u);
         }
+
+        //public ActionResult Edit(EmployeeModel model)
+        //{
+
+        //    var employee = EmployeeModelMapper.MapToEmployee(model);
+
+        //    EmployeeHandler.Edit(employee);
+
+        //    return RedirectToAction("Index");
+           
+        //}
     }
 }

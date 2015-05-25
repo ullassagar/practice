@@ -1,0 +1,12 @@
+﻿@model List<WebApp.Models.UserModel>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Users</h2>
+            @Html.ActionLink("Add User", "NewUser")<br /><br />
+            @Html.Partial("UserListPartial", Model)
+        </div>
+    </div>
+</div>
+

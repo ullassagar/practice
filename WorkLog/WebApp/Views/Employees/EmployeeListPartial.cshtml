@@ -1,0 +1,37 @@
+﻿@model List<WebApp.Models.EmployeeModel>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>EmpID</th>
+        <th>EmpNo</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Designation</th>
+        <th>Qualification</th>
+        <th>DOB</th>
+        <th>DOJ</th>
+        <th>Image</th>
+        <th>Address</th>
+        <th>MobileNo</th>
+        <th>SkypeID</th>
+        <th>EmailID</th>
+    </tr>
+    @foreach (var u in Model)
+    {
+        <tr>
+            <td>@u.EmployeeID</td>
+            <td>@u.EmployeeNo</td>
+            <td>@u.EmployeeName</td>
+            <td>@u.Gender</td>
+            <td>@u.EmployeeDesignation</td>
+            <td>@u.EmployeeQualification</td>
+            <td>@u.EmployeeDOB</td>
+            <td>@u.EmployeeDOJ</td>
+            <td>@u.EmployeeImage</td>
+            <td>@u.EmployeeAddress</td>
+            <td>@u.EmployeeMobileNo</td>
+            <td>@u.EmployeeSkypeID</td>
+            <td>@u.EmployeeEmailID</td>
+        </tr>
+    }
+</table>

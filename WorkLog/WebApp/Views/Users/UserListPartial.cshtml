@@ -1,0 +1,19 @@
+﻿@model List<WebApp.Models.UserModel>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>UserID</th>
+        <th>EmployeeID</th>
+        <th>Name</th>
+        <th>Password</th>
+    </tr>
+    @foreach (var u in Model)
+    {
+        <tr>
+            <td>@u.UserID</td>
+            <td>@u.EmployeeID</td>
+            <td>@u.UserName</td>
+            <td>@u.Password</td>
+        </tr>
+    }
+</table>

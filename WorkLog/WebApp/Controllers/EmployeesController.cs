@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Common;
@@ -72,5 +72,12 @@ namespace WebApp.Controllers
             
             return RedirectToAction("Index");
         }
+
+        //public ActionResult Delete(int id=0)
+        //{
+        //    var employee = EmployeeModelMapper.MapToEmployee(model);
+
+        //    EmployeeHandler.Delete(employee);
+        //}
     }
 }

@@ -32,6 +32,7 @@ namespace BusinessLayer
 
         }
 
+
         public static Employee GetEmployee(int employeeId)
         {
             Employee employee = null;
@@ -52,6 +53,7 @@ namespace BusinessLayer
             return employee;
         }
 
+
         public static void Add(Employee employee)
         {
             var sql = string.Format(@"INSERT INTO IndproAttendance.dbo.IP_Employee(EmployeeNO,EmployeeName,Gender,EmployeeDesignation
@@ -61,17 +63,29 @@ namespace BusinessLayer
                                employee.EmployeeDOB, employee.EmployeeDOJ, employee.EmployeeImage, employee.EmployeeAddress,
                                     employee.EmployeeMobileNo, employee.EmployeeSkypeID, employee.EmployeeEmailID);
 
-
-
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
         }
 
+
         public static void Update(Employee employee)
         {
-            var sql = string.Format(@"UPDATE IP_Employee SET EmployeeName='{0}' WHERE EmployeeID={1}", employee.EmployeeName, employee.EmployeeID);
+            var sql = string.Format(@"UPDATE IP_Employee SET EmployeeNO='{0}', EmployeeName='{1}', Gender={2}, EmployeeDesignation='{3}',
+                                      EmployeeQualification='{4}', EmployeeDOB='{5}', EmployeeDOJ='{6}', EmployeeImage='{7}',EmployeeAddress='{8}',
+                                      EmployeeMobileNo='{9}', EmployeeSkypeID='{10}', EmployeeEmailID='{11}'                   
+                                      WHERE EmployeeID={12}", employee.EmployeeNo,employee.EmployeeName, (int)employee.Gender,
+                                       employee.EmployeeDesignation, employee.EmployeeQualification, employee.EmployeeDOB, employee.EmployeeDOJ,
+                                       employee.EmployeeImage, employee.EmployeeAddress, employee.EmployeeMobileNo, employee.EmployeeSkypeID, 
+                                       employee.EmployeeEmailID,employee.EmployeeID);
 
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
 
+        }
+
+        public static void Delete(Employee employee)
+        {
+            var sql = string.Format(@"DELETE FROM IP_Employee where EmployeeID={0}",employee.EmployeeID);
+
+            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
         }
 
     }

@@ -6,18 +6,19 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using BusinessLayer;
 using WebApp.Models;
+using Entity;
 
 namespace WebApp.Controllers
 {
     public class UsersController : Controller
     {
 
-        public ActionResult Index(int id=0)
+        public ActionResult Index(int id = 0)
         {
             var model = new List<UserModel>();
             if (id > 0)
             {
-            
+
                 var usr = UserHandler.GetUser(id);
                 var usrModel = UserModelIMapper.MapToUserModel(usr);
                 model.Add(usrModel);
@@ -46,7 +47,35 @@ namespace WebApp.Controllers
         {
             UserModel u = new UserModel();
             return View(u);
-        }  
+        }
 
+        public ActionResult Edit(int id = 0)
+        {
+            User user = UserHandler.GetUser(id);
+
+            var usermodel = UserModelIMapper.MapToUserModel(user);
+
+            return View(usermodel);
+        }
+
+        public ActionResult Update(UserModel model)
+        {
+            User user = UserModelIMapper.MapToUser(model);
+
+            UserHandler.Update(user);
+
+            return RedirectToAction("Index");
+
+        }
+
+        public ActionResult Delete(int id = 0)
+        {
+            User user = new User();
+            UserHandler.Delete(user);
+         
+     
+             return RedirectToAction("Index");
+
+        }
     }
 }

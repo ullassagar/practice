@@ -28,11 +28,11 @@ namespace BusinessLayer
             return userList;
         }
 
-        public static User GetUser(int UserId)
+        public static User GetUser(int UserID)
         {
             User user = null;
             var sql = string.Format(@"SELECT  IP_User.UserID, IP_User.EmployeeID, IP_User.UserName, IP_Employee.EmployeeName,IP_User.Password, IP_Employee.EmployeeEmailID
-                                    FROM IP_User join IP_Employee on IP_User.EmployeeID=IP_Employee.EmployeeID", UserId);
+                                    FROM IP_User join IP_Employee on IP_User.EmployeeID=IP_Employee.EmployeeID where IP_User.UserID={0}", UserID);
 
             using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
             {
@@ -69,6 +69,22 @@ namespace BusinessLayer
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
 
         }
+
+        public static void Update(User user)
+        {
+            var sql = string.Format("UPDATE IP_User  SET UserName='{0}', Password='{1}' where UserID={2}",user.UserName,user.Password,user.UserID);
+
+            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
+        }
+
+        public static void Delete(User user)
+        {
+            var sql = string.Format(@"Delete from IP_User where UserID={0}",user.UserID);
+
+            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
+        }
+
+       
     }
 }
 

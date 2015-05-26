@@ -5,15 +5,15 @@
 {
    @Html.HiddenFor(u=>u.UserID)
     
-    <span>EmployeeNo:</span>
-    @Html.TextBoxFor(u=>u.EmployeeID)
+   
+    @Html.HiddenFor(u=>u.EmployeeID)<br/>
     
-    <span>EmployeeName:</span>
-    @Html.TextBoxFor(u => u.UserName)
-    
+    <span>UserName:</span>
+    @Html.TextBoxFor(u => u.UserName)<br/>
+    <br/>
         
-     <span>EmployeeDesignation:</span>
-    @Html.TextBoxFor(u => u.Password)
+     <span>Password:</span>
+    @Html.TextBoxFor(u => u.Password)<br/>
     
     <input type="submit" value="Submit" />
 

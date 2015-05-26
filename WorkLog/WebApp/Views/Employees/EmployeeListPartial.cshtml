@@ -33,8 +33,8 @@
             <td>@u.EmployeeSkypeID</td>
             <td>@u.EmployeeEmailID</td>
 
-            <td>@Html.ActionLink("Edit", "Edit", "Employees", new { id = u.EmployeeID })</td>
-            <td>@Html.ActionLink("Delete", "Delete", "EmployeeData", new { id = u.EmployeeID })</td>
+            <td>@Html.ActionLink("Edit", "Edit", "Employees", new { id = u.EmployeeID },null)</td>
+            <td>@Html.ActionLink("Delete", "Delete", "EmployeeData", new { id = u.EmployeeID },null)</td>
         </tr>
     }
 </table>

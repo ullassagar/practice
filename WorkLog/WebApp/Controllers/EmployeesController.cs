@@ -8,7 +8,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BusinessLayer;
-using WebApp.Models;
+    using Entity;
+    using WebApp.Models;
 
 namespace WebApp.Controllers
 {
@@ -54,15 +55,22 @@ namespace WebApp.Controllers
             return View(u);
         }
 
-        //public ActionResult Edit(EmployeeModel model)
-        //{
+        public ActionResult Edit(int id=0)
+        {
+            Employee employee = EmployeeHandler.GetEmployee(id);
 
-        //    var employee = EmployeeModelMapper.MapToEmployee(model);
+            var employeeModel = EmployeeModelMapper.MapToEmployeeModel(employee);
 
-        //    EmployeeHandler.Edit(employee);
+            return View(employeeModel);
+        }
 
-        //    return RedirectToAction("Index");
-           
-        //}
+        public ActionResult Update(EmployeeModel model)
+        {
+            Employee employee = EmployeeModelMapper.MapToEmployee(model);
+
+            EmployeeHandler.Update(employee);
+            
+            return RedirectToAction("Index");
+        }
     }
 }

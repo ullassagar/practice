@@ -44,6 +44,23 @@ namespace BusinessLayer
             return user;
         }
 
+        public static User GetUserByUserNamePassword(string username, string password)
+        {
+            User user = null;
+            var sql = string.Format(@"SELECT  IP_User.UserID, IP_User.EmployeeID, IP_User.UserName, IP_Employee.EmployeeName,IP_User.Password, IP_Employee.EmployeeEmailID
+                                    FROM IP_User join IP_Employee on IP_User.EmployeeID=IP_Employee.EmployeeID
+                                    WHERE UserName='{0}' AND Password='{1}'", username, password);
+
+            using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
+            {
+                if (reader.Read())
+                {
+                    user = User.Load(reader);
+                }
+            }
+            return user;
+        }
+
         public static void Add(User user)
         {
             var sql = string.Format(@"INSERT INTO IndproAttendance.dbo.IP_User (EmployeeID,UserName,Password)

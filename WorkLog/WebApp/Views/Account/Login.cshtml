@@ -1,0 +1,20 @@
+﻿@model WebApp.Models.UserModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Login</h2>
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+            {
+                @Html.LabelFor(u => u.UserName)<br />
+                @Html.TextBoxFor(u => u.UserName)<br />
+                <br />
+                @Html.LabelFor(u => u.Password)<br />
+                @Html.PasswordFor(u => u.Password)<br />
+                <br />
+                <input type="submit" value="Login"><br /><br />
+                <span>@ViewBag.Message </span>
+            }
+        </div>
+    </div>
+</div>

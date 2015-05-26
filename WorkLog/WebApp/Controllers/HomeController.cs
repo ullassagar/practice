@@ -10,8 +10,8 @@ namespace WebApp.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title="WebApp";
-return View();
+            ViewBag.Title = "WebApp";
+            return View();
         }
     }
 }

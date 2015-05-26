@@ -56,31 +56,23 @@ namespace BusinessLayer
         {
             var sql = string.Format(@"INSERT INTO IndproAttendance.dbo.IP_Employee(EmployeeNO,EmployeeName,Gender,EmployeeDesignation
                 ,EmployeeQualification,EmployeeDOB,EmployeeDOJ,EmployeeImage,EmployeeAddress,EmployeeMobileNo,EmployeeSkypeID,EmployeeEmailID)
-                 VALUES({0},'{1}',{2},'{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')",employee.EmployeeNo,
-                            employee.EmployeeName,(int)employee.Gender,employee.EmployeeDesignation,employee.EmployeeQualification,
-                               employee.EmployeeDOB,employee.EmployeeDOJ,employee.EmployeeImage,employee.EmployeeAddress,
-                                    employee.EmployeeMobileNo,employee.EmployeeSkypeID,employee.EmployeeEmailID);
+                 VALUES({0},'{1}',{2},'{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')", employee.EmployeeNo,
+                            employee.EmployeeName, (int)employee.Gender, employee.EmployeeDesignation, employee.EmployeeQualification,
+                               employee.EmployeeDOB, employee.EmployeeDOJ, employee.EmployeeImage, employee.EmployeeAddress,
+                                    employee.EmployeeMobileNo, employee.EmployeeSkypeID, employee.EmployeeEmailID);
 
-             
+
 
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
         }
 
-//        public static  Edit(Employee employee)
-//        {
-//            var sql = string.Format(@"SELECT EmployeeID,EmployeeNO,EmployeeName,Gender,EmployeeDesignation,EmployeeQualification,EmployeeDOB
-//                                 ,EmployeeDOJ,EmployeeImage,EmployeeAddress,EmployeeMobileNo,EmployeeSkypeID,EmployeeEmailID
-//                                    FROM IndproAttendance.dbo.IP_Employee  where EmployeeID={0}");
-            
-           
-//            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
+        public static void Update(Employee employee)
+        {
+            var sql = string.Format(@"UPDATE IP_Employee SET EmployeeName='{0}' WHERE EmployeeID={1}", employee.EmployeeName, employee.EmployeeID);
 
-           
-            
-//            return employee;
-            
-          
-//        }
+            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
+
+        }
 
     }
 }

@@ -1,0 +1,10 @@
+/WorkLog/packages
+/WorkLog/WebApp/bin
+/WorkLog/WebApp/obj
+/WorkLog/RepositoryLayer/obj
+/WorkLog/RepositoryLayer/bin
+/WorkLog/EntityLayer/obj
+/WorkLog/EntityLayer/bin
+/WorkLog/BusinessLayer/obj
+/WorkLog/BusinessLayer/bin
+/WorkLog/WebApp.v12.suo

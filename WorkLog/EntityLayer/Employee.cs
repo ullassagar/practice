@@ -4,6 +4,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entity
 {
@@ -16,6 +18,9 @@ namespace Entity
     public class Employee
     {
         public int EmployeeID { get; set; }
+
+          [StringLength(60, MinimumLength = 3)]
+           [Required(ErrorMessage = "EmployeeNo  Required")]
         public int EmployeeNo { get; set; }
         public string EmployeeName { get; set; }
         public Gender Gender { get; set; }

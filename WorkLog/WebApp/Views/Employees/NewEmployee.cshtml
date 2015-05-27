@@ -1,9 +1,16 @@
-﻿@model WebApp.Models.EmployeeModel
+﻿@using Entity
+@model WebApp.Models.EmployeeModel
+
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
 
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h2>Employees</h2>
+            <h2>Employee</h2>
 
             @using (Html.BeginForm("Add", "Employees", FormMethod.Post))
             {
@@ -28,12 +35,13 @@
                     </tr>
 
                     <tr>
+                        <td>@Html.LabelFor(e=>e.Gender)</td>
                         <td>
-                            @Html.LabelFor(e => e.Gender)
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(e => e.Gender)
-                        </td>
+                            <label for="rdoMale">Male</label>
+                            @Html.RadioButtonFor(m => m.Gender, Gender.Male, new { @id = "rdoMale" })
+                            <label for="rdoFeMale">FeMale</label>
+                            @Html.RadioButtonFor(m => m.Gender, Gender.Female, new { @id = "rdoFeMale" })
+                        </td>                        
                     </tr>
 
                     <tr>
@@ -56,7 +64,7 @@
 
                     <tr>
                         <td>
-                            @Html.LabelFor(e => e.EmployeeDOB)
+                            @Html.LabelFor(e => e.EmployeeDOB)                          
                         </td>
                         <td>
                             @Html.TextBoxFor(e => e.EmployeeDOB)
@@ -115,7 +123,9 @@
                         </td>
                     </tr>
                 </table>
-                <input type="submit" value="Submit" class="btn btn-primary" />
+                <input type="submit" value="Submit" class="btn btn-success" />
+                
+                @Html.ValidationSummary();
             }
         </div>
     </div>

@@ -72,18 +72,19 @@ namespace BusinessLayer
             var sql = string.Format(@"UPDATE IP_Employee SET EmployeeNO='{0}', EmployeeName='{1}', Gender={2}, EmployeeDesignation='{3}',
                                       EmployeeQualification='{4}', EmployeeDOB='{5}', EmployeeDOJ='{6}', EmployeeImage='{7}',EmployeeAddress='{8}',
                                       EmployeeMobileNo='{9}', EmployeeSkypeID='{10}', EmployeeEmailID='{11}'                   
-                                      WHERE EmployeeID={12}", employee.EmployeeNo,employee.EmployeeName, (int)employee.Gender,
+                                      WHERE EmployeeID={12}", employee.EmployeeNo, employee.EmployeeName, (int)employee.Gender,
                                        employee.EmployeeDesignation, employee.EmployeeQualification, employee.EmployeeDOB, employee.EmployeeDOJ,
-                                       employee.EmployeeImage, employee.EmployeeAddress, employee.EmployeeMobileNo, employee.EmployeeSkypeID, 
-                                       employee.EmployeeEmailID,employee.EmployeeID);
+                                       employee.EmployeeImage, employee.EmployeeAddress, employee.EmployeeMobileNo, employee.EmployeeSkypeID,
+                                       employee.EmployeeEmailID, employee.EmployeeID);
 
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
 
         }
 
-        public static void Delete(Employee employee)
+
+        public static void Delete(int id)
         {
-            var sql = string.Format(@"DELETE FROM IP_Employee where EmployeeID={0}",employee.EmployeeID);
+            var sql = string.Format(@"DELETE FROM IP_Employee where EmployeeID={0}", id);
 
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
         }

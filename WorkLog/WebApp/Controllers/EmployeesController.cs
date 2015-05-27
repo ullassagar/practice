@@ -46,8 +46,6 @@ namespace WebApp.Controllers
 
             EmployeeHandler.Add(employee);
 
-
-
             return RedirectToAction("Index");
         }
 
@@ -75,11 +73,11 @@ namespace WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        //public ActionResult Delete(int id=0)
-        //{
-        //    var employee = EmployeeModelMapper.MapToEmployee(model);
+        public ActionResult Delete(int id = 0)
+        {
+            EmployeeHandler.Delete(id);
 
-        //    EmployeeHandler.Delete(employee);
-        //}
+            return RedirectToAction("Index"); 
+        }
     }
 }

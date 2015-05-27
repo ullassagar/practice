@@ -1,20 +1,29 @@
-﻿
-@model WebApp.Models.UserModel
+﻿@model WebApp.Models.UserModel
 
-@using (Html.BeginForm("Update","Users",FormMethod.Post))
-{
-   @Html.HiddenFor(u=>u.UserID)
-    
-   
-    @Html.HiddenFor(u=>u.EmployeeID)<br/>
-    
-    <span>UserName:</span>
-    @Html.TextBoxFor(u => u.UserName)<br/>
-    <br/>
-        
-     <span>Password:</span>
-    @Html.TextBoxFor(u => u.Password)<br/>
-    
-    <input type="submit" value="Submit" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>User</h2>
+            @using (Html.BeginForm("Update", "Users", FormMethod.Post))
+            {
+                @Html.HiddenFor(u => u.UserID)
+                @Html.HiddenFor(u => u.EmployeeID)
 
-}
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>  @Html.LabelFor(u => u.UserName)</td>
+                    <td>  @Html.TextBoxFor(u => u.UserName)</td>
+                </tr>
+
+                <tr>
+                    <td>  @Html.LabelFor(u => u.Password)</td>
+                    <td> @Html.TextBoxFor(u => u.Password)</td>
+                </tr>
+            </table>
+
+            <input type="submit" value="Submit" class="btn btn-primary" />
+
+            }
+        </div>
+    </div>
+</div>

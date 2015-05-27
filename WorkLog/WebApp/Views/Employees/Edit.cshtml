@@ -1,69 +1,85 @@
-﻿@model WebApp.Models.EmployeeModel
+﻿@using Entity
+@model WebApp.Models.EmployeeModel
 
-@using (Html.BeginForm("Update", "Employees", FormMethod.Post))
-{
-     @Html.HiddenFor(e=>e.EmployeeID)
-    <table>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Employee</h2>
+            @using (Html.BeginForm("Update", "Employees", FormMethod.Post))
+            {
+                @Html.HiddenFor(e => e.EmployeeID)
+    <table class="table table-bordered table-striped">
         <tr>
-           <td> @Html.LabelFor(e=>e.EmployeeNo)</td>
-          <td> @Html.TextBoxFor(e => e.EmployeeNo)</td>
+            <td> @Html.LabelFor(e => e.EmployeeNo)</td>
+            <td> @Html.TextBoxFor(e => e.EmployeeNo)</td>
         </tr>
 
         <tr>
             <td> @Html.LabelFor(e => e.EmployeeName)</td>
-           <td> @Html.TextBoxFor(e => e.EmployeeName)</td>
-         </tr>
-              
-        <tr>
-            <td> @Html.LabelFor(e=>e.Gender)</td>
-            <td> @Html.TextBoxFor(e=>e.Gender)</td>
-         </tr>
+            <td> @Html.TextBoxFor(e => e.EmployeeName)</td>
+        </tr>
 
         <tr>
-            <td> @Html.LabelFor(e=>e.EmployeeDesignation)</td>
-           <td> @Html.TextBoxFor(e => e.EmployeeDesignation)</td>
-            </tr>
+            <td> @Html.LabelFor(e => e.Gender)</td>
+            <td>
+                <label for="rdoMale">Male</label>
+                @Html.RadioButtonFor(m => m.Gender,Gender.Male, new { @id = "rdoMale" })
+                <label for="rdoFeMale">FeMale</label>
+                @Html.RadioButtonFor(m => m.Gender, Gender.Female, new { @id = "rdoFeMale" })
+            </td>
+        </tr>
 
         <tr>
-            <td> @Html.LabelFor(e=>e.EmployeeQualification)</td>
-          <td>  @Html.TextBoxFor(e => e.EmployeeQualification)</td>
-            </tr>
+            <td> @Html.LabelFor(e => e.EmployeeDesignation)</td>
+            <td> @Html.TextBoxFor(e => e.EmployeeDesignation)</td>
+        </tr>
 
         <tr>
-            <td> @Html.LabelFor(e=>e.EmployeeDOB) </td>
-           <td> @Html.TextBoxFor(e => e.EmployeeDOB)</td>
-            </tr>
+            <td> @Html.LabelFor(e => e.EmployeeQualification)</td>
+            <td>  @Html.TextBoxFor(e => e.EmployeeQualification)</td>
+        </tr>
+       
+        <tr>
+            <td> @Html.LabelFor(e => e.EmployeeDOB) </td>
+            <td> @Html.TextBoxFor(e => e.EmployeeDOB)
+           
+            </td>
+        </tr>
 
         <tr>
-            <td>  @Html.LabelFor(e=>e.EmployeeDOJ)</td>
-          <td>  @Html.TextBoxFor(e => e.EmployeeDOJ)</td>
-            </tr>
+            <td>  @Html.LabelFor(e => e.EmployeeDOJ)</td>
+            <td>  @Html.TextBoxFor(e => e.EmployeeDOJ)</td>
+        </tr>
 
         <tr>
-            <td> @Html.LabelFor(e=>e.EmployeeImage)</td>
-          <td>  @Html.TextBoxFor(e => e.EmployeeImage)</td>
-            </tr>
+            <td> @Html.LabelFor(e => e.EmployeeImage)</td>
+            <td>  @Html.TextBoxFor(e => e.EmployeeImage)</td>
+        </tr>
 
         <tr>
-            <td>@Html.LabelFor(e=>e.EmployeeAddress)</td>
-            <td>  @Html.TextBoxFor(e => e.EmployeeAddress)</td> 
-            </tr>
+            <td>@Html.LabelFor(e => e.EmployeeAddress)</td>
+            <td>  @Html.TextBoxFor(e => e.EmployeeAddress)</td>
+        </tr>
 
         <tr>
-            <td> @Html.LabelFor(e=>e.EmployeeMobileNo)</td>
-           <td> @Html.TextBoxFor(e => e.EmployeeMobileNo)</td>
-            </tr>
+            <td> @Html.LabelFor(e => e.EmployeeMobileNo)</td>
+            <td> @Html.TextBoxFor(e => e.EmployeeMobileNo)</td>
+        </tr>
 
         <tr>
-            <td> @Html.LabelFor(e=>e.EmployeeSkypeID)</td>
-          <td>  @Html.TextBoxFor(e => e.EmployeeSkypeID)</td>
-            </tr>
+            <td> @Html.LabelFor(e => e.EmployeeSkypeID)</td>
+            <td>  @Html.TextBoxFor(e => e.EmployeeSkypeID)</td>
+        </tr>
 
         <tr>
-            <td> @Html.LabelFor(e=>e.EmployeeEmailID)</td>
-           <td> @Html.TextBoxFor(e => e.EmployeeEmailID)</td>
-            </tr>
-</table>
+            <td> @Html.LabelFor(e => e.EmployeeEmailID)</td>
+            <td> @Html.TextBoxFor(e => e.EmployeeEmailID)</td>
+        </tr>
+    </table>
 
-    <input type="submit" value="Submit" />
-}
+    <input type="submit" value="Submit" class="btn btn-primary" />
+            }
+        </div>
+    </div>
+</div>

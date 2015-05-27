@@ -3,13 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApp.Models
 {
     public class EmployeeModel
     {
         public int EmployeeID { get; set; }
+
+         [Required(ErrorMessage = "EmployeeNo  Required")]
         public int EmployeeNo { get; set; }
+
+        [StringLength(100)]
+        [RegularExpression("^([a-zA-Z .&'-]+)$", ErrorMessage = "EmployeeName Should be in the Text Formate")]
+        [Required(ErrorMessage = "EmployeeName Required")]
         public string EmployeeName { get; set; }
         public Gender Gender { get; set; }
         public string EmployeeDesignation { get; set; }

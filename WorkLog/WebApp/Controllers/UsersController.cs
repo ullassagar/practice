@@ -7,18 +7,18 @@ using System.Web.UI.WebControls;
 using BusinessLayer;
 using WebApp.Models;
 using Entity;
+using WorkLog.Utilities;
 
 namespace WebApp.Controllers
 {
+    [AuthorizeMember]
     public class UsersController : Controller
     {
-
         public ActionResult Index(int id = 0)
         {
             var model = new List<UserModel>();
             if (id > 0)
             {
-
                 var usr = UserHandler.GetUser(id);
                 var usrModel = UserModelIMapper.MapToUserModel(usr);
                 model.Add(usrModel);
@@ -70,10 +70,8 @@ namespace WebApp.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            User user = new User();
-            UserHandler.Delete(user);
-         
-     
+            UserHandler.Delete(id);
+
              return RedirectToAction("Index");
 
         }

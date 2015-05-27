@@ -77,9 +77,9 @@ namespace BusinessLayer
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
         }
 
-        public static void Delete(User user)
+        public static void Delete(int id)
         {
-            var sql = string.Format(@"Delete from IP_User where UserID={0}",user.UserID);
+            var sql = string.Format(@"Delete from IP_User where UserID={0}",id);
 
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
         }

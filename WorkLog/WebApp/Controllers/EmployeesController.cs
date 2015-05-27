@@ -8,11 +8,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BusinessLayer;
-    using Entity;
-    using WebApp.Models;
+using Entity;
+using WebApp.Models;
+using WorkLog.Utilities;
 
 namespace WebApp.Controllers
 {
+    [AuthorizeMember]
     public class EmployeesController : Controller
     {
         public ActionResult Index(int id = 0)
@@ -42,8 +44,8 @@ namespace WebApp.Controllers
         {
             var employee = EmployeeModelMapper.MapToEmployee(model);
 
-             EmployeeHandler.Add(employee);
-          
+            EmployeeHandler.Add(employee);
+
 
 
             return RedirectToAction("Index");
@@ -55,7 +57,7 @@ namespace WebApp.Controllers
             return View(u);
         }
 
-        public ActionResult Edit(int id=0)
+        public ActionResult Edit(int id = 0)
         {
             Employee employee = EmployeeHandler.GetEmployee(id);
 
@@ -69,7 +71,7 @@ namespace WebApp.Controllers
             Employee employee = EmployeeModelMapper.MapToEmployee(model);
 
             EmployeeHandler.Update(employee);
-            
+
             return RedirectToAction("Index");
         }
 

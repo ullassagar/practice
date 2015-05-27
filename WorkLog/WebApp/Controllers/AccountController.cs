@@ -5,8 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using BusinessLayer;
 using WebApp.Models;
+using WorkLog.Utilities;
 
-namespace BootstrapSite1.Controllers
+namespace WorkLog.Controllers
 {
     public class AccountController : Controller
     {
@@ -21,6 +22,7 @@ namespace BootstrapSite1.Controllers
             Entity.User user = UserHandler.GetUserByUserNamePassword(model.UserName, model.Password);
             if (user != null)
             {
+                Session[Contanstants.LoggedInUserName] = user;
                 return RedirectToAction("Index", "Employees");
             }
             else
@@ -28,6 +30,12 @@ namespace BootstrapSite1.Controllers
                 ViewBag.Message = "Username and password does not match.";
                 return View();    
             }
+        }
+
+        public ActionResult LogOut()
+        {
+            Session[Contanstants.LoggedInUserName] = null;
+            return RedirectToAction("Login");
         }
     }
 }

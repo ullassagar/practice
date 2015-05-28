@@ -16,8 +16,9 @@ namespace BusinessLayer
         {
             List<User> userList = new List<User>();
 
-            var sql =string.Format( @"SELECT IP_User.UserID, IP_User.EmployeeID, IP_User.UserName, IP_Employee.EmployeeName,IP_User.Password, IP_Employee.EmployeeEmailID
-                                    FROM IP_User join IP_Employee on IP_User.EmployeeID=IP_Employee.EmployeeID");
+            var sql =string.Format( @"SELECT IP_User.UserID, IP_User.EmployeeID, IP_User.UserName, IP_Employee.EmployeeName,IP_User.Password,
+                                      IP_Employee.EmployeeEmailID
+                                      FROM IP_User join IP_Employee on IP_User.EmployeeID=IP_Employee.EmployeeID");
             using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
             {
                 while (reader.Read())

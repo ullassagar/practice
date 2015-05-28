@@ -36,20 +36,20 @@
         </tr>
 
         <tr>
-            <td> @Html.LabelFor(e => e.EmployeeQualification)</td>
+            <td> @Html.LabelFor(e => e.EmployeeQualification)</td>   
             <td>  @Html.TextBoxFor(e => e.EmployeeQualification)</td>
         </tr>
        
         <tr>
             <td> @Html.LabelFor(e => e.EmployeeDOB) </td>
-            <td> @Html.TextBoxFor(e => e.EmployeeDOB,new{data_provide="datepicker",data_date_format="yyyy-mm-dd"})
+            <td> @Html.TextBoxFor(e => e.EmployeeDOB,new{data_provide="datepicker",data_date_format="dd-mm-yyyy"})
            
             </td>
         </tr>
 
         <tr>
             <td>  @Html.LabelFor(e => e.EmployeeDOJ)</td>
-            <td>  @Html.TextBoxFor(e => e.EmployeeDOJ)</td>
+            <td> @Html.TextBoxFor(e => e.EmployeeDOJ, new { data_provide = "datepicker", data_date_format = "dd-mm-yyyy" })
         </tr>
 
         <tr>

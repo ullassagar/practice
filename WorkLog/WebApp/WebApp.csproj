@@ -162,6 +162,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogTimesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -282,9 +283,10 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutLoggedIn.cshtml" />
-    <Content Include="Views\LogTime\Index.cshtml" />
-    <Content Include="Views\LogTime\NewLogTime.cshtml" />
-    <Content Include="Views\LogTime\LogTimeListPartial.cshtml" />
+    <Content Include="Views\LogTimes\Index.cshtml" />
+    <Content Include="Views\LogTimes\NewLogTime.cshtml" />
+    <Content Include="Views\LogTimes\LogTimeListPartial.cshtml" />
+    <Content Include="Views\LogTimes\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

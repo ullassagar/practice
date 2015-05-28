@@ -1,0 +1,62 @@
+﻿@using Entity;
+@model WebApp.Models.LogTimeModel
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+    <h2>New LogTime</h2>
+
+    @using (Html.BeginForm("Add", "LogTimes", FormMethod.Post))
+    {
+        @Html.HiddenFor(l=>l.LogTimeID)
+
+    <table class="table table-bordered table-striped">
+      
+        <tr>
+            <td> @Html.LabelFor(l => l.EmployeeID)</td>
+            <td> @Html.TextBoxFor(l => l.EmployeeID)</td>
+        </tr>
+
+        <tr>
+            <td>  @Html.LabelFor(l => l.LoggedTime) </td>
+            <td>
+            
+                @if (Model.LoggedTime != DateTime.MinValue)
+                {
+                    @Html.TextBox(string.Empty, DateTime.Now.ToString("yyyy-MM-dd"), new { @class = "ui-date-picker" })
+                }
+                else
+                {
+                    @Html.TextBoxFor(m => m.LoggedTime, new { data_provide = "datepicker", @class = "ui-date-picker" })
+                }
+             @*@Html.TextBoxFor(l => l.LoggedTime, new { data_provide = "datepicker", data_date_format = "dd-mm-yyyy" })*@
+            </td>
+        </tr>
+        
+        <tr>
+            <td>@Html.LabelFor(l => l.LogTypeID)</td>
+            <td>
+                <label for="rdoWork">Work</label>
+                @Html.RadioButtonFor(l => l.LogTypeID, LogTypeID.Work, new { @id = "rdoWork" })
+                <label for="rdoTea">Tea</label>
+                @Html.RadioButtonFor(l => l.LogTypeID, LogTypeID.Tea, new { @id = "rdoTea" })
+                <label for="rdoLunch">Lunch</label>
+                @Html.RadioButtonFor(l => l.LogTypeID, LogTypeID.Lunch, new { @id="rdoLunch"})
+            </td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(l=>l.IsIn)</td>
+            <td>@Html.TextBoxFor(l=>l.IsIn)</td>
+
+        </tr>
+
+    </table>
+
+    <input type="submit" value="Submit" class="btn btn-primary"/>
+    }
+
+</div>
+</div>
+</div>

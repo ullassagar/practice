@@ -4,18 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WorkLog.Models
+namespace WebApp.Models
 {
     public class LogTimeModel
     {
         public int LogTimeID { get; set; }
         public int EmployeeID { get; set; }
         public DateTime LoggedTime { get; set; }
-        public int LogTypeID { get; set; }
+        public LogTypeID LogTypeID { get; set; }
         public bool IsIn { get; set; }
     }
 
-    public class LogTimeIMapper
+    public class LogTimeModelIMapper
     {
         public static LogTimeModel MapToLogTimeModel(LogTime logtime)
         {
@@ -25,7 +25,7 @@ namespace WorkLog.Models
             {
                 model.LogTimeID = logtime.LogTimeID;
                 model.EmployeeID = logtime.EmployeeID;
-                model.LoggedTime = logtime.LoggedTime;
+                model.LoggedTime = logtime.LoggedTime ;
                 model.LogTypeID = logtime.LogTypeID;
                 model.IsIn = logtime.IsIn;
             }

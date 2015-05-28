@@ -42,7 +42,7 @@
        
         <tr>
             <td> @Html.LabelFor(e => e.EmployeeDOB) </td>
-            <td> @Html.TextBoxFor(e => e.EmployeeDOB)
+            <td> @Html.TextBoxFor(e => e.EmployeeDOB,new{data_provide="datepicker",data_date_format="yyyy-mm-dd"})
            
             </td>
         </tr>

@@ -3,47 +3,52 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
-            <h2>Users</h2>
+        <div class="col-md-12">
+            <h2>Add User</h2>
+            <div class="row">
+                <div class="col-md-1">&nbsp;</div>
+            </div>
 
  @using (Html.BeginForm("Add", "Users", FormMethod.Post))
       { 
             @Html.HiddenFor(u => u.UserID)
-           @Html.HiddenFor(u=>u.EmployeeID)
-          @Html.HiddenFor(u=>u.Password)
+            @Html.HiddenFor(u=>u.EmployeeID)
+            @Html.HiddenFor(u=>u.Password)
+     
+     
+           <div class="row">
+                    <div class="col-md-2">@Html.Label("EmployeeID")</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeID, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+           </div>
                 
-            <table class="table table-bordered table-striped">        
+            <div class="row">
+                    <div class="col-md-2">@Html.Label("User name")</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.UserName, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+            </div>
 
-        <tr>
-            <td>
-                @Html.LabelFor(u => u.EmployeeID)
-            </td>
-            <td>
+     <div class="row">
+                    <div class="col-md-2">@Html.Label("Password")</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.Password, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+           </div>
+      
+                @*@Html.LabelFor(u => u.EmployeeID)       
                 @Html.TextBoxFor(u => u.EmployeeID)
-
-            </td>
-        </tr>
-
-         <tr>
-                 <td>
-                        @Html.LabelFor(u => u.UserName)
-                </td>
-                <td>
-                        @Html.TextBoxFor(u => u.UserName)
-                </td>
-        </tr>
-
-           <tr>
-               <td>
-                   @Html.LabelFor(u => u.Password)
-               </td>
-               <td>
-                   @Html.TextBoxFor(u => u.Password)
-               </td> 
-           </tr>
-
-    </table>
-
+     
+                @Html.LabelFor(u => u.UserName)
+     
+                @Html.LabelFor(u => u.Password)
+       
+                   @Html.TextBoxFor(u => u.Password)*@
+             
             <input type="submit" value="submit" class="btn btn-primary">
  }
         </div>

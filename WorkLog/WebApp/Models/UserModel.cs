@@ -14,6 +14,8 @@ namespace WebApp.Models
         public string EmployeeName { get; set; }
         public string Password { get; set; }
         public string EmployeeEmailID { get; set; }
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
     }
 
     public class UserModelIMapper
@@ -29,6 +31,8 @@ namespace WebApp.Models
                 model.EmployeeName = user.EmployeeName;
                 model.Password = user.Password;
                 model.EmployeeEmailID = user.EmployeeEmailID;
+                model.RoleID = user.RoleID;
+                model.RoleName = user.RoleName;   
             }
             return model;
         }
@@ -43,6 +47,8 @@ namespace WebApp.Models
                 user.EmployeeName = model.EmployeeName;
                 user.Password = model.Password;
                 user.EmployeeEmailID = model.EmployeeEmailID;
+                user.RoleID = model.RoleID;
+                user.RoleName = model.RoleName;   
             }
             return user;
         }

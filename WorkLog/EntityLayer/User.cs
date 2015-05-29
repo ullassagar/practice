@@ -16,6 +16,8 @@ namespace Entity
         public string EmployeeName { get; set; }
         public string Password { get; set; }
         public string EmployeeEmailID { get; set; }
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
 
         public static User Load(IDataReader reader)
         {
@@ -26,7 +28,8 @@ namespace Entity
             user.EmployeeName = Convert.ToString(reader["EmployeeName"]);
             user.Password = Convert.ToString(reader["Password"]);
             user.EmployeeEmailID = Convert.ToString(reader["EmployeeEmailID"]);
-
+            user.RoleID = Convert.ToInt32(reader["RoleID"]);
+            user.RoleName = Convert.ToString(reader["RoleName"]);
             return user;
         }
 

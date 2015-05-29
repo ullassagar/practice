@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h2>Employee</h2>
+            <h2>Add Employee</h2>
 
             @using (Html.BeginForm("Add", "Employees", FormMethod.Post))
             {
@@ -48,12 +48,47 @@
 
                     <tr>
                         <td>  @Html.LabelFor(e => e.EmployeeDOB) </td>
-                        <td> @Html.TextBoxFor(e => e.EmployeeDOB, new { data_provide = "datepicker", data_date_format = "dd-mm-yyyy" })</td>
+                        @*<td> @Html.TextBoxFor(e => e.EmployeeDOB, new { data_provide = "datepicker", data_date_format = "dd-mm-yyyy" })</td>*@
+
+                        <td>
+                            <div class='input-group date datetimepicker'>
+                                @if (Model.EmployeeDOB != DateTime.MinValue)
+                                {
+                                    @Html.TextBoxFor(m => m.EmployeeDOB, new { @class = "form-control" })
+                                }
+                                else
+                                {
+                                    @Html.TextBoxFor(m => m.EmployeeDOB,DateTime.Now.ToString(), new { @class = "form-control" })
+                                }
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </td>
+
                     </tr>
 
                     <tr>
                         <td> @Html.LabelFor(e => e.EmployeeDOJ)</td>
-                        <td> @Html.TextBoxFor(e => e.EmployeeDOJ, new { data_provide = "datepicker", data_date_format = "dd-mm-yyyy" })</td>
+                        @*<td> @Html.TextBoxFor(e => e.EmployeeDOJ, new { data_provide = "datepicker", data_date_format = "dd-mm-yyyy" })</td>*@
+
+                        <td>
+                            <div class='input-group date datetimepicker'>
+                                @if (Model.EmployeeDOJ != DateTime.MinValue)
+                                {
+                                    @Html.TextBoxFor(m => m.EmployeeDOJ, new { @class = "form-control" })
+                                }
+                                else
+                                {
+                                    @Html.TextBoxFor(m => m.EmployeeDOJ, DateTime.Now.ToString(), new { @class = "form-control" })
+                                }
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+
+                        </td>
+
                     </tr>
 
                     <tr>

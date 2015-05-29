@@ -17,7 +17,7 @@ namespace BusinessLayer
             List<LogTime> loglist = new List<LogTime>();
 
             var sql = string.Format(@"SELECT IP_LogTime.LogTimeID,IP_LogTime.EmployeeID,IP_LogTime.LoggedTime,
-                                    IP_LogTime.LogTypeID,IP_LogTime.IsIn
+                                    IP_LogTime.LogTypeID,IP_LogTime.IsInTime
                                     FROM IP_LogTime join IP_Employee on IP_LogTime.EmployeeID=IP_Employee.EmployeeID");
 
             using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
@@ -35,7 +35,7 @@ namespace BusinessLayer
             LogTime logtime = null;
 
             var sql = string.Format(@"SELECT IP_LogTime.LogTimeID,IP_LogTime.EmployeeID,IP_LogTime.LoggedTime,
-                                    IP_LogTime.LogTypeID,IP_LogTime.IsIn
+                                    IP_LogTime.LogTypeID,IP_LogTime.IsInTime
                                     FROM IP_LogTime join IP_Employee on IP_LogTime.EmployeeID=IP_Employee.EmployeeID where IP_LogTime.LogTimeID={0}", LogTimeID);
 
             using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
@@ -50,8 +50,8 @@ namespace BusinessLayer
 
         public static void Add(LogTime logtime)
         {
-            var sql = string.Format(@"INSERT INTO IP_LogTime (EmployeeID ,LoggedTime ,LogTypeID ,IsIn)
-                                    VALUES({0},'{1}',{2},'{3}')", logtime.EmployeeID, logtime.LoggedTime, (int)logtime.LogTypeID, logtime.IsIn);
+            var sql = string.Format(@"INSERT INTO IP_LogTime (EmployeeID ,LoggedTime ,LogTypeID ,IsInTime)
+                                    VALUES({0},'{1}',{2},'{3}')", logtime.EmployeeID, logtime.LoggedTime, (int)logtime.LogTypeID, logtime.IsInTime);
 
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
 
@@ -61,8 +61,8 @@ namespace BusinessLayer
 
         public static void Update(LogTime logtime)
         {
-            var sql = string.Format(@"UPDATE IP_LogTime SET EmployeeID = {0},LoggedTime ='{1}',LogTypeID={2}, IsIn='{3}'
-                                      WHERE LogTimeID={4}", logtime.EmployeeID,logtime.LoggedTime,(int)logtime.LogTypeID,logtime.IsIn,logtime.LogTimeID);
+            var sql = string.Format(@"UPDATE IP_LogTime SET EmployeeID = {0},LoggedTime ='{1}',LogTypeID={2}, IsInTime='{3}'
+                                      WHERE LogTimeID={4}", logtime.EmployeeID,logtime.LoggedTime,(int)logtime.LogTypeID,logtime.IsInTime,logtime.LogTimeID);
 
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
         }

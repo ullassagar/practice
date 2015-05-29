@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h2>New LogTime</h2>
+            <h2>Edit LogTime</h2>
 
             @using (Html.BeginForm("Update", "LogTimes", FormMethod.Post))
             {
@@ -19,7 +19,21 @@
 
                     <tr>
                         <td>  @Html.LabelFor(l => l.LoggedTime) </td>
-                        <td> @Html.TextBoxFor(l => l.LoggedTime, new { data_provide = "datepicker", data_date_format = "dd-mm-yyyy" })</td>
+                        <td>
+                            <div class='input-group date datetimepicker'>
+                                @if (Model.LoggedTime != DateTime.MinValue)
+                                {
+                                    @Html.TextBoxFor(m => m.LoggedTime,  new { @class = "form-control" })
+                                }
+                                else
+                                {
+                                    @Html.TextBoxFor(m => m.LoggedTime, new { @class = "form-control" })
+                                }
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </td>
                     </tr>
 
                     <tr>
@@ -35,8 +49,8 @@
                     </tr>
 
                     <tr>
-                        <td>@Html.LabelFor(l => l.IsIn)</td>
-                        <td>@Html.TextBoxFor(l => l.IsIn)</td>
+                        <td>@Html.LabelFor(l => l.IsInTime)</td>
+                        <td>@Html.TextBoxFor(l => l.IsInTime)</td>
 
                     </tr>
 

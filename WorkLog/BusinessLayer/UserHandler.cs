@@ -87,12 +87,14 @@ namespace BusinessLayer
         {
             var sql = string.Format("UPDATE IP_User  SET UserName='{0}', Password='{1}' where UserID={2}", user.UserName, user.Password, user.UserID);
 
-            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
+           
+           SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
+
         }
 
         public static void Delete(int id)
         {
-            var sql = string.Format(@"Delete from IP_User where UserID={0}", id);
+            var sql = string.Format(@"Delete from IP_User  where UserID={0}", id);
 
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
         }

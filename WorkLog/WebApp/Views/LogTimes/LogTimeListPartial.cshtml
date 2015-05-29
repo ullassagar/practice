@@ -2,21 +2,21 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th>LogTimeID</th>
+       
         <th>EmployeeID</th>
         <th>LoggedTime</th>
         <th>LogTypeID</th>
-        <th>IsIn</th>
+        <th>IsInTime</th>
     </tr>
 
     @foreach (var l in Model)
     {
         <tr>
-            <td>@l.LogTimeID</td>
+            
             <td>@l.EmployeeID</td>
             <td>@l.LoggedTime</td>
             <td>@l.LogTypeID</td>
-            <td>@l.IsIn</td>
+            <td>@l.IsInTime</td>
 
 
             <td>@Html.ActionLink("Edit", "Edit", "LogTimes", new { id = l.LogTimeID }, null)</td>

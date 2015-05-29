@@ -22,13 +22,13 @@
                         <td>  @Html.LabelFor(l => l.LoggedTime) </td>
                         <td>
                             <div class='input-group date datetimepicker'>
-                                @if (Model.LoggedTime != DateTime.MinValue)
+                                 @if (Model.LoggedTime != DateTime.MinValue)
                                 {
-                                    @Html.TextBox(string.Empty, DateTime.Now.ToString("yyyy-MM-dd"), new { @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.LoggedTime,  new { @class = "form-control" })
                                 }
                                 else
                                 {
-                                    @Html.TextBoxFor(m => m.LoggedTime, new { @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.LoggedTime,DateTime.Now.ToString(), new { @class = "form-control" })
                                 }
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
@@ -52,8 +52,8 @@
                     </tr>
 
                     <tr>
-                        <td>@Html.LabelFor(l => l.IsIn)</td>
-                        <td>@Html.TextBoxFor(l => l.IsIn)</td>
+                        <td>@Html.LabelFor(l => l.IsInTime)</td>
+                        <td>@Html.TextBoxFor(l => l.IsInTime)</td>
 
                     </tr>
 

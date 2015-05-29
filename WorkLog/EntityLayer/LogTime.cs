@@ -22,7 +22,7 @@ namespace Entity
         public int EmployeeID { get; set; }
         public DateTime LoggedTime { get; set; }
         public LogTypeID LogTypeID { get; set; }
-        public bool IsIn { get; set; }
+        public bool IsInTime { get; set; }
 
         public static LogTime Load(IDataReader reader)
         {
@@ -31,7 +31,7 @@ namespace Entity
             logtime.EmployeeID = Convert.ToInt32(reader["EmployeeID"]);
             logtime.LoggedTime = Convert.ToDateTime(reader["LoggedTime"]);
             logtime.LogTypeID =(LogTypeID) Convert.ToInt32(reader["LogTypeID"]);
-            logtime.IsIn = Convert.ToBoolean(reader["IsIn"]);
+            logtime.IsInTime = Convert.ToBoolean(reader["IsInTime"]);
 
             return logtime;
         }

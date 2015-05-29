@@ -12,7 +12,7 @@ namespace WebApp.Models
         public int EmployeeID { get; set; }
         public DateTime LoggedTime { get; set; }
         public LogTypeID LogTypeID { get; set; }
-        public bool IsIn { get; set; }
+        public bool IsInTime { get; set; }
     }
 
     public class LogTimeModelIMapper
@@ -27,7 +27,7 @@ namespace WebApp.Models
                 model.EmployeeID = logtime.EmployeeID;
                 model.LoggedTime = logtime.LoggedTime ;
                 model.LogTypeID = logtime.LogTypeID;
-                model.IsIn = logtime.IsIn;
+                model.IsInTime = logtime.IsInTime;
             }
             return model;
         }
@@ -42,7 +42,7 @@ namespace WebApp.Models
                 logtime.EmployeeID = model.EmployeeID;
                 logtime.LoggedTime = model.LoggedTime;
                 logtime.LogTypeID = model.LogTypeID;
-                logtime.IsIn= model.IsIn;
+                logtime.IsInTime = model.IsInTime;
 
             }
             return logtime;

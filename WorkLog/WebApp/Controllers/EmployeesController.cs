@@ -39,7 +39,6 @@ namespace WebApp.Controllers
             return View(model);
         }
 
-
         public ActionResult Add(EmployeeModel model)
         {
             var employee = EmployeeModelMapper.MapToEmployee(model);

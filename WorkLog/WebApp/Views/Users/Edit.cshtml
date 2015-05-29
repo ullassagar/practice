@@ -1,28 +1,39 @@
-﻿@model WebApp.Models.UserModel
+﻿@using BusinessLayer
+@model WebApp.Models.UserModel
+
+@{
+
+    Dictionary<int, string> roles = UserHandler.GetRoles();
+    SelectList selectRoles = new SelectList(roles, "Key", "Value");
+}
 
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h2>User</h2>
+            <h2>Edit User</h2>
             @using (Html.BeginForm("Update", "Users", FormMethod.Post))
             {
                 @Html.HiddenFor(u => u.UserID)
                 @Html.HiddenFor(u => u.EmployeeID)
-
-            <table class="table table-bordered table-striped">
-                <tr>
-                    <td>  @Html.LabelFor(u => u.UserName)</td>
-                    <td>  @Html.TextBoxFor(u => u.UserName)</td>
-                </tr>
-
-                <tr>
-                    <td>  @Html.LabelFor(u => u.Password)</td>
-                    <td> @Html.TextBoxFor(u => u.Password)</td>
-                </tr>
-            </table>
+                
+                 <div class="row">
+                    <div class="col-md-2">@Html.Label("User name")</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.UserName, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-2">@Html.Label("Password")</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.Password, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
 
             <input type="submit" value="Submit" class="btn btn-primary" />
-
+                
             }
         </div>
     </div>

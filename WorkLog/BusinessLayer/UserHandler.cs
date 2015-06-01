@@ -3,57 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entity;
+using Indpro.Attendance.Entity;
 using System.Data.SqlClient;
 using Microsoft.ApplicationBlocks.Data;
 using System.Data;
+using Indpro.Attendance.Repository;
 
-namespace BusinessLayer
+namespace Indpro.Attendance.Business
 {
     public class UserHandler
     {
         public static List<User> GetAllUser()
         {
-            List<User> userList = new List<User>();
-
-            var sql = string.Format(@"SELECT U.UserID, U.EmployeeID, U.UserName, U.Password, E.EmployeeName, E.EmployeeEmailID, R.RoleID, R.RoleName
-                                    FROM IP_User U
-                                    join IP_UserInRole UR on U.UserID=UR.UserID
-                                    join IP_Roles R on UR.RoleID=R.RoleID
-                                    join IP_Employee E on U.EmployeeID=E.EmployeeID");
-            using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
-            {
-                while (reader.Read())
-                {
-                    userList.Add(User.Load(reader));
-                }
-            }
-            return userList;
+            return UserRepository.GetAllUser();
         }
 
         public static User GetUser(int UserID)
         {
-            User user = null;
-            var sql = string.Format(@"SELECT U.UserID, U.EmployeeID, U.UserName, U.Password, E.EmployeeName, E.EmployeeEmailID, R.RoleID, R.RoleName
-                                    FROM IP_User U
-                                    join IP_UserInRole UR on U.UserID=UR.UserID
-                                    join IP_Roles R on UR.RoleID=R.RoleID
-                                    join IP_Employee E on U.EmployeeID=E.EmployeeID where U.UserID={0}", UserID);
-
-            using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
-            {
-                if (reader.Read())
-                {
-                    user = User.Load(reader);
-                }
-            }
-            return user;
+            return UserRepository.GetUser(UserID);
         }
 
         public static User GetUserByUserNamePassword(string username, string password)
         {
             User user = null;
-            var sql = string.Format(@"SELECT U.UserID, U.EmployeeID, U.UserName, U.Password, E.EmployeeName, E.EmployeeEmailID, R.RoleID, R.RoleName
+            var sql = string.Format(@"SELECT U.UserID, U.EmployeeID, U.UserName, U.Password,E.EmployeeNo, E.EmployeeName, E.EmployeeEmailID, R.RoleID, R.RoleName
                                     FROM IP_User U
                                     join IP_UserInRole UR on U.UserID=UR.UserID
                                     join IP_Roles R on UR.RoleID=R.RoleID
@@ -72,24 +45,16 @@ namespace BusinessLayer
 
         public static void Add(User user)
         {
-            var sql = string.Format(@"INSERT INTO IP_User (EmployeeID, UserName, Password)
-                                     VALUES({0},'{1}','{2}'); SELECT @@IDENTITY;", user.EmployeeID, user.UserName, user.Password);
-
-            var userId = Convert.ToInt32(SqlHelper.ExecuteScalar(SqlHelper.ConnectionString, CommandType.Text, sql));
-
-            sql = string.Format(@"INSERT INTO IP_UserInRole (UserId, RoleId)
-                                     VALUES({0}, {1})", userId, user.RoleID);
-
-            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
+            UserRepository.Add(user);
         }
 
         public static void Update(User user)
         {
             var sql = string.Format("UPDATE IP_User  SET UserName='{0}', Password='{1}' where UserID={2}", user.UserName, user.Password, user.UserID);
+            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
 
-           
-           SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
-
+            sql = string.Format("UPDATE IP_UserInRole  SET RoleID={0} where UserID={1}", user.RoleID, user.UserID);
+            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
         }
 
         public static void Delete(int id)
@@ -112,6 +77,21 @@ namespace BusinessLayer
                 }
             }
             return roles;
+        }
+
+        public static Dictionary<int, string> GetEmployeeNos()
+        {
+            Dictionary<int, string> employeenos = new Dictionary<int, string>();
+
+            var sql = string.Format(@"SELECT EmployeeID, EmployeeNo  FROM IP_Employee;");
+            using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
+            {
+                while (reader.Read())
+                {
+                    employeenos.Add(Convert.ToInt32(reader["EmployeeID"]), reader["EmployeeNo"].ToString());
+                }
+            }
+            return employeenos;
         }
     }
 }

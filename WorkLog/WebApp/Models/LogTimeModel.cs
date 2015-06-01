@@ -1,4 +1,4 @@
-﻿using Entity;
+﻿using Indpro.Attendance.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace WebApp.Models
         public int LogTimeID { get; set; }
         public int EmployeeID { get; set; }
         public DateTime LoggedTime { get; set; }
-        public LogTypeID LogTypeID { get; set; }
+        public LogType LogType { get; set; }
         public bool IsInTime { get; set; }
     }
 
@@ -26,7 +26,7 @@ namespace WebApp.Models
                 model.LogTimeID = logtime.LogTimeID;
                 model.EmployeeID = logtime.EmployeeID;
                 model.LoggedTime = logtime.LoggedTime ;
-                model.LogTypeID = logtime.LogTypeID;
+                model.LogType = logtime.LogType;
                 model.IsInTime = logtime.IsInTime;
             }
             return model;
@@ -41,7 +41,7 @@ namespace WebApp.Models
                 logtime.LogTimeID = model.LogTimeID;
                 logtime.EmployeeID = model.EmployeeID;
                 logtime.LoggedTime = model.LoggedTime;
-                logtime.LogTypeID = model.LogTypeID;
+                logtime.LogType = model.LogType;
                 logtime.IsInTime = model.IsInTime;
 
             }

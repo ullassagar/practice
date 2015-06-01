@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Entity
+namespace Indpro.Attendance.Entity
 {
     public class User
     {
         public int UserID { get; set; }
         public int EmployeeID { get; set; }
+        public string EmployeeNo { get; set; }
         public string UserName { get; set; }
         public string EmployeeName { get; set; }
         public string Password { get; set; }
@@ -24,6 +25,7 @@ namespace Entity
             User user = new User();
             user.UserID = Convert.ToInt32(reader["UserID"]);
             user.EmployeeID = Convert.ToInt32(reader["EmployeeID"]);
+            user.EmployeeNo = Convert.ToString(reader["EmployeeNo"]);
             user.UserName = Convert.ToString(reader["UserName"]);
             user.EmployeeName = Convert.ToString(reader["EmployeeName"]);
             user.Password = Convert.ToString(reader["Password"]);

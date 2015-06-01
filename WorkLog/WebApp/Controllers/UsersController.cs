@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Indpro.Attendance.Business;
+using Indpro.Attendance.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
-using BusinessLayer;
 using WebApp.Models;
-using Entity;
 using WorkLog.Utilities;
 
 namespace WebApp.Controllers

@@ -7,8 +7,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BusinessLayer;
-using Entity;
+using Indpro.Attendance.Business;
+using Indpro.Attendance.Entity;
 using WebApp.Models;
 using WorkLog.Utilities;
 
@@ -17,7 +17,7 @@ namespace WebApp.Controllers
     [AuthorizeMember]
     public class EmployeesController : Controller
     {
-        public ActionResult Index(int id = 0)
+        public ViewResult Index(int id = 0)
         {
             var model = new List<EmployeeModel>();
             if (id > 0)

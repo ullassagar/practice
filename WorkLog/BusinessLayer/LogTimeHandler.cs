@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entity;
+using Indpro.Attendance.Entity;
 using System.Data.SqlClient;
 using Microsoft.ApplicationBlocks.Data;
 using System.Data;
 
-namespace BusinessLayer
+namespace Indpro.Attendance.Business
 {
     public class LogTimeHandler
     {
@@ -51,7 +51,7 @@ namespace BusinessLayer
         public static void Add(LogTime logtime)
         {
             var sql = string.Format(@"INSERT INTO IP_LogTime (EmployeeID ,LoggedTime ,LogTypeID ,IsInTime)
-                                    VALUES({0},'{1}',{2},'{3}')", logtime.EmployeeID, logtime.LoggedTime, (int)logtime.LogTypeID, logtime.IsInTime);
+                                    VALUES({0},'{1}',{2},'{3}')", logtime.EmployeeID, logtime.LoggedTime, (int)logtime.LogType, logtime.IsInTime);
 
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
 
@@ -62,7 +62,7 @@ namespace BusinessLayer
         public static void Update(LogTime logtime)
         {
             var sql = string.Format(@"UPDATE IP_LogTime SET EmployeeID = {0},LoggedTime ='{1}',LogTypeID={2}, IsInTime='{3}'
-                                      WHERE LogTimeID={4}", logtime.EmployeeID,logtime.LoggedTime,(int)logtime.LogTypeID,logtime.IsInTime,logtime.LogTimeID);
+                                      WHERE LogTimeID={4}", logtime.EmployeeID,logtime.LoggedTime,(int)logtime.LogType,logtime.IsInTime,logtime.LogTimeID);
 
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
         }

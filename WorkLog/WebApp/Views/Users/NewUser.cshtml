@@ -1,10 +1,13 @@
-﻿@using BusinessLayer
+﻿@using Indpro.Attendance.Business
 @model WebApp.Models.UserModel
 
 @{
 
     Dictionary<int, string> roles = UserHandler.GetRoles();
     SelectList selectRoles = new SelectList(roles, "Key", "Value");
+
+    Dictionary<int, string> employeenos = UserHandler.GetEmployeeNos();
+    SelectList selectEmployeeNos=new SelectList(employeenos,"Key","value");
 }
 
 <div class="container">
@@ -18,8 +21,8 @@
             @using (Html.BeginForm("Add", "Users", FormMethod.Post))
             {
                 <div class="row">
-                    <div class="col-md-2">@Html.Label("EmployeeID")</div>
-                    <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeID, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.Label("EmployeeNo")</div>
+                    <div class="col-md-2">@Html.DropDownListFor(u => u.EmployeeID, @selectEmployeeNos)</div>
                 </div>
                 <div class="row">
                     <div class="col-md-1">&nbsp;</div>

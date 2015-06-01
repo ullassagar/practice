@@ -3,36 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entity;
+using Indpro.Attendance.Entity;
 using System.Data.SqlClient;
+using Indpro.Attendance.Repository;
 using Microsoft.ApplicationBlocks.Data;
 using System.Data;
 
-namespace BusinessLayer
+namespace Indpro.Attendance.Business
 {
     public class EmployeeHandler
     {
         public static List<Employee> GetAllEmployee()
         {
-            List<Employee> employeeList = new List<Employee>();
-
-            var sql = @"SELECT EmployeeID, EmployeeNO, EmployeeName, Gender, EmployeeDesignation, EmployeeQualification, EmployeeDOB, EmployeeDOJ,
-                        EmployeeImage, EmployeeAddress, EmployeeMobileNo, EmployeeSkypeID, EmployeeEmailID 
-                        FROM IndproAttendance.dbo.IP_Employee";
-
-            using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
-            {
-                while (reader.Read())
-                {
-                    employeeList.Add(Employee.Load(reader));
-                }
-            }
-
-            return employeeList;
-
+            return EmployeeRepository.GetAllEmployee();
         }
-
-
+        
         public static Employee GetEmployee(int employeeId)
         {
             Employee employee = null;

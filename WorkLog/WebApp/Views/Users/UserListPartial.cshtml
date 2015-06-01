@@ -2,16 +2,18 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-       <th>UserName</th>
+        <th>EmployeeNo</th>
+        <th>UserName</th>
         <th>EmployeeName</th>
-      <th>EmailID</th>
+        <th>EmailID</th>
     </tr>
     @foreach (var u in Model)
     {
         <tr>
-           <td>@u.UserName</td>
+            <td>@u.EmployeeNo</td>
+            <td>@u.UserName</td>
             <td>@u.EmployeeName</td>
-           <td>@u.EmployeeEmailID</td>
+            <td>@u.EmployeeEmailID</td>
 
             <td>@Html.ActionLink("Edit", "Edit", "Users", new { id = u.UserID },null)</td>
             @*<td>@Html.ActionLink("Delete", "Delete", "Users", new { id = u.UserID },null)</td>*@

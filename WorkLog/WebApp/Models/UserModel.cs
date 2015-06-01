@@ -1,4 +1,4 @@
-﻿using Entity;
+﻿using Indpro.Attendance.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,7 @@ namespace WebApp.Models
     {
         public int UserID { get; set; }
         public int EmployeeID { get; set; }
+        public string EmployeeNo { get; set; }
         public string UserName { get; set; }
         public string EmployeeName { get; set; }
         public string Password { get; set; }
@@ -26,7 +27,8 @@ namespace WebApp.Models
             if (user != null)
             {
                 model.UserID = user.UserID;
-                model.EmployeeID = user.EmployeeID;              
+                model.EmployeeID = user.EmployeeID;
+                model.EmployeeNo = user.EmployeeNo;
                 model.UserName = user.UserName;
                 model.EmployeeName = user.EmployeeName;
                 model.Password = user.Password;
@@ -43,6 +45,7 @@ namespace WebApp.Models
             {
                 user.UserID = model.UserID;
                 user.EmployeeID = model.EmployeeID;
+                user.EmployeeNo = model.EmployeeNo;
                 user.UserName = model.UserName;
                 user.EmployeeName = model.EmployeeName;
                 user.Password = model.Password;

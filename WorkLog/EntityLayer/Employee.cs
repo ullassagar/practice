@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Entity
+namespace Indpro.Attendance.Entity
 {
     public enum Gender
     {

@@ -1,4 +1,4 @@
-﻿using Entity;
+﻿using Indpro.Attendance.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

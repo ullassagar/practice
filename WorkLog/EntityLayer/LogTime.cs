@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 using System.Web;
 
 
-namespace Entity
+namespace Indpro.Attendance.Entity
 {
-    public enum LogTypeID
+    public enum LogType
     {
         Work=1,
         Tea=2,
-        Lunch=3
+        Lunch=3,
+        Others=4
     }
 
     public class LogTime
@@ -21,7 +22,7 @@ namespace Entity
         public int LogTimeID { get; set; }
         public int EmployeeID { get; set; }
         public DateTime LoggedTime { get; set; }
-        public LogTypeID LogTypeID { get; set; }
+        public LogType LogType { get; set; }
         public bool IsInTime { get; set; }
 
         public static LogTime Load(IDataReader reader)
@@ -30,7 +31,7 @@ namespace Entity
             logtime.LogTimeID = Convert.ToInt32(reader["LogTimeID"]);
             logtime.EmployeeID = Convert.ToInt32(reader["EmployeeID"]);
             logtime.LoggedTime = Convert.ToDateTime(reader["LoggedTime"]);
-            logtime.LogTypeID =(LogTypeID) Convert.ToInt32(reader["LogTypeID"]);
+            logtime.LogType =(LogType) Convert.ToInt32(reader["LogTypeID"]);
             logtime.IsInTime = Convert.ToBoolean(reader["IsInTime"]);
 
             return logtime;

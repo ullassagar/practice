@@ -1,4 +1,4 @@
-﻿@using Entity;
+﻿@using Indpro.Attendance.Entity;
 @model WebApp.Models.LogTimeModel
 
 
@@ -40,14 +40,16 @@
                     </tr>
 
                     <tr>
-                        <td>@Html.LabelFor(l => l.LogTypeID)</td>
+                        <td>@Html.LabelFor(l => l.LogType)</td>
                         <td>
                             <label for="rdoWork">Work</label>
-                            @Html.RadioButtonFor(l => l.LogTypeID, LogTypeID.Work, new { @id = "rdoWork" })
+                            @Html.RadioButtonFor(l => l.LogType, LogType.Work, new { @id = "rdoWork" })
                             <label for="rdoTea">Tea</label>
-                            @Html.RadioButtonFor(l => l.LogTypeID, LogTypeID.Tea, new { @id = "rdoTea" })
+                            @Html.RadioButtonFor(l => l.LogType, LogType.Tea, new { @id = "rdoTea" })
                             <label for="rdoLunch">Lunch</label>
-                            @Html.RadioButtonFor(l => l.LogTypeID, LogTypeID.Lunch, new { @id = "rdoLunch" })
+                            @Html.RadioButtonFor(l => l.LogType, LogType.Lunch, new { @id = "rdoLunch" })
+                            <label for="rdoOthers">Others</label>
+                            @Html.RadioButtonFor(l => l.LogType, LogType.Others, new { @id = "rdoOthers" })
                         </td>
                     </tr>
 

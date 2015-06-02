@@ -6,10 +6,10 @@ using System.Web.Mvc;
 using Indpro.Attendance.Entity;
 using Indpro.Attendance.Business;
 using System.Web.UI.WebControls;
+using Indpro.Attendance.WebApp.Models;
 using WorkLog.Utilities;
-using WebApp.Models;
 
-namespace WebApp.Controllers
+namespace Indpro.Attendance.WebApp.Controllers
 {
     [AuthorizeMember]
     public class LogTimesController : Controller

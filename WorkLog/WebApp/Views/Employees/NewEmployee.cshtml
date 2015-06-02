@@ -1,127 +1,162 @@
 ﻿@using Indpro.Attendance.Entity
-@model WebApp.Models.EmployeeModel
+@model Indpro.Attendance.WebApp.Models.EmployeeModel
 
 <script src="~/Scripts/jquery-2.1.4.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-
-
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             <h2>Add Employee</h2>
+            <div class="row">
+                <div class="col-md-1">&nbsp;</div>
+            </div>
 
             @using (Html.BeginForm("Add", "Employees", FormMethod.Post))
             {
                 @Html.HiddenFor(e => e.EmployeeID)
-                <table class="table table-bordered table-striped">
-                   
-                    <tr>
-                        <td> @Html.LabelFor(e => e.EmployeeNo)</td>
-                        <td> @Html.TextBoxFor(e => e.EmployeeNo)</td>
-                    </tr>
 
-                    <tr>
-                        <td> @Html.LabelFor(e => e.EmployeeName)</td>
-                        <td> @Html.TextBoxFor(e => e.EmployeeName)</td>
-                    </tr>
+                <div class="row">
+                    <div class="col-md-2">@Html.Label("EmployeeNo")</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeNo, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+                
+                               
+                <div class="row">
+                    <div class="col-md-2">@Html.Label("EmployeeName")</div><div class="col-md-1">&nbsp;</div>
+                    <div class="col-md-5">@Html.TextBoxFor(u => u.EmployeeName, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+                
+                
+                <div class="row">
+                    <div class="col-md-2">@Html.Label("Gender")</div>
+                    <div class="col-md-5">
+                        <label for="rdoMale">Male</label>
+                        @Html.RadioButtonFor(e => e.Gender, Gender.Male, new { @id = "rdoMale" })
+                        <label for="rdoFeMale">FeMale</label>
+                        @Html.RadioButtonFor(e => e.Gender, Gender.Female, new { @id = "rdoFeMale" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+                
+                
+                <div class="row">
+                    <div class="col-md-2">@Html.Label("EmployeeDesignation")</div><div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-5">@Html.TextBoxFor(u => u.EmployeeDesignation, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">&nbsp;</div>
+                </div>
+                
+                
+                  <div class="row">
+                    <div class="col-md-2">@Html.Label("EmployeeQualification")</div><div class="col-md-2">&nbsp;</div>
+                    <div class="col-md-5">@Html.TextBoxFor(u => u.EmployeeQualification, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
 
-                    <tr>
-                         <td>@Html.LabelFor(e=>e.Gender)</td>
-                        <td><label for="rdoMale">Male</label>
-                            @Html.RadioButtonFor(e => e.Gender, Gender.Male, new { @id = "rdoMale" })
-                            <label for="rdoFeMale">FeMale</label>
-                            @Html.RadioButtonFor(e => e.Gender, Gender.Female, new { @id = "rdoFeMale" })
-                        </td>                        
-                    </tr>
+                 @Html.LabelFor(e => e.EmployeeDOB)
+                  <div class='input-group date datetimepicker'>
+                    @if (Model.EmployeeDOB != DateTime.MinValue)
+                    {
+                        @Html.TextBoxFor(u => u.EmployeeDOB, new { @class = "form-control" })
+                    }
+                    else
+                    {
+                        Model.EmployeeDOB = DateTime.Now;
+                        @Html.TextBoxFor(u => u.EmployeeDOB, new { @class = "form-control" })
+                    }
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">&nbsp;</div>
+                </div>
+                
+                
+                 @Html.LabelFor(e => e.EmployeeDOJ)
+                 <div class='input-group date datetimepicker'>
+                  
+                    @if (Model.EmployeeDOB != DateTime.MinValue)
+                    {
+                        @Html.TextBoxFor(m => m.EmployeeDOJ, new { @class = "form-control" })
+                    }
+                    else
+                    {
+                        Model.EmployeeDOJ = DateTime.Now;
+                      @Html.TextBoxFor(m => m.EmployeeDOJ, DateTime.Now.ToString(), new { @class = "form-control" })
+                    }
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+                
+                
+                 <div class="row">
+                    <div class="col-md-2">@Html.Label("EmployeeImage")</div><div class="col-md-1">&nbsp;</div>
+                    <div class="col-md-5">@Html.TextBoxFor(u => u.EmployeeImage, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+                
+                
+                 <div class="row">
+                    <div class="col-md-2">@Html.Label("EmployeeAddress")</div><div class="col-md-1">&nbsp;</div>
+                    <div class="col-md-5">@Html.TextBoxFor(u => u.EmployeeAddress, new { Class = "form-control" })</div>
+                </div>
+                 
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+                
+                
+                 <div class="row">
+                    <div class="col-md-2">@Html.Label("EmployeeMobileNo")</div><div class="col-md-1">&nbsp;</div>
+                    <div class="col-md-5">@Html.TextBoxFor(u => u.EmployeeMobileNo, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+                
+                
+                 <div class="row">
+                    <div class="col-md-2">@Html.Label("EmployeeSkypeID")</div><div class="col-md-1">&nbsp;</div>
+                    <div class="col-md-5">@Html.TextBoxFor(u => u.EmployeeSkypeID, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+                
+                
+                 <div class="row">
+                    <div class="col-md-2">@Html.Label("EmployeeEmailID")</div><div class="col-md-1">&nbsp;</div>
+                    <div class="col-md-5">@Html.TextBoxFor(u => u.EmployeeEmailID, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
 
-                    <tr>
-                        <td> @Html.LabelFor(e => e.EmployeeQualification)</td>
-                        <td> @Html.TextBoxFor(e => e.EmployeeQualification)</td>
-                    </tr>
 
-                    <tr>
-                        <td> @Html.LabelFor(e => e.EmployeeDesignation)</td>
-                        <td> @Html.TextBoxFor(e => e.EmployeeDesignation)</td>
-                    </tr>
-
-                    <tr>
-                        <td>  @Html.LabelFor(e => e.EmployeeDOB) </td>
-                        @*<td> @Html.TextBoxFor(e => e.EmployeeDOB, new { data_provide = "datepicker", data_date_format = "dd-mm-yyyy" })</td>*@
-
-                        <td>
-                            <div class='input-group date datetimepicker'>
-                                @if (Model.EmployeeDOB != DateTime.MinValue)
-                                {
-                                    @Html.TextBoxFor(m => m.EmployeeDOB, new { @class = "form-control" })
-                                }
-                                else
-                                {
-                                    @Html.TextBoxFor(m => m.EmployeeDOB,DateTime.Now.ToString(), new { @class = "form-control" })
-                                }
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr>
-                        <td> @Html.LabelFor(e => e.EmployeeDOJ)</td>
-                        @*<td> @Html.TextBoxFor(e => e.EmployeeDOJ, new { data_provide = "datepicker", data_date_format = "dd-mm-yyyy" })</td>*@
-
-                        <td>
-                            <div class='input-group date datetimepicker'>
-                                @if (Model.EmployeeDOJ != DateTime.MinValue)
-                                {
-                                    @Html.TextBoxFor(m => m.EmployeeDOJ, new { @class = "form-control" })
-                                }
-                                else
-                                {
-                                    @Html.TextBoxFor(m => m.EmployeeDOJ, DateTime.Now.ToString(), new { @class = "form-control" })
-                                }
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-                    <tr>
-                        <td> @Html.LabelFor(e => e.EmployeeImage)</td>
-                        <td> @Html.TextBoxFor(e => e.EmployeeImage)
-                    </tr>
-
-                    <tr>
-                        <td>@Html.LabelFor(e => e.EmployeeAddress) </td>
-                        <td> @Html.TextBoxFor(e => e.EmployeeAddress) </td>
-                    </tr>
-
-                    <tr>
-                        <td>@Html.LabelFor(e => e.EmployeeMobileNo) </td>
-                        <td> @Html.TextBoxFor(e => e.EmployeeMobileNo)
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td> @Html.LabelFor(e => e.EmployeeSkypeID)</td>
-                        <td> @Html.TextBoxFor(u => u.EmployeeSkypeID)</td>
-                    </tr>
-
-                    <tr>
-                        <td> @Html.LabelFor(a => a.EmployeeEmailID) </td>
-                        <td>  @Html.TextBoxFor(e => e.EmployeeEmailID)</td>
-                    </tr>
-                </table>
-                <input type="submit" value="Submit" class="btn btn-primary" />
+ <input type="submit" value="Submit" class="btn btn-primary" />
                 
                 @Html.ValidationSummary();
             }
         </div>
     </div>
 </div>
-

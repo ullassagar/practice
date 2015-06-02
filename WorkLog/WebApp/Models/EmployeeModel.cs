@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApp.Models
+namespace Indpro.Attendance.WebApp.Models
 {
     public class EmployeeModel
     {
@@ -18,7 +18,11 @@ namespace WebApp.Models
         [RegularExpression("^([a-zA-Z .&'-]+)$", ErrorMessage = "EmployeeName Should be in the Text Formate")]
         [Required(ErrorMessage = "EmployeeName Required")]
         public string EmployeeName { get; set; }
+
+        [Required(ErrorMessage = "Need to specify Gender.")]
         public Gender Gender { get; set; }
+
+        [Required(ErrorMessage = "EmployeeDesignation Required.")]
         public string EmployeeDesignation { get; set; }
         public string EmployeeQualification { get; set; }
         public DateTime EmployeeDOB { get; set; }
@@ -27,6 +31,9 @@ namespace WebApp.Models
         public string EmployeeAddress { get; set; }
         public string EmployeeMobileNo { get; set; }
         public string EmployeeSkypeID { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string EmployeeEmailID { get; set; }
     }
 

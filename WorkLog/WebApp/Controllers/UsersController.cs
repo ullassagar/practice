@@ -6,10 +6,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
-using WebApp.Models;
+using Indpro.Attendance.WebApp.Models;
 using WorkLog.Utilities;
 
-namespace WebApp.Controllers
+namespace Indpro.Attendance.WebApp.Controllers
 {
     [AuthorizeMember]
     public class UsersController : Controller

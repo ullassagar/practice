@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace WebApp.Models
+namespace Indpro.Attendance.WebApp.Models
 {
     public class AppUser : IdentityUser
     {

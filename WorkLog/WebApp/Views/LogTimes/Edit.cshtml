@@ -1,5 +1,5 @@
 ﻿@using Indpro.Attendance.Entity;
-@model WebApp.Models.LogTimeModel
+@model Indpro.Attendance.WebApp.Models.LogTimeModel
 
 <div class="container">
     <div class="row">
@@ -10,55 +10,60 @@
             {
                 @Html.HiddenFor(l => l.LogTimeID)
 
-                <table class="table table-bordered table-striped">
+                <div class="row">
+                    <div class="col-md-2">@Html.Label("EmployeeID")</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeID, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
 
-                    <tr>
-                        <td> @Html.LabelFor(l => l.EmployeeID)</td>
-                        <td> @Html.TextBoxFor(l => l.EmployeeID)</td>
-                    </tr>
+                  @Html.LabelFor(e => e.LoggedTime)
+                <div class='input-group date'>
+                    @if (Model.LoggedTime != DateTime.MinValue)
+                    {                        
+                        @Html.TextBoxFor(m => m.LoggedTime, new { @Value = Model.LoggedTime.ToString("yyyy-MM-dd hh:mm:ss"), @class = " datetimepicker form-control" })
+                    }
+                    else
+                    {
+                        Model.LoggedTime = DateTime.Now;
+                        @Html.TextBoxFor(m => m.LoggedTime, new { @class = "form-control" })
+                    }
+                    
+                </div>
 
-                    <tr>
-                        <td>  @Html.LabelFor(l => l.LoggedTime) </td>
-                        <td>
-                            <div class='input-group date datetimepicker'>
-                                @if (Model.LoggedTime != DateTime.MinValue)
-                                {
-                                    @Html.TextBoxFor(m => m.LoggedTime,  new { @class = "form-control" })
-                                }
-                                else
-                                {
-                                    @Html.TextBoxFor(m => m.LoggedTime, new { @class = "form-control" })
-                                }
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>@Html.LabelFor(l => l.LogType)</td>
-                        <td>
-                            <label for="rdoWork">Work</label>
-                            @Html.RadioButtonFor(l => l.LogType, LogType.Work, new { @id = "rdoWork" })
-                            <label for="rdoTea">Tea</label>
-                            @Html.RadioButtonFor(l => l.LogType, LogType.Tea, new { @id = "rdoTea" })
-                            <label for="rdoLunch">Lunch</label>
-                            @Html.RadioButtonFor(l => l.LogType, LogType.Lunch, new { @id = "rdoLunch" })
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>@Html.LabelFor(l => l.IsInTime)</td>
-                        <td>@Html.TextBoxFor(l => l.IsInTime)</td>
-
-                    </tr>
-
-                </table>
-
+                <div class="row">
+                    <div class="col-md-2">@Html.Label("LogType")</div>
+                    <div class="col-md-6">
+                        <label for="rdoWork">Work</label>
+                        @Html.RadioButtonFor(l => l.LogType, LogType.Work, new { @id = "rdoWork" })
+                        <label for="rdoTea">Tea</label>
+                        @Html.RadioButtonFor(l => l.LogType, LogType.Tea, new { @id = "rdoTea" })
+                        <label for="rdoLunch">Lunch</label>
+                        @Html.RadioButtonFor(l => l.LogType, LogType.Lunch, new { @id = "rdoLunch" })
+                        <label for="rdoOthers">Others</label>
+                        @Html.RadioButtonFor(l => l.LogType, LogType.Others, new { @id = "rdoOthers" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-2">@Html.Label("IsInTime")</div>
+                    <label for="rdoTrue">True</label>
+                    @Html.RadioButtonFor(l => l.IsInTime, IsInTime.True, new { @id = "rdoTrue" })
+                    <label for="rdoFalse">False</label>
+                    @Html.RadioButtonFor(l => l.IsInTime, IsInTime.False, new { @id = "rdoFalse" })
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+                
                 <input type="submit" value="Submit" class="btn btn-primary" />
             }
 
         </div>
+
     </div>
 </div>

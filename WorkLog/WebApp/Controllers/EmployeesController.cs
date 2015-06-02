@@ -9,10 +9,10 @@ using System.Web;
 using System.Web.Mvc;
 using Indpro.Attendance.Business;
 using Indpro.Attendance.Entity;
-using WebApp.Models;
+using Indpro.Attendance.WebApp.Models;
 using WorkLog.Utilities;
 
-namespace WebApp.Controllers
+namespace Indpro.Attendance.WebApp.Controllers
 {
     [AuthorizeMember]
     public class EmployeesController : Controller

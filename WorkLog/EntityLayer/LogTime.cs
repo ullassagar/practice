@@ -17,6 +17,12 @@ namespace Indpro.Attendance.Entity
         Others=4
     }
 
+    public enum IsInTime
+    {
+        True = 1,
+        False = 2
+    }
+
     public class LogTime
     {
         public int LogTimeID { get; set; }

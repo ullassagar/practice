@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WorkLog.Utilities;
 
-namespace WebApp.Controllers
+namespace Indpro.Attendance.WebApp.Controllers
 {
     [AuthorizeMember]
     public class HomeController : Controller

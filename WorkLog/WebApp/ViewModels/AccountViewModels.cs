@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace WebApp.ViewModels
+namespace Indpro.Attendance.WebApp.ViewModels
 {
 
     public class ExternalLoginConfirmationViewModel

@@ -12,7 +12,11 @@ namespace Indpro.Attendance.WebApp.Models
         public int LogTimeID { get; set; }
         public int EmployeeID { get; set; }
         public string EmployeeNo { get; set; }
+
+        [DataType(DataType.DateTime)]
         public DateTime LoggedTime { get; set; }
+
+        [Required(ErrorMessage="Select LogType")]
         public LogType LogType { get; set; }
         public bool IsInTime { get; set; }
     }

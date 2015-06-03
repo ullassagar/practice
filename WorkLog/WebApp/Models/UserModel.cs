@@ -1,6 +1,7 @@
 ﻿using Indpro.Attendance.Entity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -11,9 +12,18 @@ namespace Indpro.Attendance.WebApp.Models
         public int UserID { get; set; }
         public int EmployeeID { get; set; }
         public string EmployeeNo { get; set; }
+
+        [StringLength(100)]
+        [Required(ErrorMessage = "UserName Required")]
         public string UserName { get; set; }
         public string EmployeeName { get; set; }
+
+        [Required(ErrorMessage = "Password Required")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string EmployeeEmailID { get; set; }
         public int RoleID { get; set; }
         public string RoleName { get; set; }

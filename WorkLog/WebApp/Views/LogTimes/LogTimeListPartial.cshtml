@@ -2,27 +2,25 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-       
         <th>EmployeeNo</th>
         <th>LoggedTime</th>
         <th>LogType</th>
         <th>IsInTime</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
 
     @foreach (var l in Model)
     {
         <tr>
-            
             <td>@l.EmployeeNo</td>
             <td>@l.LoggedTime</td>
             <td>@l.LogType</td>
             <td>@l.IsInTime</td>
 
-
             <td>@Html.ActionLink("Edit", "Edit", "LogTimes", new { id = l.LogTimeID }, null)</td>
             <td>@Html.ActionLink("Delete", "Delete", "LogTimes", new { id = l.LogTimeID }, null)</td>
         </tr>
     }
-
 </table>
 

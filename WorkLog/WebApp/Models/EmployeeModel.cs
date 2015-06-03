@@ -23,7 +23,10 @@ namespace Indpro.Attendance.WebApp.Models
         [Required(ErrorMessage = "EmployeeDesignation Required.")]
         public string EmployeeDesignation { get; set; }
         public string EmployeeQualification { get; set; }
+
+        [DataType(DataType.DateTime)]
         public DateTime EmployeeDOB { get; set; }
+        [DataType(DataType.DateTime)]
         public DateTime EmployeeDOJ { get; set; }
         public string EmployeeImage { get; set; }
         public string EmployeeAddress { get; set; }

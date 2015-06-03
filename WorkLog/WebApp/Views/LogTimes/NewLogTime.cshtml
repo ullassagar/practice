@@ -1,5 +1,11 @@
-﻿@using Indpro.Attendance.Entity;
+﻿@using Indpro.Attendance.Business
+@using Indpro.Attendance.Entity;
 @model Indpro.Attendance.WebApp.Models.LogTimeModel
+           
+@{
+    Dictionary<int, string> employeenos = UserHandler.GetEmployeeNos();
+    SelectList selectEmployeeNos = new SelectList(employeenos, "Key", "value");
+}
 
 
 <div class="container">
@@ -13,8 +19,8 @@
                 
                 
                 <div class="row">
-                    <div class="col-md-2">@Html.Label("EmployeeId")</div>
-                    <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeID, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.Label("Employee No")</div>
+                    <div class="col-md-2">@Html.DropDownListFor(u => u.EmployeeID, @selectEmployeeNos, new { Class = "form-control" })</div>
                 </div>
                 <div class="row">
                     <div class="col-md-1">&nbsp;</div>

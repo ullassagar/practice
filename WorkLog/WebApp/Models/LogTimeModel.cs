@@ -11,6 +11,7 @@ namespace Indpro.Attendance.WebApp.Models
     {
         public int LogTimeID { get; set; }
         public int EmployeeID { get; set; }
+        public string EmployeeNo { get; set; }
         public DateTime LoggedTime { get; set; }
         public LogType LogType { get; set; }
         public bool IsInTime { get; set; }
@@ -26,6 +27,7 @@ namespace Indpro.Attendance.WebApp.Models
             {
                 model.LogTimeID = logtime.LogTimeID;
                 model.EmployeeID = logtime.EmployeeID;
+                model.EmployeeNo = logtime.EmployeeNo;
                 model.LoggedTime = logtime.LoggedTime ;
                 model.LogType = logtime.LogType;
                 model.IsInTime = logtime.IsInTime;
@@ -41,6 +43,7 @@ namespace Indpro.Attendance.WebApp.Models
             {
                 logtime.LogTimeID = model.LogTimeID;
                 logtime.EmployeeID = model.EmployeeID;
+                logtime.EmployeeNo = model.EmployeeNo;
                 logtime.LoggedTime = model.LoggedTime;
                 logtime.LogType = model.LogType;
                 logtime.IsInTime = model.IsInTime;

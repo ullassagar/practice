@@ -18,7 +18,7 @@ namespace Indpro.Attendance.Entity
     public class Employee
     {
         public int EmployeeID { get; set; }
-        public int EmployeeNo { get; set; }
+        public string EmployeeNo { get; set; }
         public string EmployeeName { get; set; }
         public Gender Gender { get; set; }
         public string EmployeeDesignation { get; set; }
@@ -35,7 +35,7 @@ namespace Indpro.Attendance.Entity
         {
             Employee employee = new Employee();
             employee.EmployeeID = Convert.ToInt32(reader["EmployeeID"]);
-            employee.EmployeeNo = Convert.ToInt32(reader["EmployeeNo"]);
+            employee.EmployeeNo = Convert.ToString(reader["EmployeeNo"]);
             employee.EmployeeName = Convert.ToString(reader["EmployeeName"]);
             employee.Gender = (Gender)Convert.ToInt32(reader["Gender"]);
             employee.EmployeeDesignation = Convert.ToString(reader["EmployeeDesignation"]);

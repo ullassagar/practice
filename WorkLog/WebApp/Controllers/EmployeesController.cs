@@ -42,10 +42,10 @@ namespace Indpro.Attendance.WebApp.Controllers
         public ActionResult Add(EmployeeModel model)
         {
             var employee = EmployeeModelMapper.MapToEmployee(model);
-
             EmployeeHandler.Add(employee);
 
-            return RedirectToAction("Index");
+            var empModel = EmployeeModelMapper.MapToEmployeeModel(employee);
+            return View("NewEmployee", empModel);
         }
 
         public ActionResult NewEmployee()

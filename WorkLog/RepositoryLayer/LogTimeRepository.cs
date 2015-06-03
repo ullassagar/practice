@@ -16,9 +16,9 @@ namespace Indpro.Attendance.Repository
       {
           List<LogTime> loglist = new List<LogTime>();
 
-          var sql = string.Format(@"SELECT IP_LogTime.LogTimeID,IP_LogTime.EmployeeID,IP_LogTime.LoggedTime,
-                                    IP_LogTime.LogTypeID,IP_LogTime.IsInTime
-                                    FROM IP_LogTime join IP_Employee on IP_LogTime.EmployeeID=IP_Employee.EmployeeID");
+          var sql = string.Format(@"SELECT L.LogTimeID, L.EmployeeID, E.EmployeeNo, L.LoggedTime, L.LogTypeID, L.IsInTime
+                                    FROM IP_LogTime L 
+                                    join IP_Employee E on L.EmployeeID=E.EmployeeID");
 
           using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
           {

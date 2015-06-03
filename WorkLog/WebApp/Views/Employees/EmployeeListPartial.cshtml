@@ -2,39 +2,30 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-        
-        <th>EmpNo</th>
+        <th>Employee No</th>
         <th>Name</th>
-        <th>Gender</th>
         <th>Designation</th>
         <th>Qualification</th>
-        <th>DOB</th>
-        <th>DOJ</th>
-        <th>Image</th>
-        <th>Address</th>
-        <th>MobileNo</th>
-        <th>SkypeID</th>
-        <th>EmailID</th>
+        <th>Date of Join</th>
+        <th>Mobile</th>
+        <th>Skype</th>
+        <th>Email</th>
+        <th>Edit</th>
+        @*<th>Work Log</th>*@
     </tr>
     @foreach (var u in Model)
     {
         <tr>
-           
             <td>@u.EmployeeNo</td>
             <td>@u.EmployeeName</td>
-            <td>@u.Gender</td>
             <td>@u.EmployeeDesignation</td>
             <td>@u.EmployeeQualification</td>
-            <td>@u.EmployeeDOB</td>
             <td>@u.EmployeeDOJ</td>
-            <td>@u.EmployeeImage</td>
-            <td>@u.EmployeeAddress</td>
             <td>@u.EmployeeMobileNo</td>
             <td>@u.EmployeeSkypeID</td>
             <td>@u.EmployeeEmailID</td>
-
-            <td>@Html.ActionLink("Edit", "Edit", "Employees", new { id = u.EmployeeID },null)</td>
-            <td>@Html.ActionLink("Delete", "Delete", "Employees", new { id = u.EmployeeID }, new { onclick = "return confirm('First delete the Root record of this Employee')" })</td>
+            <td>@Html.ActionLink("Edit", "Edit", "Employees", new { id = u.EmployeeID }, null)</td>
+            @*<td>@Html.ActionLink("Work Log", "WorkLog", "Employees", new { id = u.EmployeeID }, null)</td>*@
         </tr>
     }
 </table>

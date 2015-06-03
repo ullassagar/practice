@@ -27,6 +27,7 @@ namespace Indpro.Attendance.Entity
     {
         public int LogTimeID { get; set; }
         public int EmployeeID { get; set; }
+        public string EmployeeNo { get; set; }
         public DateTime LoggedTime { get; set; }
         public LogType LogType { get; set; }
         public bool IsInTime { get; set; }
@@ -36,6 +37,7 @@ namespace Indpro.Attendance.Entity
             LogTime logtime = new LogTime();
             logtime.LogTimeID = Convert.ToInt32(reader["LogTimeID"]);
             logtime.EmployeeID = Convert.ToInt32(reader["EmployeeID"]);
+            logtime.EmployeeNo = Convert.ToString(reader["EmployeeNo"]);
             logtime.LoggedTime = Convert.ToDateTime(reader["LoggedTime"]);
             logtime.LogType =(LogType) Convert.ToInt32(reader["LogTypeID"]);
             logtime.IsInTime = Convert.ToBoolean(reader["IsInTime"]);

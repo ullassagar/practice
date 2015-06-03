@@ -10,9 +10,7 @@ namespace Indpro.Attendance.WebApp.Models
     public class EmployeeModel
     {
         public int EmployeeID { get; set; }
-
-         [Required(ErrorMessage = "EmployeeNo  Required")]
-        public int EmployeeNo { get; set; }
+        public string EmployeeNo { get; set; }
 
         [StringLength(100)]
         [RegularExpression("^([a-zA-Z .&'-]+)$", ErrorMessage = "EmployeeName Should be in the Text Formate")]

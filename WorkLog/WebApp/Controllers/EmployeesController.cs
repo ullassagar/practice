@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Indpro.Attendance.Business;
+using Indpro.Attendance.Entity;
+using Indpro.Attendance.WebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Common;
@@ -7,9 +10,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Indpro.Attendance.Business;
-using Indpro.Attendance.Entity;
-using Indpro.Attendance.WebApp.Models;
 using WorkLog.Utilities;
 
 namespace Indpro.Attendance.WebApp.Controllers
@@ -41,11 +41,11 @@ namespace Indpro.Attendance.WebApp.Controllers
 
         public ActionResult Add(EmployeeModel model)
         {
-            var employee = EmployeeModelMapper.MapToEmployee(model);
-            EmployeeHandler.Add(employee);
+                var employee = EmployeeModelMapper.MapToEmployee(model);
+                EmployeeHandler.Add(employee);
 
-            var empModel = EmployeeModelMapper.MapToEmployeeModel(employee);
-            return View("NewEmployee", empModel);
+                var empModel = EmployeeModelMapper.MapToEmployeeModel(employee);
+                return View("NewEmployee", empModel);
         }
 
         public ActionResult NewEmployee()
@@ -80,8 +80,14 @@ namespace Indpro.Attendance.WebApp.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            EmployeeHandler.Delete(id);
-
+            try
+            {
+                EmployeeHandler.Delete(id);
+            }
+            catch(Exception)
+            {
+                return View("Error");
+            }
             return RedirectToAction("Index"); 
         }
     }

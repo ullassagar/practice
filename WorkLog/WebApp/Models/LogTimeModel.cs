@@ -19,6 +19,8 @@ namespace Indpro.Attendance.WebApp.Models
         [Required(ErrorMessage="Select LogType")]
         public LogType LogType { get; set; }
         public bool IsInTime { get; set; }
+
+        public string Error { get; set; }
     }
 
     public class LogTimeModelIMapper

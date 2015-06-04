@@ -37,9 +37,16 @@ namespace Indpro.Attendance.WebApp.Controllers
 
         public ActionResult Add(UserModel model)
         {
-            var user = UserModelIMapper.MapToUser(model);
-            UserHandler.Add(user);
-
+            try
+            {
+                var user = UserModelIMapper.MapToUser(model);
+                UserHandler.Add(user);
+            }
+            catch(Exception ex)
+            {
+                model.Error = ex.Message;
+                return View("Add", model);
+            }
             return RedirectToAction("Index");
         }
 
@@ -60,19 +67,34 @@ namespace Indpro.Attendance.WebApp.Controllers
 
         public ActionResult Update(UserModel model)
         {
-            User user = UserModelIMapper.MapToUser(model);
+            try
+            {
+                User user = UserModelIMapper.MapToUser(model);
 
-            UserHandler.Update(user);
+                UserHandler.Update(user);
+            }
 
+            catch (Exception ex)
+            {
+                model.Error = ex.Message;
+                return View("Edit", model);
+            }
             return RedirectToAction("Index");
-
         }
 
+      
         public ActionResult Delete(int id = 0)
         {
-            UserHandler.Delete(id);
-
-             return RedirectToAction("Index");
+            try
+            {
+                UserHandler.Delete(id);
+                return RedirectToAction("Index");
+            }
+            catch(Exception)
+            {
+                return View("Error");
+            }
+             
 
         }
     }

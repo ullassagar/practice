@@ -27,6 +27,8 @@ namespace Indpro.Attendance.WebApp.Models
         public string EmployeeEmailID { get; set; }
         public int RoleID { get; set; }
         public string RoleName { get; set; }
+
+        public string Error { get; set; }
     }
 
     public class UserModelIMapper

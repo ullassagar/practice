@@ -81,8 +81,16 @@ namespace Indpro.Attendance.Repository
 
         public static void Delete(int id)
         {
-            var sql = string.Format(@"DELETE FROM IP_Employee where EmployeeID={0}", id);
+            var sql = string.Format(@"Delete from IP_UserInRole  where UserID={0}", id);
+            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
 
+            sql = string.Format(@"Delete from IP_User  where UserID={0}", id);
+            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
+
+            sql = string.Format(@"Delete from IP_LogTime  where EmployeeID={0}", id);
+            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
+
+            sql = string.Format(@"DELETE FROM IP_Employee where EmployeeID={0}", id);
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
         }
     }

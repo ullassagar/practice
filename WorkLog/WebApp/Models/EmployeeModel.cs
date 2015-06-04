@@ -24,9 +24,11 @@ namespace Indpro.Attendance.WebApp.Models
         public string EmployeeDesignation { get; set; }
         public string EmployeeQualification { get; set; }
 
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         public DateTime EmployeeDOB { get; set; }
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",ApplyFormatInEditMode = true)]
+        //[Range(typeof(Date),"1900-01-01","2015-01-01")]
         public DateTime EmployeeDOJ { get; set; }
         public string EmployeeImage { get; set; }
         public string EmployeeAddress { get; set; }
@@ -36,6 +38,8 @@ namespace Indpro.Attendance.WebApp.Models
         [DataType(DataType.EmailAddress)]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string EmployeeEmailID { get; set; }
+
+        public string Error { get; set; }
     }
 
     public class EmployeeModelMapper

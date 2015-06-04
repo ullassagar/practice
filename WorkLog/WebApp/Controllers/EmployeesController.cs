@@ -65,10 +65,16 @@ namespace Indpro.Attendance.WebApp.Controllers
 
         public ActionResult Update(EmployeeModel model)
         {
-            Employee employee = EmployeeModelMapper.MapToEmployee(model);
-
-            EmployeeHandler.Update(employee);
-
+            try
+            {
+                Employee employee = EmployeeModelMapper.MapToEmployee(model);
+                EmployeeHandler.Update(employee);
+            }
+            catch(Exception ex)
+            {
+                model.Error = ex.Message;
+                return View("Edit", model);
+            }
             return RedirectToAction("Index");
         }
 

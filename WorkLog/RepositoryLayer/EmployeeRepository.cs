@@ -48,18 +48,18 @@ namespace Indpro.Attendance.Repository
                     employee = Employee.Load(reader);
                 }
             }
-
             return employee;
         }
+        
 
         public static void Add(Employee employee)
         {
             var sql = string.Format(@"INSERT INTO IP_Employee(EmployeeName, Gender, EmployeeDesignation, EmployeeQualification,
                                     EmployeeDOB, EmployeeDOJ, EmployeeImage, EmployeeAddress, EmployeeMobileNo, EmployeeSkypeID, EmployeeEmailID, IsActive)
                                     VALUES('{0}', {1}, '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}',{11}); SELECT @@IDENTITY;",
-                employee.EmployeeName, (int)employee.Gender, employee.EmployeeDesignation, employee.EmployeeQualification,
-                employee.EmployeeDOB, employee.EmployeeDOJ, employee.EmployeeImage, employee.EmployeeAddress,
-                employee.EmployeeMobileNo, employee.EmployeeSkypeID, employee.EmployeeEmailID, (employee.IsActive ? 1 : 0));
+                                    employee.EmployeeName, (int)employee.Gender, employee.EmployeeDesignation, employee.EmployeeQualification,
+                                    employee.EmployeeDOB, employee.EmployeeDOJ, employee.EmployeeImage, employee.EmployeeAddress,
+                                    employee.EmployeeMobileNo, employee.EmployeeSkypeID, employee.EmployeeEmailID, (employee.IsActive ? 1 : 0));
 
             employee.EmployeeID = Convert.ToInt32(SqlHelper.ExecuteScalar(SqlHelper.ConnectionString, CommandType.Text, sql));
 
@@ -77,9 +77,9 @@ namespace Indpro.Attendance.Repository
                                       EmployeeQualification='{3}', EmployeeDOB='{4}', EmployeeDOJ='{5}', EmployeeImage='{6}',EmployeeAddress='{7}',
                                       EmployeeMobileNo='{8}', EmployeeSkypeID='{9}', EmployeeEmailID='{10}', IsActive={11}
                                       WHERE EmployeeID={12}", employee.EmployeeName, (int)employee.Gender,
-                employee.EmployeeDesignation, employee.EmployeeQualification, employee.EmployeeDOB, employee.EmployeeDOJ,
-                employee.EmployeeImage, employee.EmployeeAddress, employee.EmployeeMobileNo, employee.EmployeeSkypeID,
-                employee.EmployeeEmailID, (employee.IsActive ? 1 : 0), employee.EmployeeID);
+                                      employee.EmployeeDesignation, employee.EmployeeQualification, employee.EmployeeDOB, employee.EmployeeDOJ,
+                                      employee.EmployeeImage, employee.EmployeeAddress, employee.EmployeeMobileNo, employee.EmployeeSkypeID,
+                                      employee.EmployeeEmailID, (employee.IsActive ? 1 : 0), employee.EmployeeID);
 
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
         }

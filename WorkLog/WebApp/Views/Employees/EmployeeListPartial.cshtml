@@ -28,7 +28,7 @@
             <td>@u.EmployeeEmailID</td>
             <td>@u.IsActive</td>
             <td>@Html.ActionLink("Edit", "Edit", "Employees", new { id = u.EmployeeID }, null)</td>
-            <td>@Html.ActionLink("Delete", "Delete", "Employees", new { id = u.EmployeeID }, null)</td>
+            <td>@Html.ActionLink("Delete", "Delete", "Employees", new { id = u.EmployeeID }, new { onclick = "return confirm('Are you Sure you want to Delete This Record?')" })</td>
             @*<td>@Html.ActionLink("Work Log", "WorkLog", "Employees", new { id = u.EmployeeID }, null)</td>*@
         </tr>
     }

@@ -14,59 +14,72 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-    <body>
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Indpro Attendance</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Employees","Index","Employees")</li>
-                        <li>@Html.ActionLink("Users", "Index", "Users")</li>
-                        <li>@Html.ActionLink("LogTime","Index","LogTimes")</li>
-                        @*<li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li class="dropdown-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>*@
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Logout", "LogOut", "Account")</li>
-                    </ul>
-                </div><!--/.navbar-collapse -->
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Indpro Attendance</a>
             </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink("Logout", "LogOut", "Account")</li>
+            </ul>
         </div>
-        @RenderBody()
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        
-        <script src="@Url.Content("~/js/bootstrap.js")"></script>
-        <script src="@Url.Content("~/scripts/moment.js")"></script>
-        @*<script src="@Url.Content("~/Scripts/bootstrap-datepicker.js")"></script>*@
-        <script src="@Url.Content("~/scripts/bootstrap-datetimepicker.js")"></script>
-        <script src="~/Scripts/jquery.validate.min.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    </div>
+   
+    <div class="navbar-collapse collapse">
+        <div class="container">
+                <ul class="nav nav-tabs">
+                    <li class="active"></li>
+                    <li><a href="#">@Html.ActionLink("Employees", "Index", "Employees")</a></li>
+                    <li><a href="#">@Html.ActionLink("Users", "Index", "Users")</a></li>
+                    <li><a href="#">@Html.ActionLink("LogTime", "Index", "LogTimes")</a></li>
 
-        <script src="~/Scripts/jquery-2.1.4.min.js"></script>
-        <script src="~/Scripts/jquery.validate.min.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-        <script type="text/javascript">
-            $('.datetimepicker').datetimepicker();
+                    @*<li>@Html.ActionLink("Employees", "Index", "Employees")</li>
+                    <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                    <li>@Html.ActionLink("LogTime", "Index", "LogTimes")</li>*@
+                    @*<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>*@
+                    
+                </ul>
+                @*<ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Logout", "LogOut", "Account")</li>
+                </ul>*@
+           </div>
+        </div>
+ <!--/.navbar-collapse -->
+    @RenderBody()
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-        </script>
-    </body>
+    <script src="@Url.Content("~/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/scripts/moment.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/bootstrap-datepicker.js")"></script>*@
+    <script src="@Url.Content("~/scripts/bootstrap-datetimepicker.js")"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script type="text/javascript">
+        $('.datetimepicker').datetimepicker();
+    </script>
+</body>
 </html>

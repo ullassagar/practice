@@ -42,7 +42,6 @@ namespace Indpro.Attendance.WebApp.Models
         public DateTime EmployeeDOB { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        //[Range(typeof(Date),"1900-01-01","2015-01-01")]
 
         public DateTime EmployeeDOJ { get; set; }
         public string EmployeeImage { get; set; }

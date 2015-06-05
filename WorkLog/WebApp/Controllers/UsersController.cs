@@ -45,7 +45,7 @@ namespace Indpro.Attendance.WebApp.Controllers
             catch(Exception ex)
             {
                 model.Error = ex.Message;
-                return View("Add", model);
+                return View("Add", model);                
             }
             return RedirectToAction("Index");
         }

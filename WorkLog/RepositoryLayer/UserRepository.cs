@@ -62,7 +62,7 @@ namespace Indpro.Attendance.Repository
                                     join IP_UserInRole UR on U.UserID=UR.UserID
                                     join IP_Roles R on UR.RoleID=R.RoleID
                                     join IP_Employee E on U.EmployeeID=E.EmployeeID
-                                    WHERE UserName='{0}' AND Password='{1}'", username, password);
+                                    WHERE UserName='{0}' AND Password='{1}'", username,Encrypt( password));
 
            using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
            {
@@ -77,7 +77,7 @@ namespace Indpro.Attendance.Repository
        public static void Add(User user)
        {
            var sql = string.Format(@"INSERT INTO IP_User (EmployeeID, UserName, Password)
-                                     VALUES({0},'{1}','{2}'); SELECT @@IDENTITY;", user.EmployeeID, user.UserName, user.Password);
+                                     VALUES({0},'{1}','{2}'); SELECT @@IDENTITY;", user.EmployeeID, user.UserName, Encrypt(user.Password));
 
            var userId = Convert.ToInt32(SqlHelper.ExecuteScalar(SqlHelper.ConnectionString, CommandType.Text, sql));
 
@@ -89,7 +89,7 @@ namespace Indpro.Attendance.Repository
 
        public static void Update(User user)
        {
-           var sql = string.Format("UPDATE IP_User  SET UserName='{0}', Password='{1}' where UserID={2}", user.UserName, user.Password, user.UserID);
+           var sql = string.Format("UPDATE IP_User  SET UserName='{0}', Password='{1}' where UserID={2}", user.UserName, Encrypt(user.Password), user.UserID);
            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
 
            sql = string.Format("UPDATE IP_UserInRole  SET RoleID={0} where UserID={1}", user.RoleID, user.UserID);
@@ -135,27 +135,27 @@ namespace Indpro.Attendance.Repository
            return employeenos;
        }
 
-       //private static string Encrypt(string clearText)
-       //{
-       //    string EncryptionKey = "MAKV2SPBNI99212";
-       //    byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
-       //    using (Aes encryptor = Aes.Create())
-       //    {
-       //        Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-       //        encryptor.Key = pdb.GetBytes(32);
-       //        encryptor.IV = pdb.GetBytes(16);
-       //        using (MemoryStream ms = new MemoryStream())
-       //        {
-       //            using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
-       //            {
-       //                cs.Write(clearBytes, 0, clearBytes.Length);
-       //                cs.Close();
-       //            }
-       //            clearText = Convert.ToBase64String(ms.ToArray());
-       //        }
-       //    }
-       //    return clearText;
-       //}
+       private static string Encrypt(string clearText)
+       {
+           string EncryptionKey = "MAKV2SPBNI99212";
+           byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
+           using (Aes encryptor = Aes.Create())
+           {
+               Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+               encryptor.Key = pdb.GetBytes(32);
+               encryptor.IV = pdb.GetBytes(16);
+               using (MemoryStream ms = new MemoryStream())
+               {
+                   using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                   {
+                       cs.Write(clearBytes, 0, clearBytes.Length);
+                       cs.Close();
+                   }
+                   clearText = Convert.ToBase64String(ms.ToArray());
+               }
+           }
+           return clearText;
+       }
 
      
 

@@ -8,13 +8,18 @@ namespace Indpro.Attendance.Repository
 {
     public class EmployeeRepository
     {
-        public static List<Employee> GetAllEmployee()
+        public static List<Employee> GetAllEmployee(bool includeNonActive)
         {
             var employeeList = new List<Employee>();
 
-            var sql = @"SELECT EmployeeID, EmployeeNO, EmployeeName, Gender, EmployeeDesignation, EmployeeQualification, EmployeeDOB, EmployeeDOJ,
-                        EmployeeImage, EmployeeAddress, EmployeeMobileNo, EmployeeSkypeID, EmployeeEmailID 
-                        FROM IP_Employee";
+            var sql = string.Format(@"SELECT EmployeeID, EmployeeNO, EmployeeName, Gender, EmployeeDesignation, EmployeeQualification, EmployeeDOB, EmployeeDOJ,
+                        EmployeeImage, EmployeeAddress, EmployeeMobileNo, EmployeeSkypeID, EmployeeEmailID, IsActive
+                        FROM IP_Employee ");
+
+            if (!includeNonActive)
+            {
+                sql = sql + " WHERE IsActive=1 ";
+            }
 
             using (var reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
             {
@@ -32,7 +37,7 @@ namespace Indpro.Attendance.Repository
             Employee employee = null;
 
             var sql = string.Format(@"SELECT EmployeeID, EmployeeNO, EmployeeName, Gender, EmployeeDesignation, EmployeeQualification,
-                                      EmployeeDOB, EmployeeDOJ, EmployeeImage, EmployeeAddress, EmployeeMobileNo, EmployeeSkypeID, EmployeeEmailID
+                                      EmployeeDOB, EmployeeDOJ, EmployeeImage, EmployeeAddress, EmployeeMobileNo, EmployeeSkypeID, EmployeeEmailID, IsActive
                                       FROM IP_Employee
                                       Where EmployeeId={0}", employeeId);
 
@@ -50,11 +55,11 @@ namespace Indpro.Attendance.Repository
         public static void Add(Employee employee)
         {
             var sql = string.Format(@"INSERT INTO IP_Employee(EmployeeName, Gender, EmployeeDesignation, EmployeeQualification,
-                                    EmployeeDOB, EmployeeDOJ, EmployeeImage, EmployeeAddress, EmployeeMobileNo, EmployeeSkypeID, EmployeeEmailID)
-                                    VALUES('{0}', {1}, '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}'); SELECT @@IDENTITY;",
+                                    EmployeeDOB, EmployeeDOJ, EmployeeImage, EmployeeAddress, EmployeeMobileNo, EmployeeSkypeID, EmployeeEmailID, IsActive)
+                                    VALUES('{0}', {1}, '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}',{11}); SELECT @@IDENTITY;",
                 employee.EmployeeName, (int)employee.Gender, employee.EmployeeDesignation, employee.EmployeeQualification,
                 employee.EmployeeDOB, employee.EmployeeDOJ, employee.EmployeeImage, employee.EmployeeAddress,
-                employee.EmployeeMobileNo, employee.EmployeeSkypeID, employee.EmployeeEmailID);
+                employee.EmployeeMobileNo, employee.EmployeeSkypeID, employee.EmployeeEmailID, (employee.IsActive ? 1 : 0));
 
             employee.EmployeeID = Convert.ToInt32(SqlHelper.ExecuteScalar(SqlHelper.ConnectionString, CommandType.Text, sql));
 
@@ -70,27 +75,18 @@ namespace Indpro.Attendance.Repository
         {
             var sql = string.Format(@"UPDATE IP_Employee SET EmployeeName='{0}', Gender={1}, EmployeeDesignation='{2}',
                                       EmployeeQualification='{3}', EmployeeDOB='{4}', EmployeeDOJ='{5}', EmployeeImage='{6}',EmployeeAddress='{7}',
-                                      EmployeeMobileNo='{8}', EmployeeSkypeID='{9}', EmployeeEmailID='{10}'                   
-                                      WHERE EmployeeID={11}", employee.EmployeeName, (int)employee.Gender,
+                                      EmployeeMobileNo='{8}', EmployeeSkypeID='{9}', EmployeeEmailID='{10}', IsActive={11}
+                                      WHERE EmployeeID={12}", employee.EmployeeName, (int)employee.Gender,
                 employee.EmployeeDesignation, employee.EmployeeQualification, employee.EmployeeDOB, employee.EmployeeDOJ,
                 employee.EmployeeImage, employee.EmployeeAddress, employee.EmployeeMobileNo, employee.EmployeeSkypeID,
-                employee.EmployeeEmailID, employee.EmployeeID);
+                employee.EmployeeEmailID, (employee.IsActive ? 1 : 0), employee.EmployeeID);
 
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
         }
 
         public static void Delete(int id)
         {
-            var sql = string.Format(@"Delete from IP_UserInRole  where UserID={0}", id);
-            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
-
-            sql = string.Format(@"Delete from IP_User  where UserID={0}", id);
-            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
-
-            sql = string.Format(@"Delete from IP_LogTime  where EmployeeID={0}", id);
-            SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
-
-            sql = string.Format(@"DELETE FROM IP_Employee where EmployeeID={0}", id);
+            var sql = string.Format(@"UPDATE IP_Employee SET IsActive=0 WHERE EmployeeID={0}", id);
             SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
         }
     }

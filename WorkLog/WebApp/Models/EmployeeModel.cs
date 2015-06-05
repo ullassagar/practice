@@ -7,6 +7,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Indpro.Attendance.WebApp.Models
 {
+    public class EmployeeIndexModel
+    {
+        public bool IncludeNonActive { get; set; }
+        public List<EmployeeModel> EmployeeList { get; set; }
+
+        public EmployeeIndexModel()
+        {
+            IncludeNonActive = false;
+            EmployeeList = new List<EmployeeModel>();
+        }
+    }
+
     public class EmployeeModel
     {
         public int EmployeeID { get; set; }
@@ -25,11 +37,11 @@ namespace Indpro.Attendance.WebApp.Models
         public string EmployeeQualification { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
         public DateTime EmployeeDOB { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         //[Range(typeof(Date),"1900-01-01","2015-01-01")]
 
         public DateTime EmployeeDOJ { get; set; }
@@ -44,6 +56,7 @@ namespace Indpro.Attendance.WebApp.Models
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string EmployeeEmailID { get; set; }
 
+        public bool IsActive { get; set; }
         public string Error { get; set; }
     }
 
@@ -67,6 +80,7 @@ namespace Indpro.Attendance.WebApp.Models
                 model.EmployeeMobileNo = employee.EmployeeMobileNo;
                 model.EmployeeSkypeID = employee.EmployeeSkypeID;
                 model.EmployeeEmailID = employee.EmployeeEmailID;
+                model.IsActive = employee.IsActive;
             }
             return model;
         }
@@ -89,6 +103,7 @@ namespace Indpro.Attendance.WebApp.Models
                 employee.EmployeeMobileNo = model.EmployeeMobileNo;
                 employee.EmployeeSkypeID = model.EmployeeSkypeID;
                 employee.EmployeeEmailID = model.EmployeeEmailID;
+                employee.IsActive = model.IsActive;
             }
             return employee;
         }

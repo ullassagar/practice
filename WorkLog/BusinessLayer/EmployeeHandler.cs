@@ -13,9 +13,9 @@ namespace Indpro.Attendance.Business
 {
     public class EmployeeHandler
     {
-        public static List<Employee> GetAllEmployee()
+        public static List<Employee> GetAllEmployee(bool includeNonActive)
         {
-            return EmployeeRepository.GetAllEmployee();
+            return EmployeeRepository.GetAllEmployee(includeNonActive);
         }
         
         public static Employee GetEmployee(int employeeId)

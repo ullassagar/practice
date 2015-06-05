@@ -30,6 +30,7 @@ namespace Indpro.Attendance.Entity
         public string EmployeeMobileNo { get; set; }
         public string EmployeeSkypeID { get; set; }
         public string EmployeeEmailID { get; set; }
+        public bool IsActive { get; set; }
 
         public static Employee Load(IDataReader reader)
         {
@@ -47,6 +48,7 @@ namespace Indpro.Attendance.Entity
             employee.EmployeeMobileNo = Convert.ToString(reader["EmployeeMobileNo"]);
             employee.EmployeeSkypeID = Convert.ToString(reader["EmployeeSkypeID"]);
             employee.EmployeeEmailID = Convert.ToString(reader["EmployeeEmailID"]);
+            employee.IsActive = Convert.ToBoolean(reader["IsActive"]);
             return employee;
         }
     }

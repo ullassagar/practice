@@ -1,15 +1,8 @@
-﻿using Indpro.Attendance.Business;
-using Indpro.Attendance.Entity;
-using Indpro.Attendance.WebApp.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.Common;
-using System.Data.Odbc;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Indpro.Attendance.Business;
+using Indpro.Attendance.WebApp.Models;
 using WorkLog.Utilities;
 
 namespace Indpro.Attendance.WebApp.Controllers
@@ -17,23 +10,17 @@ namespace Indpro.Attendance.WebApp.Controllers
     [AuthorizeMember]
     public class EmployeesController : Controller
     {
-        public ViewResult Index(int id = 0)
+        public ViewResult Index(bool includeNonActive = false)
         {
-            var model = new List<EmployeeModel>();
-            if (id > 0)
+            var model = new EmployeeIndexModel();
+            model.IncludeNonActive = includeNonActive;
+
+            var empList = EmployeeHandler.GetAllEmployee(includeNonActive);
+
+            foreach (var emp in empList)
             {
-                var emp = EmployeeHandler.GetEmployee(id);
                 var empModel = EmployeeModelMapper.MapToEmployeeModel(emp);
-                model.Add(empModel);
-            }
-            else
-            {
-                var empList = EmployeeHandler.GetAllEmployee();
-                foreach (var emp in empList)
-                {
-                    var empModel = EmployeeModelMapper.MapToEmployeeModel(emp);
-                    model.Add(empModel);
-                }
+                model.EmployeeList.Add(empModel);
             }
 
             return View(model);
@@ -41,22 +28,31 @@ namespace Indpro.Attendance.WebApp.Controllers
 
         public ActionResult Add(EmployeeModel model)
         {
-                var employee = EmployeeModelMapper.MapToEmployee(model);
-                EmployeeHandler.Add(employee);
+            var employee = EmployeeModelMapper.MapToEmployee(model);
 
-                var empModel = EmployeeModelMapper.MapToEmployeeModel(employee);
-                return View("NewEmployee", empModel);
+            try
+            {
+                EmployeeHandler.Add(employee);
+            }
+            catch (Exception ex)
+            {
+                model.Error = ex.Message;
+                return View("NewEmployee", model);
+            }
+
+            var empModel = EmployeeModelMapper.MapToEmployeeModel(employee);
+            return View("NewEmployee", empModel);
         }
 
         public ActionResult NewEmployee()
         {
-            EmployeeModel u = new EmployeeModel();
+            var u = new EmployeeModel();
             return View(u);
         }
 
         public ActionResult Edit(int id = 0)
         {
-            Employee employee = EmployeeHandler.GetEmployee(id);
+            var employee = EmployeeHandler.GetEmployee(id);
 
             var employeeModel = EmployeeModelMapper.MapToEmployeeModel(employee);
 
@@ -67,14 +63,15 @@ namespace Indpro.Attendance.WebApp.Controllers
         {
             try
             {
-                Employee employee = EmployeeModelMapper.MapToEmployee(model);
+                var employee = EmployeeModelMapper.MapToEmployee(model);
                 EmployeeHandler.Update(employee);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 model.Error = ex.Message;
                 return View("Edit", model);
             }
+
             return RedirectToAction("Index");
         }
 
@@ -84,11 +81,12 @@ namespace Indpro.Attendance.WebApp.Controllers
             {
                 EmployeeHandler.Delete(id);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return View("Error");
             }
-            return RedirectToAction("Index"); 
+
+            return RedirectToAction("Index");
         }
     }
 }

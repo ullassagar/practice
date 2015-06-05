@@ -1,4 +1,4 @@
-﻿@model List<Indpro.Attendance.WebApp.Models.EmployeeModel>
+﻿@model Indpro.Attendance.WebApp.Models.EmployeeIndexModel
 
 <table class="table table-bordered table-striped">
     <tr>
@@ -10,11 +10,12 @@
         <th>Mobile</th>
         <th>Skype</th>
         <th>Email</th>
+        <th>IsActive</th>
         <th>Edit</th>
         @*<th>Work Log</th>*@
     </tr>
 
-    @foreach (var u in Model)
+    @foreach (var u in Model.EmployeeList)
     {
         <tr>
             <td>@u.EmployeeNo</td>
@@ -25,6 +26,7 @@
             <td>@u.EmployeeMobileNo</td>
             <td>@u.EmployeeSkypeID</td>
             <td>@u.EmployeeEmailID</td>
+            <td>@u.IsActive</td>
             <td>@Html.ActionLink("Edit", "Edit", "Employees", new { id = u.EmployeeID }, null)</td>
             <td>@Html.ActionLink("Delete", "Delete", "Employees", new { id = u.EmployeeID }, null)</td>
             @*<td>@Html.ActionLink("Work Log", "WorkLog", "Employees", new { id = u.EmployeeID }, null)</td>*@

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h4>Add new employee</h4>
+            <h3>Add new employee</h3>
             <br/>
             @if (Model.EmployeeID > 0)
             {
@@ -35,10 +35,12 @@
                             @Html.RadioButtonFor(e => e.Gender, Gender.Female, new { @id = "rdoFeMale"})
                             <label for="rdoFeMale">FeMale</label>
                         </div>
+                        <div class="col-md-2">@Html.ValidationMessageFor(u => u.Gender)</div>
                     </div>
                     <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Designation")</div>
                         <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeDesignation, new { @class = "form-control" })</div>
+                        <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeDesignation)</div>
                     </div>
                     <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Qualification")</div>
@@ -47,10 +49,12 @@
                     <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Date of birth")</div>
                         <div class="col-md-3">@Html.EditorFor(u => u.EmployeeDOB, new { @class = "form-control" })</div>
+                        <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeDOB)</div>
                     </div>
                     <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Date of join")</div>
                         <div class="col-md-3">@Html.EditorFor(u => u.EmployeeDOJ, new { @class = "form-control" })</div>
+                        <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeDOJ)</div>
                     </div>
                     <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Address")</div>
@@ -59,6 +63,7 @@
                     <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Mobile")</div>
                         <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeMobileNo, new { Class = "form-control" })</div>
+                        <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeMobileNo)</div>
                     </div>
                     <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Skype")</div>
@@ -67,6 +72,7 @@
                     <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Email")</div>
                         <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeEmailID, new { Class = "form-control" })</div>
+                        <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeEmailID)</div>
                     </div>
                     <input type="submit" value="Submit" class="mt10 btn btn-primary" />
                 }

@@ -16,12 +16,12 @@ namespace Indpro.Attendance.WebApp.Controllers
     {
         public ActionResult Index(int id = 0)
         {
-            var model = new List<UserModel>();
+            var model = new UserIndexModel();
             if (id > 0)
             {
                 var usr = UserHandler.GetUser(id);
                 var usrModel = UserModelIMapper.MapToUserModel(usr);
-                model.Add(usrModel);
+                model.List.Add(usrModel);
             }
             else
             {
@@ -29,7 +29,7 @@ namespace Indpro.Attendance.WebApp.Controllers
                 foreach (var usr in usrList)
                 {
                     var usrModel = UserModelIMapper.MapToUserModel(usr);
-                    model.Add(usrModel);
+                    model.List.Add(usrModel);
                 }
             }
             return View(model);
@@ -94,8 +94,6 @@ namespace Indpro.Attendance.WebApp.Controllers
             {
                 return View("Error");
             }
-             
-
         }
     }
 }

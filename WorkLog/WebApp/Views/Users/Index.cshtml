@@ -1,11 +1,11 @@
-﻿@model List<Indpro.Attendance.WebApp.Models.UserModel>
+﻿@model Indpro.Attendance.WebApp.Models.UserIndexModel
 
 <div class="container">
     <div class="row">
         <div class="col-md-8">
             <h3>Users</h3>
             @Html.ActionLink("Add User", "NewUser")<br /><br />
-            @Html.Partial("UserListPartial", Model)
+            @Html.Partial("UserListPartial", Model.List)
         </div>
     </div>
 </div>

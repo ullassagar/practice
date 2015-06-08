@@ -28,8 +28,8 @@ namespace Indpro.Attendance.WebApp.Models
         public string EmployeeNo { get; set; }
 
         [StringLength(100)]
-        [RegularExpression("^([a-zA-Z .&'-]+)$", ErrorMessage = "EmployeeName Should be in the Text Formate")]
-        [Required(ErrorMessage = "Employee name required.")]
+        [RegularExpression("^([a-zA-Z .&'-]+)$", ErrorMessage = "Name Should be in the Text Formate")]
+        [Required(ErrorMessage = "Name required.")]
         public string EmployeeName { get; set; }
 
         [Required(ErrorMessage = "Need to specify Gender.")]

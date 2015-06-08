@@ -1,11 +1,11 @@
-﻿@model List<Indpro.Attendance.WebApp.Models.LogTimeModel>
+﻿@model Indpro.Attendance.WebApp.Models.LogTimeIndexModel
 
 <div class="container">
     <div class="row">
         <div class="col-md-8">
             <h3>Log Time</h3>
             @Html.ActionLink("Add LogTime", "NewLogTime")<br /><br />
-            @Html.Partial("LogTimeListPartial", Model)
+            @Html.Partial("LogTimeListPartial", Model.List)
         </div>
     </div>
 </div>

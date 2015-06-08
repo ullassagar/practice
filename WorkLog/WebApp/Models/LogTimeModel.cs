@@ -7,7 +7,19 @@ using System.Web;
 
 namespace Indpro.Attendance.WebApp.Models
 {
-    public class LogTimeModel
+    public class LogTimeIndexModel : MasterModel
+    {
+        public List<LogTimeModel> List { get; set; }
+
+        public LogTimeIndexModel()
+        {
+            Title = "Admin: LogTime";
+            ActiveModel = "LogTime";
+            List = new List<LogTimeModel>();
+        }
+    }
+
+    public class LogTimeModel : MasterModel
     {
         public int LogTimeID { get; set; }
         public int EmployeeID { get; set; }
@@ -21,6 +33,12 @@ namespace Indpro.Attendance.WebApp.Models
         public bool IsInTime { get; set; }
 
         public string Error { get; set; }
+
+        public LogTimeModel()
+        {
+            Title = "Admin: LogTime";
+            ActiveModel = "LogTime";
+        }
     }
 
     public class LogTimeModelIMapper

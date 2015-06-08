@@ -7,7 +7,19 @@ using System.Web;
 
 namespace Indpro.Attendance.WebApp.Models
 {
-    public class UserModel
+    public class UserIndexModel : MasterModel
+    {
+        public List<UserModel> List { get; set; }
+
+        public UserIndexModel()
+        {
+            Title = "Admin: User";
+            ActiveModel = "User";
+            List = new List<UserModel>();
+        }
+    }
+
+    public class UserModel : MasterModel
     {
         public int UserID { get; set; }
         public int EmployeeID { get; set; }
@@ -29,6 +41,12 @@ namespace Indpro.Attendance.WebApp.Models
         public string RoleName { get; set; }
 
         public string Error { get; set; }
+
+        public UserModel()
+        {
+            Title = "Admin: User";
+            ActiveModel = "User";
+        }
     }
 
     public class UserModelIMapper

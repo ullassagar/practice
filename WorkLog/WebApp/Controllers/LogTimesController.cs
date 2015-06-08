@@ -20,12 +20,12 @@ namespace Indpro.Attendance.WebApp.Controllers
     {
         public ActionResult Index(int id = 0)
         {
-                var model = new List<LogTimeModel>();
+            var model = new LogTimeIndexModel();
                 if (id > 0)
                 {
                     var logtme = LogTimeHandler.GetLogTime(id);
                     var logtmeModel = LogTimeModelIMapper.MapToLogTimeModel(logtme);
-                    model.Add(logtmeModel);
+                    model.List.Add(logtmeModel);
                 }
                 else
                 {
@@ -33,7 +33,7 @@ namespace Indpro.Attendance.WebApp.Controllers
                     foreach (var logtme in logtmeList)
                     {
                         var logtmeModel = LogTimeModelIMapper.MapToLogTimeModel(logtme);
-                        model.Add(logtmeModel);
+                        model.List.Add(logtmeModel);
                     }
                 }
              return View(model);

@@ -124,7 +124,10 @@ namespace Indpro.Attendance.Repository
        {
            Dictionary<int, string> employeenos = new Dictionary<int, string>();
 
-           var sql = string.Format(@"SELECT EmployeeID, EmployeeNo  FROM IP_Employee;");
+          // var sql = string.Format(@"SELECT EmployeeID, EmployeeNo  FROM IP_Employee;");
+
+           var sql = string.Format("SELECT EmployeeID, Employeeno from IP_Employee where isactive = 'true' and EmployeeID not in(SELECT Employeeid from IP_User)");
+
            using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
            {
                while (reader.Read())

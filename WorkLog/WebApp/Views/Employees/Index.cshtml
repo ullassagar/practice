@@ -3,28 +3,18 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3>Employees</h3>
-
-            <div class="row">
+            <div class="margintop10 row">
                 <div class="col-md-12">
                     @Html.ActionLink("Add Employee", "NewEmployee")
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">&nbsp;</div>
-            </div>
-
-            <div class="row">
                 <div class="col-md-12">
-                    @Html.Label("IncludeNonActive")&nbsp;@Html.CheckBoxFor(m => m.IncludeNonActive)&nbsp;
+                    @Html.CheckBoxFor(m => m.IncludeNonActive)&nbsp;&nbsp;@Html.LabelFor(m => m.IncludeNonActive, "Show non active employees")
                     <input type="button" value="Show" class="btn btn-info" onclick="loadEmployees();" />
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">&nbsp;</div>
-            </div>
-            <div class="row">
-
                 <div class="col-md-12">
                     @Html.Partial("EmployeeListPartial", Model)
                 </div>

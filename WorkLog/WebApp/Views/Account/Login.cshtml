@@ -4,17 +4,22 @@
 }
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
-            <h2>Login</h2>
+        <div class="col-md-10">
             @using (Html.BeginForm("Login", "Account", FormMethod.Post))
-            {
-                @Html.LabelFor(u => u.UserName)<br />
-                @Html.TextBoxFor(u => u.UserName)<br />
-                <br />
-                @Html.LabelFor(u => u.Password)<br />
-                @Html.PasswordFor(u => u.Password)<br />
-                <br />
-                <input type="submit" value="Login"><br /><br />
+            {<h4>Login</h4>
+                <div class="mt20 row">
+                    <div class="col-md-2 pr0">@Html.Label("User name:")</div>
+                    <div class="col-md-2 pl0 pr0">@Html.TextBoxFor(u => u.UserName, new { @placeholder = "Username", @class = "form-control" })</div>
+                    <div class="col-md-2 pl0">@Html.ValidationMessageFor(u => u.UserName)</div>
+                </div>
+                <div class="mt10 row">
+                    <div class="col-md-2 pr0">@Html.Label("Password:")</div>
+                    <div class="col-md-2 pl0 pr0">@Html.PasswordFor(u => u.Password, new { @placeholder = "Password", @class = "form-control" })</div>
+                    <div class="col-md-2 pl0">@Html.ValidationMessageFor(u => u.Password)</div>
+                </div>
+                <div class="mt10 row">
+                    <div class="col-md-3"><input type="submit" class="btn btn-primary form-control" value="Login"></div>
+                </div>
                 <span>@ViewBag.Message </span>
             }
         </div>

@@ -3,9 +3,9 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
-            <h2>Add Employee</h2><br />
-
+        <div class="col-md-12">
+            <h4>Add new employee</h4>
+            <br/>
             @if (Model.EmployeeID > 0)
             {
                 <div class="row">
@@ -21,97 +21,54 @@
                 using (Html.BeginForm("Add", "Employees", FormMethod.Post))
                 {
                     @Html.HiddenFor(e => e.EmployeeID)
-
                     <div class="row">
                         <div class="col-md-2">@Html.Label("Name")</div>
-                        <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeName, new { Class = "form-control" })</div>
-                        <div class="col-md-2">@Html.ValidationMessage("EmployeeName Required!!!")</div>
+                        <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeName, new { @class = "form-control" })</div>
+                        <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeName)</div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-1">&nbsp;</div>
-                    </div>
-
-                    <div class="row">
+                    <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Gender")</div>
                         <div class="col-md-3">
-                            @Html.RadioButtonFor(e => e.Gender, Gender.Male, new { @id = "rdoMale" })
+                            @Html.RadioButtonFor(e => e.Gender, Gender.Male, new { @id = "rdoMale"})
                             <label for="rdoMale">Male</label>
                             &nbsp;
-                            @Html.RadioButtonFor(e => e.Gender, Gender.Female, new { @id = "rdoFeMale" })
+                            @Html.RadioButtonFor(e => e.Gender, Gender.Female, new { @id = "rdoFeMale"})
                             <label for="rdoFeMale">FeMale</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-1">&nbsp;</div>
-                    </div>
-
-                    <div class="row">
+                    <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Designation")</div>
-                        <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeDesignation, new { Class = "form-control" })</div>
+                        <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeDesignation, new { @class = "form-control" })</div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-1">&nbsp;</div>
-                    </div>
-
-                    <div class="row">
+                    <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Qualification")</div>
-                        <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeQualification, new { Class = "form-control" })</div>
+                        <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeQualification, new { @class = "form-control" })</div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-1">&nbsp;</div>
+                    <div class="mt10 row">
+                        <div class="col-md-2">@Html.Label("Date of birth")</div>
+                        <div class="col-md-3">@Html.EditorFor(u => u.EmployeeDOB, new { @class = "form-control" })</div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-2">@Html.Label("Date of birth")</div>                       
-                        <div class="col-md-3">@Html.EditorFor(u => u.EmployeeDOB, new { Class = "form-control" })</div>
+                    <div class="mt10 row">
+                        <div class="col-md-2">@Html.Label("Date of join")</div>
+                        <div class="col-md-3">@Html.EditorFor(u => u.EmployeeDOJ, new { @class = "form-control" })</div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-1">&nbsp;</div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-2">@Html.Label("Date of join")</div>                        
-                        <div class="col-md-3">@Html.EditorFor(u => u.EmployeeDOJ, new { Class = "form-control" })</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-1">&nbsp;</div>
-                    </div>
-
-                    <div class="row">
+                    <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Address")</div>
                         <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeAddress, new { Class = "form-control" })</div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-1">&nbsp;</div>
-                    </div>
-
-                    <div class="row">
+                    <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Mobile")</div>
                         <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeMobileNo, new { Class = "form-control" })</div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-1">&nbsp;</div>
-                    </div>
-
-                    <div class="row">
+                    <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Skype")</div>
                         <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeSkypeID, new { Class = "form-control" })</div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-1">&nbsp;</div>
-                    </div>
-
-                    <div class="row">
+                    <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Email")</div>
                         <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeEmailID, new { Class = "form-control" })</div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-1">&nbsp;</div>
-                    </div>
-
-                    <input type="submit" value="Submit" class="btn btn-primary" />
-
-                    @Html.ValidationSummary();
+                    <input type="submit" value="Submit" class="mt10 btn btn-primary" />
                 }
             }
         </div>

@@ -7,26 +7,29 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Indpro.Attendance.WebApp.Models
 {
-    public class EmployeeIndexModel
+    public class EmployeeIndexModel : MasterModel
     {
         public bool IncludeNonActive { get; set; }
         public List<EmployeeModel> EmployeeList { get; set; }
 
         public EmployeeIndexModel()
         {
+            Title = "Admin: Employee";
+            ActiveModel = "Employee";
+
             IncludeNonActive = false;
             EmployeeList = new List<EmployeeModel>();
         }
     }
 
-    public class EmployeeModel
+    public class EmployeeModel : MasterModel
     {
         public int EmployeeID { get; set; }
         public string EmployeeNo { get; set; }
 
         [StringLength(100)]
         [RegularExpression("^([a-zA-Z .&'-]+)$", ErrorMessage = "EmployeeName Should be in the Text Formate")]
-        [Required(ErrorMessage = "EmployeeName Required")]
+        [Required(ErrorMessage = "Employee name required.")]
         public string EmployeeName { get; set; }
 
         [Required(ErrorMessage = "Need to specify Gender.")]
@@ -57,6 +60,12 @@ namespace Indpro.Attendance.WebApp.Models
 
         public bool IsActive { get; set; }
         public string Error { get; set; }
+
+        public EmployeeModel()
+        {
+            Title = "Admin: Employee";
+            ActiveModel = "Employee";
+        }
     }
 
     public class EmployeeModelMapper

@@ -1,0 +1,55 @@
+﻿@using Indpro.Attendance.Business
+@model Indpro.Attendance.WebApp.Areas.Admin.Models.UserModel
+
+@{
+    Dictionary<int, string> roles = UserHandler.GetRoles();
+    SelectList selectRoles = new SelectList(roles, "Key", "Value");
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Edit User</h2><br />
+            @using (Html.BeginForm("Update", "Users", FormMethod.Post))
+            {
+                @Html.HiddenFor(u => u.UserID)
+                @Html.HiddenFor(u => u.EmployeeID)
+
+                <div class="row">
+                    <div class="col-md-2">@Html.Label("Employee No")</div>
+                    <div class="col-md-4">@Html.DisplayFor(u => u.EmployeeNo, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">@Html.Label("User name")</div>
+                    <div class="col-md-4">@Html.TextBoxFor(u => u.UserName, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">@Html.Label("Password")</div>
+                    <div class="col-md-4">@Html.TextBoxFor(u => u.Password, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">@Html.Label("Role")</div>
+                    <div class="col-md-4">@Html.DropDownListFor(m => m.RoleID, @selectRoles, new { Class = "form-control" })</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">&nbsp;</div>
+                </div>
+
+                <input type="submit" value="Submit" class="btn btn-primary" />
+                @Html.ValidationSummary();
+            }
+        </div>
+    </div>
+</div>

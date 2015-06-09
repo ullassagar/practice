@@ -27,9 +27,10 @@ namespace Indpro.Attendance.WebApp.Areas.Admin.Controllers
         public ActionResult Add(EmployeeModel model)
         {
             var employee = EmployeeModelMapper.MapToEmployee(model);
-
+           
             try
-            {
+            { 
+                 employee.IsActive=true;
                 EmployeeHandler.Add(employee);
             }
             catch (Exception ex)

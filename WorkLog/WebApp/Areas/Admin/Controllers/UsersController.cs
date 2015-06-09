@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Indpro.Attendance.Business;
 using Indpro.Attendance.WebApp.Areas.Admin.Models;
-using Indpro.Attendance.WebApp;
 
-namespace Indpro.Attendance.WebApp.Controllers
+namespace Indpro.Attendance.WebApp.Areas.Admin.Controllers
 {
-    [AuthorizeAdmin]
     public class UsersController : Controller
     {
         public ActionResult Index(int id = 0)
@@ -76,7 +77,7 @@ namespace Indpro.Attendance.WebApp.Controllers
             }
             return RedirectToAction("Index");
         }
-        
+
         public ActionResult Delete(int id = 0)
         {
             try
@@ -89,5 +90,5 @@ namespace Indpro.Attendance.WebApp.Controllers
                 return View("Error");
             }
         }
-    }
+	}
 }

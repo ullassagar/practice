@@ -1,0 +1,20 @@
+﻿@model List<Indpro.Attendance.WebApp.Areas.Admin.Models.UserModel>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>EmployeeNo</th>
+        <th>Name</th>
+        <th>UserName</th>
+        <th>Edit</th>
+    </tr>
+    @foreach (var u in Model)
+    {
+        <tr>
+            <td>@u.EmployeeNo</td>
+            <td>@u.EmployeeName</td>
+            <td>@u.UserName</td>
+            <td>@Html.ActionLink("Edit", "Edit", "Users", new { id = u.UserID }, null)</td>
+            <td>@Html.ActionLink("Delete", "Delete", "Users", new { id = u.UserID }, new { onclick = "return confirm('Are you Sure you want to delete this record?')" })</td>
+        </tr>
+    }
+</table>

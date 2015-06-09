@@ -59,7 +59,7 @@ namespace Indpro.Attendance.Repository
                                     VALUES('{0}', {1}, '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}',{11}); SELECT @@IDENTITY;",
                                     employee.EmployeeName, (int)employee.Gender, employee.EmployeeDesignation, employee.EmployeeQualification,
                                     employee.EmployeeDOB, employee.EmployeeDOJ, employee.EmployeeImage, employee.EmployeeAddress,
-                                    employee.EmployeeMobileNo, employee.EmployeeSkypeID, employee.EmployeeEmailID, (employee.IsActive ? 1 : 0));
+                                    employee.EmployeeMobileNo, employee.EmployeeSkypeID, employee.EmployeeEmailID, (employee.IsActive ? 1:0));
 
             employee.EmployeeID = Convert.ToInt32(SqlHelper.ExecuteScalar(SqlHelper.ConnectionString, CommandType.Text, sql));
 

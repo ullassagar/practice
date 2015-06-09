@@ -1,17 +1,8 @@
-﻿using Indpro.Attendance.Business;
-using Indpro.Attendance.Entity;
-using Indpro.Attendance.WebApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.Common;
-using System.Data.Odbc;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
+﻿using System;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
-using WorkLog.Utilities;
+using Indpro.Attendance.Business;
+using Indpro.Attendance.WebApp.Models;
+using Indpro.Attendance.WebApp.Utilities;
 
 namespace Indpro.Attendance.WebApp.Controllers
 {
@@ -21,24 +12,24 @@ namespace Indpro.Attendance.WebApp.Controllers
         public ActionResult Index(int id = 0)
         {
             var model = new LogTimeIndexModel();
-                if (id > 0)
+            if (id > 0)
+            {
+                var logtme = LogTimeHandler.GetLogTime(id);
+                var logtmeModel = LogTimeModelIMapper.MapToLogTimeModel(logtme);
+                model.List.Add(logtmeModel);
+            }
+            else
+            {
+                var logtmeList = LogTimeHandler.GetAllLogTime();
+                foreach (var logtme in logtmeList)
                 {
-                    var logtme = LogTimeHandler.GetLogTime(id);
                     var logtmeModel = LogTimeModelIMapper.MapToLogTimeModel(logtme);
                     model.List.Add(logtmeModel);
                 }
-                else
-                {
-                    var logtmeList = LogTimeHandler.GetAllLogTime();
-                    foreach (var logtme in logtmeList)
-                    {
-                        var logtmeModel = LogTimeModelIMapper.MapToLogTimeModel(logtme);
-                        model.List.Add(logtmeModel);
-                    }
-                }
-             return View(model);
+            }
+            return View(model);
         }
-        
+
         public ActionResult Add(LogTimeModel model)
         {
             try
@@ -56,13 +47,13 @@ namespace Indpro.Attendance.WebApp.Controllers
 
         public ActionResult NewLogTime()
         {
-            LogTimeModel l = new LogTimeModel();
+            var l = new LogTimeModel();
             return View(l);
         }
 
         public ActionResult Edit(int id = 0)
         {
-            LogTime logtime = LogTimeHandler.GetLogTime(id);
+            var logtime = LogTimeHandler.GetLogTime(id);
 
             var logtimeModel = LogTimeModelIMapper.MapToLogTimeModel(logtime);
 
@@ -73,20 +64,19 @@ namespace Indpro.Attendance.WebApp.Controllers
         {
             try
             {
-                LogTime logtime = LogTimeModelIMapper.MapToLogTime(model);
+                var logtime = LogTimeModelIMapper.MapToLogTime(model);
 
                 LogTimeHandler.Update(logtime);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 model.Error = ex.Message;
                 return View("Edit", model);
             }
             return RedirectToAction("Index");
-
         }
 
-        public ActionResult Delete(int id=0)
+        public ActionResult Delete(int id = 0)
         {
             try
             {
@@ -98,7 +88,6 @@ namespace Indpro.Attendance.WebApp.Controllers
             }
 
             return RedirectToAction("Index");
- 
         }
     }
 }

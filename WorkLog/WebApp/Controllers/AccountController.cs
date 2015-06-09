@@ -1,13 +1,9 @@
-﻿using Indpro.Attendance.Business;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Indpro.Attendance.Business;
 using Indpro.Attendance.WebApp.Models;
-using WorkLog.Utilities;
+using Indpro.Attendance.WebApp.Utilities;
 
-namespace WorkLog.Controllers
+namespace Indpro.Attendance.WebApp.Controllers
 {
     public class AccountController : Controller
     {
@@ -19,17 +15,14 @@ namespace WorkLog.Controllers
         [HttpPost]
         public ActionResult Login(UserModel model)
         {
-            Indpro.Attendance.Entity.User user = UserHandler.GetUserByUserNamePassword(model.UserName, model.Password);
+            var user = UserHandler.GetUserByUserNamePassword(model.UserName, model.Password);
             if (user != null)
             {
                 Session[Contanstants.LoggedInUserName] = user;
                 return RedirectToAction("Index", "Employees");
             }
-            else
-            {
-                ViewBag.Message = "Username and password does not match.";
-                return View();    
-            }
+            ViewBag.Message = "Username and password does not match.";
+            return View();
         }
 
         public ActionResult LogOut()

@@ -2,19 +2,18 @@
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th>Employee No</th>
+        <th>EmployeeNo</th>
         <th>Name</th>
         <th>Designation</th>
         <th>Qualification</th>
-        <th>Date of Join</th>
+        <th>DateOfJoin</th>
         <th>Mobile</th>
         <th>Skype</th>
         <th>Email</th>
         <th>IsActive</th>
         <th>Edit</th>
-        @*<th>Work Log</th>*@
+        <th>DeActive</th>
     </tr>
-
     @foreach (var u in Model.EmployeeList)
     {
         <tr>
@@ -28,8 +27,7 @@
             <td>@u.EmployeeEmailID</td>
             <td>@u.IsActive</td>
             <td>@Html.ActionLink("Edit", "Edit", "Employees", new { id = u.EmployeeID }, null)</td>
-            <td>@Html.ActionLink("Delete", "Delete", "Employees", new { id = u.EmployeeID }, new { onclick = "return confirm('Are you Sure you want to delete this record?')" })</td>
-            @*<td>@Html.ActionLink("Work Log", "WorkLog", "Employees", new { id = u.EmployeeID }, null)</td>*@
+            <td>@Html.ActionLink("DeActive", "Delete", "Employees", new { id = u.EmployeeID }, new { onclick = "return confirm('Are you Sure you want to delete this record?')" })</td>
         </tr>
     }
 </table>

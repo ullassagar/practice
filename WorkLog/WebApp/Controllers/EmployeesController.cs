@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using Indpro.Attendance.Business;
 using Indpro.Attendance.WebApp.Models;
-using WorkLog.Utilities;
+using Indpro.Attendance.WebApp.Utilities;
 
 namespace Indpro.Attendance.WebApp.Controllers
 {

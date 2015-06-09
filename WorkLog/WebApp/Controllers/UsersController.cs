@@ -1,13 +1,8 @@
-﻿using Indpro.Attendance.Business;
-using Indpro.Attendance.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
+using Indpro.Attendance.Business;
 using Indpro.Attendance.WebApp.Models;
-using WorkLog.Utilities;
+using Indpro.Attendance.WebApp.Utilities;
 
 namespace Indpro.Attendance.WebApp.Controllers
 {
@@ -42,23 +37,23 @@ namespace Indpro.Attendance.WebApp.Controllers
                 var user = UserModelIMapper.MapToUser(model);
                 UserHandler.Add(user);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 model.Error = ex.Message;
-                return View("Add", model);                
+                return View("Add", model);
             }
             return RedirectToAction("Index");
         }
 
         public ActionResult NewUser()
         {
-            UserModel u = new UserModel();
+            var u = new UserModel();
             return View(u);
         }
 
         public ActionResult Edit(int id = 0)
         {
-            User user = UserHandler.GetUser(id);
+            var user = UserHandler.GetUser(id);
 
             var usermodel = UserModelIMapper.MapToUserModel(user);
 
@@ -69,7 +64,7 @@ namespace Indpro.Attendance.WebApp.Controllers
         {
             try
             {
-                User user = UserModelIMapper.MapToUser(model);
+                var user = UserModelIMapper.MapToUser(model);
 
                 UserHandler.Update(user);
             }
@@ -82,7 +77,7 @@ namespace Indpro.Attendance.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-      
+
         public ActionResult Delete(int id = 0)
         {
             try
@@ -90,7 +85,7 @@ namespace Indpro.Attendance.WebApp.Controllers
                 UserHandler.Delete(id);
                 return RedirectToAction("Index");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return View("Error");
             }

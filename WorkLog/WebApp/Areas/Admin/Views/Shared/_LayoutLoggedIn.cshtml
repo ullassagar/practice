@@ -1,0 +1,64 @@
+﻿@model Indpro.Attendance.WebApp.MasterModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@Model.Title</title>
+
+    <!-- Bootstrap -->
+    <link href="@Url.Content("~/css/utility.css")" rel="stylesheet">
+    <link href="@Url.Content("~/css/bootstrap.css")" rel="stylesheet">
+    <link href="@Url.Content("~/css/jumbotron.css")" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Indpro Attendance</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink("Logout", "LogOut", "Account")</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="mt10 navbar">
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li class="@(Model.ActiveModel=="Employee"?"active":"")">@Html.ActionLink("Employees", "Index", "Employees")</li>
+                <li class="@(Model.ActiveModel=="User"?"active":"")">@Html.ActionLink("Users", "Index", "Users")</li>
+                <li class="@(Model.ActiveModel=="LogTime"?"active":"")">@Html.ActionLink("LogTime", "Index", "LogTimes")</li>
+            </ul>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="@Url.Content("~/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/scripts/moment.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/bootstrap-datepicker.js")"></script>*@
+    <script src="@Url.Content("~/scripts/bootstrap-datetimepicker.js")"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript">
+        $('.datetimepicker').datetimepicker();
+    </script>
+</body>
+</html>

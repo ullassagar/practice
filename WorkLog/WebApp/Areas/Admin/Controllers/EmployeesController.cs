@@ -2,9 +2,8 @@
 using System.Web.Mvc;
 using Indpro.Attendance.Business;
 using Indpro.Attendance.WebApp.Areas.Admin.Models;
-using Indpro.Attendance.WebApp;
 
-namespace Indpro.Attendance.WebApp.Controllers
+namespace Indpro.Attendance.WebApp.Areas.Admin.Controllers
 {
     [AuthorizeAdmin]
     public class EmployeesController : Controller

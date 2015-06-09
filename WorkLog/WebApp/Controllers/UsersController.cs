@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Web.Mvc;
 using Indpro.Attendance.Business;
-using Indpro.Attendance.WebApp.Models;
-using Indpro.Attendance.WebApp.Utilities;
+using Indpro.Attendance.WebApp.Areas.Admin.Models;
+using Indpro.Attendance.WebApp;
 
 namespace Indpro.Attendance.WebApp.Controllers
 {
-    [AuthorizeMember]
+    [AuthorizeAdmin]
     public class UsersController : Controller
     {
         public ActionResult Index(int id = 0)

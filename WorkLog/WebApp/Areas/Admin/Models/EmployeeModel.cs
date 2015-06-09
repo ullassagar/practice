@@ -1,11 +1,9 @@
-﻿using Indpro.Attendance.Entity;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
+using Indpro.Attendance.Entity;
 
-namespace Indpro.Attendance.WebApp.Models
+namespace Indpro.Attendance.WebApp.Areas.Admin.Models
 {
     public class EmployeeIndexModel : MasterModel
     {
@@ -37,21 +35,23 @@ namespace Indpro.Attendance.WebApp.Models
 
         [Required(ErrorMessage = "EmployeeDesignation Required.")]
         public string EmployeeDesignation { get; set; }
+
         public string EmployeeQualification { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-
         public DateTime EmployeeDOB { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-
         public DateTime EmployeeDOJ { get; set; }
+
         public string EmployeeImage { get; set; }
         public string EmployeeAddress { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         public string EmployeeMobileNo { get; set; }
+
         public string EmployeeSkypeID { get; set; }
 
         [DataType(DataType.EmailAddress)]
@@ -72,7 +72,7 @@ namespace Indpro.Attendance.WebApp.Models
     {
         public static EmployeeModel MapToEmployeeModel(Employee employee)
         {
-            EmployeeModel model = new EmployeeModel();
+            var model = new EmployeeModel();
             if (employee != null)
             {
                 model.EmployeeID = employee.EmployeeID;
@@ -95,7 +95,7 @@ namespace Indpro.Attendance.WebApp.Models
 
         public static Employee MapToEmployee(EmployeeModel model)
         {
-            Employee employee = new Employee();
+            var employee = new Employee();
             if (model != null)
             {
                 employee.EmployeeID = model.EmployeeID;

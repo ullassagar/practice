@@ -155,10 +155,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\Constants.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\EmployeesController.cs" />
     <Compile Include="Context\ApplicationDataContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
@@ -168,14 +170,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Areas\Admin\Models\EmployeeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MasterModel.cs" />
     <Compile Include="Models\LogTimeModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Utilities\UIUtility.cs" />
+    <Compile Include="App_Code\AuthorizeAdminAttribute.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +249,12 @@
     <Content Include="Content\less\bootstrap-datetimepicker-build.less" />
     <Content Include="Content\less\_bootstrap-datetimepicker.less" />
     <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutLoggedIn.cshtml" />
+    <Content Include="Areas\Admin\Views\Employees\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Employees\EmployeeListPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Employees\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Employees\NewEmployee.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
@@ -338,7 +346,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LayoutNotLoggedIn.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutLoggedIn.cshtml" />
@@ -349,9 +356,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -375,11 +379,6 @@
       <Project>{699c002f-d507-4d7a-bc38-8830acc9c981}</Project>
       <Name>EntityLayer</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Employees\EmployeeListPartial.cshtml" />
-    <Content Include="Views\Employees\Index.cshtml" />
-    <Content Include="Views\Employees\NewEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Users\Index.cshtml" />

@@ -1,7 +1,8 @@
 ﻿using System.Web.Mvc;
+using System.Web.Routing;
 using Indpro.Attendance.Business;
-using Indpro.Attendance.WebApp.Models;
-using Indpro.Attendance.WebApp.Utilities;
+using Indpro.Attendance.WebApp.Areas.Admin.Models;
+using Indpro.Attendance.WebApp;
 
 namespace Indpro.Attendance.WebApp.Controllers
 {
@@ -19,7 +20,7 @@ namespace Indpro.Attendance.WebApp.Controllers
             if (user != null)
             {
                 Session[Contanstants.LoggedInUserName] = user;
-                return RedirectToAction("Index", "Employees");
+                return RedirectToAction("Index", "Employees", new {area = "Admin"});
             }
             ViewBag.Message = "Username and password does not match.";
             return View();

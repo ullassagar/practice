@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Indpro.Attendance.WebApp.Models;
+using Indpro.Attendance.WebApp.Areas.Admin.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Indpro.Attendance.WebApp.Context

@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
-using Indpro.Attendance.WebApp.Utilities;
+using Indpro.Attendance.WebApp;
 
 namespace Indpro.Attendance.WebApp.Controllers
 {
-    [AuthorizeMember]
+    [AuthorizeAdmin]
     public class HomeController : Controller
     {
         public ActionResult Index()

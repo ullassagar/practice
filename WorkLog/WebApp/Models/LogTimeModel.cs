@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Indpro.Attendance.WebApp.Models
+namespace Indpro.Attendance.WebApp.Areas.Admin.Models
 {
     public class LogTimeIndexModel : MasterModel
     {

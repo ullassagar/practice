@@ -9,5 +9,11 @@ namespace Indpro.Attendance.WebApp
     {
         public string Title { get; set; }
         public string ActiveModel { get; set; }
+        
+        public MasterModel()
+        {
+            Title = "Home";
+            ActiveModel = "Home";
+        }
     }
 }

@@ -164,15 +164,14 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Context\ApplicationDataContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LogTimesController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Areas\Admin\Models\EmployeeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LogModel.cs" />
     <Compile Include="Models\MasterModel.cs" />
     <Compile Include="Areas\Admin\Models\LogTimeModel.cs" />
     <Compile Include="Areas\Admin\Models\UserModel.cs" />
@@ -254,7 +253,7 @@
     <Content Include="Areas\Admin\Views\Employees\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Employees\EmployeeListPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Employees\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Employees\NewEmployee.cshtml" />
+    <Content Include="Areas\Admin\Views\Employees\Add.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Users\NewUser.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
@@ -355,13 +354,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LayoutNotLoggedIn.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\AdminLogin.cshtml" />
     <Content Include="Views\Shared\_LayoutLoggedIn.cshtml" />
-    <Content Include="Views\LogTimes\Index.cshtml" />
-    <Content Include="Views\LogTimes\NewLogTime.cshtml" />
-    <Content Include="Views\LogTimes\LogTimeListPartial.cshtml" />
-    <Content Include="Views\LogTimes\Edit.cshtml" />
+    <Content Include="Views\Log\Index.cshtml" />
+    <Content Include="Views\Account\EmployeeLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -388,11 +384,6 @@
       <Project>{699c002f-d507-4d7a-bc38-8830acc9c981}</Project>
       <Name>EntityLayer</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Users\NewUser.cshtml" />
-    <Content Include="Views\Users\UserListPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

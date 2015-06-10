@@ -8,13 +8,18 @@ namespace Indpro.Attendance.WebApp.Controllers
 {
     public class AccountController : Controller
     {
-        public ActionResult Login()
+        public ActionResult AdminLogin()
+        {
+            return View();
+        }
+
+        public ActionResult EmployeeLogin()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(UserModel model)
+        public ActionResult AdminLogin(UserModel model)
         {
             var user = UserHandler.GetUserByUserNamePassword(model.UserName, model.Password);
             if (user != null)
@@ -26,10 +31,23 @@ namespace Indpro.Attendance.WebApp.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult EmployeeLogin(UserModel model)
+        {
+            var user = UserHandler.GetUserByUserNamePassword(model.UserName, model.Password);
+            if (user != null)
+            {
+                Session[Contanstants.LoggedInUserName] = user;
+                return RedirectToAction("Index", "Log");
+            }
+            ViewBag.Message = "Username and password does not match.";
+            return View();
+        }
+
         public ActionResult LogOut()
         {
             Session[Contanstants.LoggedInUserName] = null;
-            return RedirectToAction("Login");
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
     }
 }

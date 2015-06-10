@@ -24,29 +24,30 @@ namespace Indpro.Attendance.WebApp.Areas.Admin.Controllers
             return View(model);
         }
 
+        public ActionResult Add()
+        {
+            var u = new EmployeeModel();
+            return View(u);
+        }
+
+        [HttpPost]
         public ActionResult Add(EmployeeModel model)
         {
             var employee = EmployeeModelMapper.MapToEmployee(model);
-           
+
             try
-            { 
-                 employee.IsActive=true;
+            {
+                employee.IsActive = true;
                 EmployeeHandler.Add(employee);
             }
             catch (Exception ex)
             {
                 model.Error = ex.Message;
-                return View("NewEmployee", model);
+                return View("Add", model);
             }
 
             var empModel = EmployeeModelMapper.MapToEmployeeModel(employee);
-            return View("NewEmployee", empModel);
-        }
-
-        public ActionResult NewEmployee()
-        {
-            var u = new EmployeeModel();
-            return View(u);
+            return View("Add", empModel);
         }
 
         public ActionResult Edit(int id = 0)
@@ -58,7 +59,8 @@ namespace Indpro.Attendance.WebApp.Areas.Admin.Controllers
             return View(employeeModel);
         }
 
-        public ActionResult Update(EmployeeModel model)
+        [HttpPost]
+        public ActionResult Edit(EmployeeModel model)
         {
             try
             {

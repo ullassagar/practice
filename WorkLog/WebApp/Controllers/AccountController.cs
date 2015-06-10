@@ -21,20 +21,25 @@ namespace Indpro.Attendance.WebApp.Controllers
         [HttpPost]
         public ActionResult AdminLogin(UserModel model)
         {
-            var user = UserHandler.GetUserByUserNamePassword(model.UserName, model.Password);
+            var user = UserHandler.GetAdmin(model.UserName, model.Password); // rename Method as "GetAdmin"
             if (user != null)
             {
                 Session[Contanstants.LoggedInUserName] = user;
-                return RedirectToAction("Index", "Employees", new {area = "Admin"});
+                return RedirectToAction("Index", "Employees", new { area = "Admin" });
             }
-            ViewBag.Message = "Username and password does not match.";
+            else
+            {
+                ViewBag.Message = "No Access!! Invalid User for this module";
+            }
+
+           // ViewBag.Message = "Username and password does not match.";
             return View();
         }
 
         [HttpPost]
         public ActionResult EmployeeLogin(UserModel model)
         {
-            var user = UserHandler.GetUserByUserNamePassword(model.UserName, model.Password);
+            var user = UserHandler.GetEmployee(model.UserID);//rename Method as "GetEmployee"
             if (user != null)
             {
                 Session[Contanstants.LoggedInUserName] = user;

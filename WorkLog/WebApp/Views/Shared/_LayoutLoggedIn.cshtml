@@ -38,9 +38,8 @@
     <div class="mt10 navbar">
         <div class="container">
             <ul class="nav nav-tabs">
-                <li class="@(Model.ActiveModel=="Employee"?"active":"")">@Html.ActionLink("Employees", "Index", "Employees")</li>
-                <li class="@(Model.ActiveModel=="User"?"active":"")">@Html.ActionLink("Users", "Index", "Users")</li>
-                <li class="@(Model.ActiveModel=="LogTime"?"active":"")">@Html.ActionLink("LogTime", "Index", "LogTimes")</li>
+                <li class="@(Model.ActiveModel=="Log"?"active":"")">@Html.ActionLink("Log", "Index", "Log")</li>
+                <li class="@(Model.ActiveModel=="Profile"?"active":"")">@Html.ActionLink("Profile", "Index", "Profile")</li>
             </ul>
         </div>
     </div>

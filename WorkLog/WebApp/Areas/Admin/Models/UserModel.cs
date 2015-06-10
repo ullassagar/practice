@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using Indpro.Attendance.Entity;
-
 
 namespace Indpro.Attendance.WebApp.Areas.Admin.Models
 {

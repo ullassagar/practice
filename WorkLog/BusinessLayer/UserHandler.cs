@@ -18,14 +18,14 @@ namespace Indpro.Attendance.Business
             return UserRepository.GetAllUser();
         }
 
-        public static User GetUser(int UserID)
+        public static User GetEmployee(int UserID)
         {
-            return UserRepository.GetUser(UserID);
+            return UserRepository.GetEmployee(UserID);
         }
 
-        public static User GetUserByUserNamePassword(string username, string password)
+        public static User GetAdmin(string username, string password)
         {
-            return UserRepository.GetUserByUserNamePassword(username,password);
+            return UserRepository.GetAdmin(username,password);
         }
 
         public static void Add(User user)

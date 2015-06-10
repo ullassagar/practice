@@ -15,7 +15,7 @@ namespace Indpro.Attendance.WebApp.Areas.Admin.Controllers
             var model = new UserIndexModel();
             if (id > 0)
             {
-                var usr = UserHandler.GetUser(id);
+                var usr = UserHandler.GetEmployee(id);
                 var usrModel = UserModelIMapper.MapToUserModel(usr);
                 model.List.Add(usrModel);
             }
@@ -54,7 +54,7 @@ namespace Indpro.Attendance.WebApp.Areas.Admin.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            var user = UserHandler.GetUser(id);
+            var user = UserHandler.GetEmployee(id);
 
             var usermodel = UserModelIMapper.MapToUserModel(user);
 

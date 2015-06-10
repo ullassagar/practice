@@ -1,7 +1,11 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
+﻿@model Indpro.Attendance.WebApp.Models.LogModel
 
-<h2>Log</h2>
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Log Timings</h3>
+            @Html.ActionLink("Add LogTime", "NewLogTiming")<br /><br />
+            @Html.Partial("LogListPartial", Model)
+        </div>
+    </div>
+</div>

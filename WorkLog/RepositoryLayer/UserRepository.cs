@@ -35,14 +35,16 @@ namespace Indpro.Attendance.Repository
            return userList;
        }
 
-       public static User GetUser(int UserID)
+       public static User GetEmployee(int UserID)
        {
            User user = null;
-           var sql = string.Format(@"SELECT U.UserID, U.EmployeeID, U.UserName, U.Password,E.EmployeeNo, E.EmployeeName, E.EmployeeEmailID, R.RoleID, R.RoleName
-                                    FROM IP_User U
-                                    join IP_UserInRole UR on U.UserID=UR.UserID
-                                    join IP_Roles R on UR.RoleID=R.RoleID
-                                    join IP_Employee E on U.EmployeeID=E.EmployeeID where U.UserID={0}", UserID);
+//           var sql = string.Format(@"SELECT U.UserID, U.EmployeeID, U.UserName, U.Password,E.EmployeeNo, E.EmployeeName, E.EmployeeEmailID, R.RoleID, R.RoleName
+//                                    FROM IP_User U
+//                                    join IP_UserInRole UR on U.UserID=UR.UserID
+//                                    join IP_Roles R on UR.RoleID=R.RoleID
+//                                    join IP_Employee E on U.EmployeeID=E.EmployeeID where U.UserID={0}", UserID);
+           var sql = string.Format("select *from ip_user where userid in (select userid from ip_userinrole where roleid =2)"); 
+
 
            using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
            {
@@ -54,15 +56,17 @@ namespace Indpro.Attendance.Repository
            return user;
        }
 
-       public static User GetUserByUserNamePassword(string username, string password)
+       public static User GetAdmin(string username, string password)
        {
            User user = null;
-           var sql = string.Format(@"SELECT U.UserID, U.EmployeeID, U.UserName, U.Password,E.EmployeeNo, E.EmployeeName, E.EmployeeEmailID, R.RoleID, R.RoleName
-                                    FROM IP_User U
-                                    join IP_UserInRole UR on U.UserID=UR.UserID
-                                    join IP_Roles R on UR.RoleID=R.RoleID
-                                    join IP_Employee E on U.EmployeeID=E.EmployeeID
-                                    WHERE UserName='{0}' AND Password='{1}'", username,Encrypt( password));
+//           var sql = string.Format(@"SELECT U.UserID, U.EmployeeID, U.UserName, U.Password,E.EmployeeNo, E.EmployeeName, E.EmployeeEmailID, R.RoleID, R.RoleName
+//                                    FROM IP_User U
+//                                    join IP_UserInRole UR on U.UserID=UR.UserID
+//                                    join IP_Roles R on UR.RoleID=R.RoleID 
+//                                    join IP_Employee E on U.EmployeeID=E.EmployeeID
+//                                    WHERE UserName='{0}' AND Password='{1}'", username,Encrypt( password));
+
+           var sql = string.Format("select *from ip_user where userid in (select userid from ip_userinrole where roleid =1)"); 
 
            using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
            {

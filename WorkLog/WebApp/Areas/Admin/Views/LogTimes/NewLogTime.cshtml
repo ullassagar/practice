@@ -9,8 +9,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
-            <h2>New LogTime</h2><br />
+        <div class="col-md-10 border">
+            <h3>New LogTime</h3><br />
 
             @using (Html.BeginForm("Add", "LogTimes", FormMethod.Post))
             {
@@ -20,20 +20,14 @@
                     <div class="col-md-2">@Html.Label("Employee No")</div>
                     <div class="col-md-4">@Html.DropDownListFor(u => u.EmployeeID, @selectEmployeeNos, new { Class = "form-control" })</div>
                 </div>
-                <div class="row">
-                    <div class="col-md-1">&nbsp;</div>
-                </div>
 
-                <div class="row">
+                <div class="mt10 row">
                     <div class="col-md-2">@Html.LabelFor(e => e.LoggedTime)</div>
-                    <div class="col-md-4">@Html.TextBoxFor(l => l.LoggedTime, new { Class = "form-control" })</div>
+                    <div class="col-md-5">@Html.EditorFor(l => l.LoggedTime, new { Class = "form-control" })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.LoggedTime)</div>
                 </div>
-                <div class="row">
-                    <div class="col-md-1">&nbsp;</div>
-                </div>
 
-                <div class="row">
+                <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("LogType")</div>
                     <div class="col-md-6">
                         @Html.RadioButtonFor(l => l.LogType, LogType.Work, new { @id = "rdoWork" })
@@ -47,11 +41,8 @@
                     </div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.LogType)</div>
                 </div>
-                <div class="row">
-                    <div class="col-md-1">&nbsp;</div>
-                </div>
 
-                <div class="row">
+                <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("IsInTime")</div>
                     <div class="col-md-4">
                         @Html.RadioButtonFor(l => l.IsInTime, IsInTime.True, new { @id = "rdoTrue" })
@@ -60,12 +51,17 @@
                         <label for="rdoFalse">False</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-1">&nbsp;</div>
-                </div>
 
                 <input type="submit" value="Submit" class="btn btn-primary" /><br />
+
+                if (!string.IsNullOrEmpty(@Model.Error))
+                {
+                    <div class="mt10 row">
+                        <div class="col-md-5 alert-danger">@Model.Error</div>
+                    </div>
+                }
             }
+            <br />
         </div>
     </div>
 </div>

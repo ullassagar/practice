@@ -22,7 +22,7 @@ namespace Indpro.Attendance.WebApp.Controllers
             var user = UserHandler.GetAdminUser(model.UserName, model.Password);
             if (user != null)
             {
-                Session[Contanstants.LoggedInUserName] = user;
+                Session[Constants.LoggedInUserName] = user;
                 return RedirectToAction("Index", "Employees", new { area = "Admin" });
             }
 
@@ -36,7 +36,7 @@ namespace Indpro.Attendance.WebApp.Controllers
             var user = UserHandler.GetEmployeeUser(model.UserName, model.Password);
             if (user != null)
             {
-                Session[Contanstants.LoggedInUserName] = user;
+                Session[Constants.LoggedInUserName] = user;
                 return RedirectToAction("Index", "Log");
             }
 
@@ -46,7 +46,7 @@ namespace Indpro.Attendance.WebApp.Controllers
 
         public ActionResult LogOut()
         {
-            Session[Contanstants.LoggedInUserName] = null;
+            Session[Constants.LoggedInUserName] = null;
             return RedirectToAction("Index", "Home", new { area = "" });
         }
     }

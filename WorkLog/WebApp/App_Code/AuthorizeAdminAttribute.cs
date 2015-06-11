@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace Indpro.Attendance.WebApp
 {
-    public static class Contanstants
+    public static class Constants
     {
         public static string LoggedInUserName = "SessionLoggedInUserIn";
     }
@@ -14,7 +14,7 @@ namespace Indpro.Attendance.WebApp
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if (httpContext.Session[Contanstants.LoggedInUserName] == null)
+            if (httpContext.Session[Constants.LoggedInUserName] == null)
             {
                 return false;
             }

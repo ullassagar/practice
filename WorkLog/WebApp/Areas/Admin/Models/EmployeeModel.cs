@@ -28,14 +28,14 @@ namespace Indpro.Attendance.WebApp.Areas.Admin.Models
         public string EmployeeNo { get; set; }
 
         [StringLength(100)]
-        [RegularExpression("^([a-zA-Z .&'-]+)$", ErrorMessage = "Name Should be in the Text Formate")]
+       // [RegularExpression("^([a-zA-Z .&'-]+)$", ErrorMessage = "Name Should be in the Text Formate")]
         [Required(ErrorMessage = "Name required.")]
         public string EmployeeName { get; set; }
 
-        [Required(ErrorMessage = "Need to specify Gender.")]
+        [Required(ErrorMessage = "Specify Gender.")]
         public Gender Gender { get; set; }
 
-        [Required(ErrorMessage = "EmployeeDesignation Required.")]
+        [Required(ErrorMessage = "Designation Required.")]
         public string EmployeeDesignation { get; set; }
 
         public string EmployeeQualification { get; set; }
@@ -46,6 +46,7 @@ namespace Indpro.Attendance.WebApp.Areas.Admin.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Date of joining Required.")]
         public DateTime EmployeeDOJ { get; set; }
 
         public string EmployeeImage { get; set; }

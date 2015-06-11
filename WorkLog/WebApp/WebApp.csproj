@@ -361,8 +361,6 @@
     <Content Include="Views\Log\Index.cshtml" />
     <Content Include="Views\Account\EmployeeLogin.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
-    <Content Include="Views\Log\LogListPartial.cshtml" />
-    <Content Include="Views\Log\NewLogTiming.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-10 border">
             <h2>Edit User</h2><br />
             @using (Html.BeginForm("Edit", "Users", FormMethod.Post))
             {
@@ -17,34 +17,24 @@
 
                 <div class="row">
                     <div class="col-md-2">@Html.Label("Employee No")</div>
-                    <div class="col-md-4">@Html.DisplayFor(u => u.EmployeeNo, new { Class = "form-control" })</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1">&nbsp;</div>
+                    <div class="col-md-2">@Html.DisplayFor(u => u.EmployeeNo, new { Class = "form-control" })</div>
                 </div>
 
-                <div class="row">
+                <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("User name")</div>
-                    <div class="col-md-4">@Html.TextBoxFor(u => u.UserName, new { Class = "form-control" })</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1">&nbsp;</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.UserName, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.ValidationMessageFor(u => u.UserName)</div>
                 </div>
 
-                <div class="row">
+                <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Password")</div>
-                    <div class="col-md-4">@Html.PasswordFor(u => u.Password, new { Class = "form-control" })</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1">&nbsp;</div>
+                    <div class="col-md-2">@Html.PasswordFor(u => u.Password, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.ValidationMessageFor(u => u.Password)</div>
                 </div>
 
-                <div class="row">
+                <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Role")</div>
-                    <div class="col-md-4">@Html.DropDownListFor(m => m.RoleID, @selectRoles, new { Class = "form-control" })</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1">&nbsp;</div>
+                    <div class="col-md-2">@Html.DropDownListFor(m => m.RoleID, @selectRoles, new { Class = "form-control" })</div>
                 </div>
 
                 <input type="submit" value="Submit" class="btn btn-primary" />
@@ -56,6 +46,7 @@
                     </div>
                 }
             }
+            <br />
         </div>
     </div>
 </div>

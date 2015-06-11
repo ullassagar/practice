@@ -1,11 +1,26 @@
-﻿@model Indpro.Attendance.WebApp.Models.LogModel
+﻿@using Indpro.Attendance.Entity
+@model Indpro.Attendance.WebApp.Models.LogModel
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
-            <h3>Log Timings</h3>
-            @Html.ActionLink("Add LogTime", "NewLogTiming")<br /><br />
-            @Html.Partial("LogListPartial", Model)
+        <div class="col-md-6">
+            @using (Html.BeginForm("Add", "Log", FormMethod.Post))
+            {
+                <input type="submit" id="btnIn" name="command" value="In" /> <span>&nbsp;&nbsp;</span>
+                <input type="submit" id="btnOut" name="command" value="Out" />
+                <div class="mt20 row">
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(l => l.LogType, LogType.Work, new { @id = "rdoWork" })
+                        <label for="rdoWork">Work</label>&nbsp;&nbsp;
+                        @Html.RadioButtonFor(l => l.LogType, LogType.Tea, new { @id = "rdoTea" })
+                        <label for="rdoTea">Tea</label>&nbsp;&nbsp;
+                        @Html.RadioButtonFor(l => l.LogType, LogType.Lunch, new { @id = "rdoLunch" })
+                        <label for="rdoLunch">Lunch</label>&nbsp;&nbsp;
+                        @Html.RadioButtonFor(l => l.LogType, LogType.Others, new { @id = "rdoOthers" })
+                        <label for="rdoOthers">Others</label>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </div>

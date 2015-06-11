@@ -9,6 +9,7 @@ using System.IO;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Security.Cryptography;
+using Indpro.Attendance.Utility;
 
 namespace Indpro.Attendance.Entity
 {
@@ -27,17 +28,16 @@ namespace Indpro.Attendance.Entity
         public static User Load(IDataReader reader)
         {
             User user = new User();
-            user.UserID = Convert.ToInt32(reader["UserID"]);
-            user.EmployeeID = Convert.ToInt32(reader["EmployeeID"]);
-            user.EmployeeNo = Convert.ToString(reader["EmployeeNo"]);
-            user.UserName = Convert.ToString(reader["UserName"]);
-            user.EmployeeName = Convert.ToString(reader["EmployeeName"]);
-            user.Password = Convert.ToString(reader["Password"]);
-
-            user.Password = Decrypt(Convert.ToString(reader["Password"]));
-            user.EmployeeEmailID = Convert.ToString(reader["EmployeeEmailID"]);
-            user.RoleID = Convert.ToInt32(reader["RoleID"]);
-            user.RoleName = Convert.ToString(reader["RoleName"]);
+            user.UserID = DbHelper.ConvertToInt32(reader["UserID"]);
+            user.EmployeeID = DbHelper.ConvertToInt32(reader["EmployeeID"]);
+            user.EmployeeNo = DbHelper.ConvertToString(reader["EmployeeNo"]);
+            user.UserName = DbHelper.ConvertToString(reader["UserName"]);
+            user.EmployeeName = DbHelper.ConvertToString(reader["EmployeeName"]);
+            user.Password = DbHelper.ConvertToString(reader["Password"]);
+            user.Password = Decrypt(DbHelper.ConvertToString(reader["Password"]));
+            user.EmployeeEmailID = DbHelper.ConvertToString(reader["EmployeeEmailID"]);
+            user.RoleID = DbHelper.ConvertToInt32(reader["RoleID"]);
+            user.RoleName = DbHelper.ConvertToString(reader["RoleName"]);
             return user;
         }
 

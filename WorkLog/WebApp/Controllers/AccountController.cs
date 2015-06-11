@@ -1,8 +1,6 @@
 ﻿using System.Web.Mvc;
-using System.Web.Routing;
 using Indpro.Attendance.Business;
 using Indpro.Attendance.WebApp.Areas.Admin.Models;
-using Indpro.Attendance.WebApp;
 
 namespace Indpro.Attendance.WebApp.Controllers
 {
@@ -21,30 +19,27 @@ namespace Indpro.Attendance.WebApp.Controllers
         [HttpPost]
         public ActionResult AdminLogin(UserModel model)
         {
-            var user = UserHandler.GetAdmin(model.UserName, model.Password); // rename Method as "GetAdmin"
+            var user = UserHandler.GetAdminUser(model.UserName, model.Password);
             if (user != null)
             {
                 Session[Contanstants.LoggedInUserName] = user;
                 return RedirectToAction("Index", "Employees", new { area = "Admin" });
             }
-            else
-            {
-                ViewBag.Message = "No Access!! Invalid User for this module";
-            }
 
-           // ViewBag.Message = "Username and password does not match.";
+            ViewBag.Message = "No Access!! Invalid User for this module";
             return View();
         }
 
         [HttpPost]
         public ActionResult EmployeeLogin(UserModel model)
         {
-            var user = UserHandler.GetEmployee(model.UserID);//rename Method as "GetEmployee"
+            var user = UserHandler.GetEmployeeUser(model.UserName, model.Password);
             if (user != null)
             {
                 Session[Contanstants.LoggedInUserName] = user;
                 return RedirectToAction("Index", "Log");
             }
+
             ViewBag.Message = "Username and password does not match.";
             return View();
         }

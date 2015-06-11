@@ -11,37 +11,24 @@ namespace Indpro.Attendance.WebApp.Controllers
 {
     public class LogController : Controller
     {
-        //public ActionResult LogTiming(LogModel model, string command)
-        // {
-        //    var log = new LogTime();
-
-        //    if(command=="In")
-        //    {
-        //        log.IsInTime=true;
-        //    }
-
-        //    else
-        //    {
-        //        log.IsInTime=false;
-        //    }
-
-        //    log.LoggedTime=DateTime.Now; 
-
-        //    var user=(User) Session[Contanstants.LoggedInUserName];
-        //    log.EmployeeID=user.EmployeeID;
-        //    LogTimeHandler.Add(log);
-        // }
-
-
         public ActionResult Index()
         {
             var model = new LogModel();
             return View(model);
         }
 
-        public ActionResult Add(LogModel model)
+        public ActionResult Add(LogModel model,string command)
         {
-            return null;
+            LogTime log=new LogTime();
+            log.IsInTime = command == "In";
+            log.LogType = model.LogType;
+            log.LoggedTime = DateTime.Now;
+
+            var user = (User)Session[Contanstants.LoggedInUserName];
+            log.EmployeeID = user.EmployeeID;
+            
+            LogTimeHandler.Add(log);
+            return RedirectToAction("Index");
         }
 
         public ActionResult NewLogTiming()

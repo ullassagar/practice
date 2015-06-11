@@ -8,73 +8,83 @@ using Indpro.Attendance.WebApp.Areas.Admin.Models;
 
 namespace Indpro.Attendance.WebApp.Areas.Admin.Controllers
 {
+    [AuthorizeAdmin]
     public class UsersController : Controller
     {
-        public ActionResult Index(int id = 0)
+        public ActionResult Index()
         {
             var model = new UserIndexModel();
-            if (id > 0)
+            var usrList = UserHandler.GetAllUser();
+
+            foreach (var usr in usrList)
             {
-                var usr = UserHandler.GetEmployee(id);
                 var usrModel = UserModelIMapper.MapToUserModel(usr);
                 model.List.Add(usrModel);
             }
-            else
-            {
-                var usrList = UserHandler.GetAllUser();
-                foreach (var usr in usrList)
-                {
-                    var usrModel = UserModelIMapper.MapToUserModel(usr);
-                    model.List.Add(usrModel);
-                }
-            }
+
             return View(model);
         }
 
+        public ActionResult Add()
+        {
+            var u = new UserModel();
+            return View(u);
+        }
+
+        [HttpPost]
         public ActionResult Add(UserModel model)
         {
+            var errror = string.Empty;
+
             try
             {
                 var user = UserModelIMapper.MapToUser(model);
-                UserHandler.Add(user);
+                errror = UserHandler.Add(user);
             }
             catch (Exception ex)
             {
                 model.Error = ex.Message;
                 return View("Add", model);
             }
-            return RedirectToAction("Index");
-        }
 
-        public ActionResult NewUser()
-        {
-            var u = new UserModel();
-            return View(u);
+            if (!string.IsNullOrEmpty(errror))
+            {
+                model.Error = errror;
+                return View("Add", model);
+            }
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult Edit(int id = 0)
         {
-            var user = UserHandler.GetEmployee(id);
-
+            var user = UserHandler.GetUser(id);
             var usermodel = UserModelIMapper.MapToUserModel(user);
 
             return View(usermodel);
         }
 
-        public ActionResult Update(UserModel model)
+        [HttpPost]
+        public ActionResult Edit(UserModel model)
         {
+            var errror = string.Empty;
             try
             {
                 var user = UserModelIMapper.MapToUser(model);
-
-                UserHandler.Update(user);
+                errror = UserHandler.Update(user);
             }
-
             catch (Exception ex)
             {
                 model.Error = ex.Message;
                 return View("Edit", model);
             }
+
+            if (!string.IsNullOrEmpty(errror))
+            {
+                model.Error = errror;
+                return View("Edit", model);
+            }
+
             return RedirectToAction("Index");
         }
 
@@ -90,5 +100,5 @@ namespace Indpro.Attendance.WebApp.Areas.Admin.Controllers
                 return View("Error");
             }
         }
-	}
+    }
 }

@@ -18,24 +18,29 @@ namespace Indpro.Attendance.Business
             return UserRepository.GetAllUser();
         }
 
-        public static User GetEmployee(int UserID)
+        public static User GetUser(int UserID)
         {
-            return UserRepository.GetEmployee(UserID);
+            return UserRepository.GetUser(UserID);
         }
 
-        public static User GetAdmin(string username, string password)
+        public static User GetAdminUser(string username, string password)
         {
-            return UserRepository.GetAdmin(username,password);
+            return UserRepository.GetAdminUser(username, password);
         }
 
-        public static void Add(User user)
+        public static User GetEmployeeUser(string username, string password)
         {
-            UserRepository.Add(user);
+            return UserRepository.GetEmployeeUser(username, password);
         }
 
-        public static void Update(User user)
+        public static string Add(User user)
         {
-            UserRepository.Update(user);
+          return  UserRepository.Add(user);
+        }
+
+        public static string Update(User user)
+        {
+           return UserRepository.Update(user);
         }
 
         public static void Delete(int id)
@@ -44,12 +49,12 @@ namespace Indpro.Attendance.Business
         }
 
         public static Dictionary<int, string> GetRoles()
-        { 
+        {
             return UserRepository.GetRoles();
         }
 
         public static Dictionary<int, string> GetEmployeeNos()
-        { 
+        {
             return UserRepository.GetEmployeeNos();
         }
 

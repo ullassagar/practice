@@ -9,7 +9,7 @@ using Indpro.Attendance.Business;
 
 namespace Indpro.Attendance.WebApp.Areas.Admin.Controllers
 {
-      [AuthorizeAdmin]
+    [AuthorizeAdmin]
     public class LogTimesController : Controller
     {
         public ActionResult Index(int id = 0)
@@ -92,5 +92,5 @@ namespace Indpro.Attendance.WebApp.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-	}
+    }
 }

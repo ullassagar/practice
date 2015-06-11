@@ -2,28 +2,30 @@
 @{
     Layout = "~/Views/Shared/_LayoutNotLoggedIn.cshtml";
 }
- <div class="container">
-        <div class="row">
-            <div class="col-md-10">
-                @using (Html.BeginForm("AdminLogin", "Account", FormMethod.Post))
-                {<h2>Login</h2>
-                    <fieldset>
-                        <div class="mt20 row">
-                            <div class="col-md-2 pr0">@Html.Label("User name:")</div>
-                            <div class="col-md-2 pl0 pr0">@Html.TextBoxFor(u => u.UserName, new { @placeholder = "Username", @class = "form-control" })</div>
-                            <div class="col-md-2 pl0">@Html.ValidationMessageFor(u => u.UserName)</div>
-                        </div>
-                        <div class="mt10 row">
-                            <div class="col-md-2 pr0">@Html.Label("Password:")</div>
-                            <div class="col-md-2 pl0 pr0">@Html.PasswordFor(u => u.Password, new { @placeholder = "Password", @class = "form-control" })</div>
-                            <div class="col-md-2 pl0">@Html.ValidationMessageFor(u => u.Password)</div>
-                        </div>
-                        <div class="mt10 row">
-                            <div class="col-md-2"><input type="submit" class="btn btn-primary form-control" value="Login"></div>
-                        </div>
-                    </fieldset>
-                    <span>@ViewBag.Message </span>
-                }
-            </div>
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 border">
+            @using (Html.BeginForm("AdminLogin", "Account", FormMethod.Post))
+            {<h2>Login</h2>
+                <fieldset>
+                    <div class="mt20 row">
+                        <div class="col-md-2 pr0">@Html.Label("User name:")</div>
+                        <div class="col-md-2 pl0 pr0">@Html.TextBoxFor(u => u.UserName, new { @placeholder = "Username", @class = "form-control" })</div>
+                        <div class="col-md-2 pl0">@Html.ValidationMessageFor(u => u.UserName)</div>
+                    </div>
+                    <div class="mt10 row">
+                        <div class="col-md-2 pr0">@Html.Label("Password:")</div>
+                        <div class="col-md-2 pl0 pr0">@Html.PasswordFor(u => u.Password, new { @placeholder = "Password", @class = "form-control" })</div>
+                        <div class="col-md-2 pl0">@Html.ValidationMessageFor(u => u.Password)</div>
+                    </div>
+                    <div class="mt10 row">
+                        <div class="col-md-2"><input type="submit" class="btn btn-primary form-control" value="Login"></div>
+                    </div>
+                </fieldset>
+                <span>@ViewBag.Message </span>
+            }
+            <br />
         </div>
     </div>
+</div>

@@ -3,13 +3,11 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6 border">
+        <div class="col-md-8 border">
             <br />
             @using (Html.BeginForm("Add", "Log", FormMethod.Post))
             {
-                <input type="submit" id="btnIn" name="command" value="In" /> <span>&nbsp;&nbsp;</span>
-                <input type="submit" id="btnOut" name="command" value="Out" />
-                <div class="mt20 row">
+                <div class="row">
                     <div class="col-md-6">
                         @Html.RadioButtonFor(l => l.LogType, LogType.Work, new { @id = "rdoWork" })
                         <label for="rdoWork">Work</label>&nbsp;&nbsp;
@@ -20,8 +18,20 @@
                         @Html.RadioButtonFor(l => l.LogType, LogType.Others, new { @id = "rdoOthers" })
                         <label for="rdoOthers">Others</label>
                     </div>
+                    <div class="col-md-2">@Html.ValidationMessageFor(u => u.LogType)</div>
                 </div>
+
+                <input type="submit" id="btnIn" name="command" value="Click here to Login Time" /> <span>&nbsp;&nbsp;&nbsp;</span>
+                <input type="submit" id="btnOut" name="command" value="Click here to Logout Time" />
+
+                if (!string.IsNullOrEmpty(@Model.Error))
+                {
+                    <div class="mt10 row">
+                        <div class="col-md-5 alert-danger">@Model.Error</div>
+                    </div>
+                }
             }
+            <br />
         </div>
     </div>
 </div>

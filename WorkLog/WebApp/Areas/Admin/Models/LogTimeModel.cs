@@ -52,7 +52,7 @@ namespace Indpro.Attendance.WebApp.Areas.Admin.Models
                 model.LogTimeID = logtime.LogTimeID;
                 model.EmployeeID = logtime.EmployeeID;
                 model.EmployeeNo = logtime.EmployeeNo;
-                model.LoggedTime = logtime.LoggedTime ;
+                model.LoggedTime = logtime.LoggedTime;
                 model.LogType = logtime.LogType;
                 model.IsInTime = logtime.IsInTime;
             }
@@ -71,7 +71,6 @@ namespace Indpro.Attendance.WebApp.Areas.Admin.Models
                 logtime.LoggedTime = model.LoggedTime;
                 logtime.LogType = model.LogType;
                 logtime.IsInTime = model.IsInTime;
-
             }
             return logtime;
         }

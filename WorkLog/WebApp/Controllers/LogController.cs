@@ -13,7 +13,15 @@ namespace Indpro.Attendance.WebApp.Controllers
     {
         public ActionResult Index()
         {
-            var model = new LogModel();
+            var model = new LogIndexModel();
+
+            var logtmeList = LogTimeHandler.GetAllLogTime();
+            foreach (var logtme in logtmeList)
+            {
+                var logtmeModel = LogModelIMapper.MapToLogModel(logtme);
+                model.LogList.Add(logtmeModel);
+            }
+
             return View(model);
         }
 

@@ -37,7 +37,7 @@ namespace Indpro.Attendance.WebApp.Controllers
             if (user != null)
             {
                 Session[Constants.LoggedInUserName] = user;
-                return RedirectToAction("Index", "Log");
+                return RedirectToAction("Index","Profile");
             }
 
             ViewBag.Message = "Username and password does not match.";

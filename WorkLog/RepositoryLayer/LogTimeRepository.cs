@@ -49,6 +49,25 @@ namespace Indpro.Attendance.Repository
           return logtime;
       }
 
+      public static LogTime GetLogTimeByEmpid(int EmployeeID)
+      {
+          LogTime logtime = null;
+
+          var sql = string.Format(@"SELECT E.EmployeeName, L.Logtypeid, L.Loggedtime,L.IsInTime 
+                                    FROM IP_logtime L join ip_Employee E ON L.Employeeid=E.Employeeid 
+                                    WHERE  E.EmployeeID={0}");
+
+          using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
+          {
+              while (reader.Read())
+              {
+                  logtime = LogTime.Load(reader);
+              }
+          }
+
+          return logtime;
+      }
+
       public static void Add(LogTime logtime)
       {
           var sql = string.Format(@"INSERT INTO IP_LogTime (EmployeeID ,LoggedTime ,LogTypeID ,IsInTime)

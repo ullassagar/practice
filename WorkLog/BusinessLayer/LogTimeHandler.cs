@@ -23,6 +23,11 @@ namespace Indpro.Attendance.Business
             return LogTimeRepository.GetLogTime(LogTimeID);
         }
 
+        public static LogTime GetLogTimeByEmpid(int EmployeeID)
+        {
+            return LogTimeRepository.GetLogTimeByEmpid(EmployeeID);
+        }
+
         public static void Add(LogTime logtime)
         {
             LogTimeRepository.Add(logtime);

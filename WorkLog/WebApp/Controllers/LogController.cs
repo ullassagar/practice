@@ -13,23 +13,32 @@ namespace Indpro.Attendance.WebApp.Controllers
     {
         public ActionResult Index()
         {
-            var model = new LogIndexModel();
 
-            var logtmeList = LogTimeHandler.GetAllLogTime();
-            foreach (var logtme in logtmeList)
-            {
-                var logtmeModel = LogModelIMapper.MapToLogModel(logtme);
-                model.LogList.Add(logtmeModel);
-            }
 
-            return View(model);
+            var model = new ProfileLogDetail();
+            var user = (User)Session[Constants.LoggedInUserName];
+            var logtmeList = LogTimeHandler.GetLogTimeByEmpid(user.EmployeeID);
+            //foreach (var logtme in logtmeList)
+            //{
+            //    var logtmeModel = ProfileLogMapper.MapToProfileLogDetailList(logtmeList);
+            //    model.LogList.Add(logtmeModel);
+           // }
+
+            //var user = (User)Session[Constants.LoggedInUserName];
+            //var logtme = LogTimeHandler.GetLogTimeByEmpid(user.EmployeeID);
+
+            //  var logtmeModel = ProfileLogMapper.MapToProfileLogDetailList(logtme);
+            //  model.list
+
+            return RedirectToAction("Index");
         }
 
-        public ActionResult Add(LogModel model, string command)
+        public ActionResult Add(ProfileLogModel model, string command)
         {
             LogTime log = new LogTime();
             log.IsInTime = command == "In";
             log.LogType = model.LogType;
+            //log.LogDate = model.LogDate;
             log.LoggedTime = DateTime.Now;
 
             var user = (User)Session[Constants.LoggedInUserName];

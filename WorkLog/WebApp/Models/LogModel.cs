@@ -10,57 +10,52 @@ using Indpro.Attendance.Business;
 
 namespace Indpro.Attendance.WebApp.Models
 {
-    public class LogIndexModel : MasterModel
-    {
-        public List<LogModel> LogList { get; set; }
 
-        public LogIndexModel()
-        {
-            Title = "Employee: Log";
-            ActiveModel = "Log";
-            LogList = new List<LogModel>();
-        }
-    }
-
-    public class LogModel : MasterModel
+    public class ProfileLogModel : MasterModel
     {
-        public bool IsLoggedIn { get; set; }
+        public DateTime LogDate { get; set; }
 
         [Required(ErrorMessage = "Select LogType")]
         public LogType LogType { get; set; }
 
+        public DateTime LogListDate { get; set; }
+
+        public List<ProfileLogDetail> LogList { get; set; }
+
         public string Error { get; set; }
 
-        public LogModel()
+        public ProfileLogModel()
         {
             Title = "Employee:Log ";
             ActiveModel = "Log";
         }
     }
 
-    public class LogModelIMapper
+    public class ProfileLogDetail 
     {
-        public static LogModel MapToLogModel(LogTime log)
-        {
-            LogModel model = new LogModel();
-            if( log!=null)
-            {
-                model.IsLoggedIn = log.IsInTime;                
-                model.LogType = log.LogType;
-            }
-            return model;
-        }
+        public LogType LogType { get; set; }
 
-        public static LogTime MapToLog(LogModel model)
-        {
-            LogTime log = new LogTime();
+        public DateTime LoggedTime { get; set; }
 
-            if (model != null)
+        public bool IsInTime { get; set; }
+
+        public string Error { get; set; }
+    }
+
+    public class ProfileLogMapper
+    {
+        List<ProfileLogDetail> MapToProfileLogDetailList(List<LogTime> LogList)
+        {
+            List<ProfileLogDetail> List = new List<ProfileLogDetail>();
+
+            foreach (LogTime log in LogList)
             {
-                log.IsInTime = model.IsLoggedIn;
-                log.LogType = model.LogType;
+                ProfileLogDetail p = new ProfileLogDetail();
+                p.LogType = log.LogType;
+                p.LoggedTime = log.LoggedTime;
+                p.IsInTime = log.IsInTime;
             }
-            return log;
+            return List;
         }
     }
 

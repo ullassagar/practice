@@ -11,12 +11,29 @@ namespace Indpro.Attendance.WebApp.Controllers
 {
     public class ProfileController : Controller
     {
-        public ActionResult Index()
+        public ViewResult Index()
         {
             var user = (User)Session[Constants.LoggedInUserName];
             var employee = EmployeeHandler.GetEmployee(user.EmployeeID);
             var profileModel = ProfileModelIMapper.MapToProfileModel(employee);
             return View(profileModel);
+        }
+        
+        public ViewResult Edit()
+        {
+            var user = (User)Session[Constants.LoggedInUserName];
+            var profile = EmployeeHandler.GetEmployee(user.EmployeeID);
+            var profileModel = ProfileModelIMapper.MapToProfileModel(profile);
+            return View(profileModel);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ProfileModel model)
+        {
+            var profile = ProfileModelIMapper.Maptoprofile(model);
+            EmployeeHandler.Update(profile);
+            return RedirectToAction("Index");
+           // return View("Index", model);
         }
     }
 }

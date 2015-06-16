@@ -1,4 +1,5 @@
 ﻿using Indpro.Attendance.Entity;
+using Indpro.Attendance.Utility;
 using Microsoft.ApplicationBlocks.Data;
 using System;
 using System.Collections.Generic;
@@ -51,8 +52,8 @@ namespace Indpro.Attendance.Repository
       public static void Add(LogTime logtime)
       {
           var sql = string.Format(@"INSERT INTO IP_LogTime (EmployeeID ,LoggedTime ,LogTypeID ,IsInTime)
-                                    VALUES({0},'{1}',{2},'{3}')", logtime.EmployeeID, logtime.LoggedTime,
-              (int)logtime.LogType, logtime.IsInTime);
+                                    VALUES({0},'{1}',{2},'{3}')",
+              logtime.EmployeeID, DbHelper.ConvertToSqlDateTime(logtime.LoggedTime), (int)logtime.LogType, logtime.IsInTime);
 
           SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
       }
@@ -60,7 +61,8 @@ namespace Indpro.Attendance.Repository
       public static void Update(LogTime logtime)
       {
           var sql = string.Format(@"UPDATE IP_LogTime SET LoggedTime ='{0}',LogTypeID={1}, IsInTime='{2}'
-                                      WHERE LogTimeID={3}", logtime.LoggedTime, (int)logtime.LogType, logtime.IsInTime, logtime.LogTimeID);
+                                    WHERE LogTimeID={3}",
+              DbHelper.ConvertToSqlDateTime(logtime.LoggedTime), (int)logtime.LogType, logtime.IsInTime, logtime.LogTimeID);
 
           SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
       }

@@ -1,8 +1,8 @@
-D:\Practice\HomePractice\WorkLog\Utility\bin\Debug\Indpro.Attendance.Utility.dll
-D:\Practice\HomePractice\WorkLog\Utility\bin\Debug\Indpro.Attendance.Utility.pdb
-D:\Practice\HomePractice\WorkLog\Utility\obj\Debug\Indpro.Attendance.Utility.dll
-D:\Practice\HomePractice\WorkLog\Utility\obj\Debug\Indpro.Attendance.Utility.pdb
 D:\Practice\Projects\WorkLog\Utility\bin\Debug\Indpro.Attendance.Utility.dll
 D:\Practice\Projects\WorkLog\Utility\bin\Debug\Indpro.Attendance.Utility.pdb
 D:\Practice\Projects\WorkLog\Utility\obj\Debug\Indpro.Attendance.Utility.dll
 D:\Practice\Projects\WorkLog\Utility\obj\Debug\Indpro.Attendance.Utility.pdb
+D:\Practice\HomePractice\WorkLog\Utility\bin\Debug\Indpro.Attendance.Utility.dll
+D:\Practice\HomePractice\WorkLog\Utility\bin\Debug\Indpro.Attendance.Utility.pdb
+D:\Practice\HomePractice\WorkLog\Utility\obj\Debug\Indpro.Attendance.Utility.dll
+D:\Practice\HomePractice\WorkLog\Utility\obj\Debug\Indpro.Attendance.Utility.pdb

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +46,17 @@ namespace Indpro.Attendance.Utility
 
         public static DateTime ConvertToDateTime(object value)
         {
-            return value == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(value);
+            if (value == DBNull.Value || Convert.ToDateTime(value) == SqlDateTime.MinValue.Value)
+            {
+                return DateTime.MinValue;
+            }
+          
+            return Convert.ToDateTime(value);
+        }
+
+        public static DateTime ConvertToSqlDateTime(DateTime value)
+        {
+            return value == DateTime.MinValue ? SqlDateTime.MinValue.Value : value;
         }
     }
 }

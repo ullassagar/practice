@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Indpro.Attendance.Utility;
 
 
 namespace Indpro.Attendance.Entity
@@ -38,7 +39,7 @@ namespace Indpro.Attendance.Entity
             logtime.LogTimeID = Convert.ToInt32(reader["LogTimeID"]);
             logtime.EmployeeID = Convert.ToInt32(reader["EmployeeID"]);
             logtime.EmployeeNo = Convert.ToString(reader["EmployeeNo"]);
-            logtime.LoggedTime = Convert.ToDateTime(reader["LoggedTime"]);
+            logtime.LoggedTime =DbHelper.ConvertToDateTime(reader["LoggedTime"]);
             logtime.LogType =(LogType) Convert.ToInt32(reader["LogTypeID"]);
             logtime.IsInTime = Convert.ToBoolean(reader["IsInTime"]);
 

@@ -6,7 +6,7 @@
         <div class="col-md-10 border">
             <h3>Edit LogTime</h3><br />
 
-            @using (Html.BeginForm("Update", "LogTimes", FormMethod.Post))
+            @using (Html.BeginForm("Edit", "LogTimes", FormMethod.Post))
             {
                 @Html.HiddenFor(l => l.LogTimeID)
 
@@ -37,12 +37,12 @@
                 </div>
 
                 <div class="mt10 row">
-                    <div class="col-md-2">@Html.Label("IsInTime")</div>
+                    <div class="col-md-2">@Html.Label("InTime")</div>
                     <div class="col-md-6">
                         @Html.RadioButtonFor(l => l.IsInTime, IsInTime.True, new { @id = "rdoTrue" })
-                        <label for="rdoTrue">True</label>
+                        <label for="rdoTrue">Start</label>
                         @Html.RadioButtonFor(l => l.IsInTime, IsInTime.False, new { @id = "rdoFalse" })
-                        <label for="rdoFalse">False</label>
+                        <label for="rdoFalse">End</label>
                     </div>
                 </div>
 

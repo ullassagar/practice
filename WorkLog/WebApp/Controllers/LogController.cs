@@ -25,23 +25,18 @@ namespace Indpro.Attendance.WebApp.Controllers
             return View(model);
         }
 
-        public ActionResult Add(LogModel model,string command)
+        public ActionResult Add(LogModel model, string command)
         {
-            LogTime log=new LogTime();
+            LogTime log = new LogTime();
             log.IsInTime = command == "In";
             log.LogType = model.LogType;
             log.LoggedTime = DateTime.Now;
 
             var user = (User)Session[Constants.LoggedInUserName];
             log.EmployeeID = user.EmployeeID;
-            
+
             LogTimeHandler.Add(log);
             return RedirectToAction("Index");
-        }
-
-        public ActionResult NewLogTiming()
-        {
-            return null;
         }
 
     }

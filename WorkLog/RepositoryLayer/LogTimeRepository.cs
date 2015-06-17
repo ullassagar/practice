@@ -49,23 +49,23 @@ namespace Indpro.Attendance.Repository
           return logtime;
       }
 
-      public static LogTime GetLogTimeByEmpid(int EmployeeID)
+      public static List<LogTime> GetLogTimeList(int EmployeeID,DateTime dt)
       {
-          LogTime logtime = null;
+          List<LogTime> loglist=new List<LogTime>();
 
-          var sql = string.Format(@"SELECT E.EmployeeName, L.Logtypeid, L.Loggedtime,L.IsInTime 
+          var sql = string.Format(@"SELECT L.LogTimeID,L.EmployeeID, E.EmployeeNo, L.Loggedtime,L.LogTypeID ,L.IsInTime 
                                     FROM IP_logtime L join ip_Employee E ON L.Employeeid=E.Employeeid 
-                                    WHERE  E.EmployeeID={0}");
+                                    WHERE  E.EmployeeID={0} AND Replace(Convert(Varchar, L.LoggedTime, 111),'/','-')='{1}' ",EmployeeID,dt.ToString("yyyy-MM-dd"));
 
           using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
           {
               while (reader.Read())
               {
-                  logtime = LogTime.Load(reader);
+                  loglist.Add(LogTime.Load(reader));
               }
           }
 
-          return logtime;
+          return loglist;
       }
 
       public static void Add(LogTime logtime)

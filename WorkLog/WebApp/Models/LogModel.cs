@@ -13,11 +13,15 @@ namespace Indpro.Attendance.WebApp.Models
 
     public class ProfileLogModel : MasterModel
     {
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime LogDate { get; set; }
-
+       
         [Required(ErrorMessage = "Select LogType")]
         public LogType LogType { get; set; }
 
+         [DataType(DataType.Date)]
+         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime LogListDate { get; set; }
 
         public List<ProfileLogDetail> LogList { get; set; }
@@ -44,7 +48,7 @@ namespace Indpro.Attendance.WebApp.Models
 
     public class ProfileLogMapper
     {
-        List<ProfileLogDetail> MapToProfileLogDetailList(List<LogTime> LogList)
+      public static  List<ProfileLogDetail> MapToProfileLogDetailList(List<LogTime> LogList)
         {
             List<ProfileLogDetail> List = new List<ProfileLogDetail>();
 
@@ -54,6 +58,7 @@ namespace Indpro.Attendance.WebApp.Models
                 p.LogType = log.LogType;
                 p.LoggedTime = log.LoggedTime;
                 p.IsInTime = log.IsInTime;
+                List.Add(p);
             }
             return List;
         }

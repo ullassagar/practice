@@ -23,9 +23,9 @@ namespace Indpro.Attendance.Business
             return LogTimeRepository.GetLogTime(LogTimeID);
         }
 
-        public static LogTime GetLogTimeByEmpid(int EmployeeID)
+        public static List<LogTime> GetLogTimeList(int EmployeeID, DateTime dt)
         {
-            return LogTimeRepository.GetLogTimeByEmpid(EmployeeID);
+            return LogTimeRepository.GetLogTimeList(EmployeeID, dt);
         }
 
         public static void Add(LogTime logtime)

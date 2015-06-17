@@ -1,68 +1,71 @@
 ﻿@using Indpro.Attendance.Entity
 @model Indpro.Attendance.WebApp.Models.ProfileLogModel
 
+
 <div class="container">
     <div class="row">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 border">
-                    <br />
-                    @using (Html.BeginForm("Add", "Log", FormMethod.Post))
-                    {
-                        <div class="row">
-                            <div class="col-md-8">
-                                @Html.RadioButtonFor(l => l.LogType, LogType.Work, new { @id = "rdoWork" })
-                                <label for="rdoWork">Work</label>&nbsp;&nbsp;
-                                @Html.RadioButtonFor(l => l.LogType, LogType.Tea, new { @id = "rdoTea" })
-                                <label for="rdoTea">Tea</label>&nbsp;&nbsp;
-                                @Html.RadioButtonFor(l => l.LogType, LogType.Lunch, new { @id = "rdoLunch" })
-                                <label for="rdoLunch">Lunch</label>&nbsp;&nbsp;
-                                @Html.RadioButtonFor(l => l.LogType, LogType.Others, new { @id = "rdoOthers" })
-                                <label for="rdoOthers">Others</label>
-                            </div>
-                            <div class="col-md-2">@Html.ValidationMessageFor(u => u.LogType)</div>
-                            <div class="col-md-3">@Html.Label("Select Date")</div>
-                            <div class="col-md-2">@Html.EditorFor(l => l.LogDate, new { Class = "form-control" })</div>
-                        </div>
-
-                        <input type="submit" id="btnIn" name="command" value="Click here to Login Time" /> <span>&nbsp;&nbsp;&nbsp;</span>
-                        <input type="submit" id="btnOut" name="command" value="Click here to Logout Time" />
-
-                        if (!string.IsNullOrEmpty(@Model.Error))
-                        {
-                            <div class="mt10 row">
-                                <div class="col-md-5 alert-danger">@Model.Error</div>
-                            </div>
-                        }
-                    }
-                    <br />
+        <div class="col-md-8 border">
+            <br />
+            @using (Html.BeginForm("Add", "Log", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col-md-8">
+                        @Html.RadioButtonFor(l => l.LogType, LogType.Work, new { @id = "rdoWork" })
+                        <label for="rdoWork">Work</label>&nbsp;&nbsp;
+                        @Html.RadioButtonFor(l => l.LogType, LogType.Tea, new { @id = "rdoTea" })
+                        <label for="rdoTea">Tea</label>&nbsp;&nbsp;
+                        @Html.RadioButtonFor(l => l.LogType, LogType.Lunch, new { @id = "rdoLunch" })
+                        <label for="rdoLunch">Lunch</label>&nbsp;&nbsp;
+                        @Html.RadioButtonFor(l => l.LogType, LogType.Others, new { @id = "rdoOthers" })
+                        <label for="rdoOthers">Others</label>
+                    </div>
+                    <div class="col-md-2">@Html.ValidationMessageFor(u => u.LogType)</div>
+                    <div class="col-md-3">@Html.Label("Select Date")</div>
+                    <div class="col-md-2">@Html.EditorFor(l => l.LogDate, new { @class = "form-control" })</div>
                 </div>
-            </div>
-        </div>
-    </div>
 
+                <input type="submit" id="btnIn" name="command" value="Click here to Login Time" /> <span>&nbsp;&nbsp;&nbsp;</span>
+                <input type="submit" id="btnOut" name="command" value="Click here to Logout Time" />
 
-    <div class="row">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 border">                 
-                    <table class="table table-bordered table-striped">
-                        <tr>
-                            <th>LogType</th>
-                            <th>LoggedTime</th>
-                            <th>IsInTime</th>
-                        </tr>
-                        @foreach (var PLD in @Model.LogList)
-                        {
-                            <tr>
-                                <td>@PLD.LoggedTime</td>
-                                <td>@PLD.LogType</td>
-                                <td>@(PLD.IsInTime ? "Start" : "End")</td>
-                            </tr>
-                        }
-                    </table>
-                </div>
-            </div>
+                if (!string.IsNullOrEmpty(@Model.Error))
+                {
+                    <div class="mt10 row">
+                        <div class="col-md-5 alert-danger">@Model.Error</div>
+                    </div>
+                }
+            }
+            <br />
         </div>
     </div>
 </div>
+
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">@Html.Label("Select Date")</div>
+        <div class="col-md-2">@Html.EditorFor(l => l.LogListDate, new { @class = "form-control" })</div>        
+
+        <div class="row">
+            <div class="col-md-8 border">
+                <br />
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>LogType</th>
+                        <th>LoggedTime</th>
+                        <th>IsInTime</th>
+                    </tr>
+                    @foreach (var PLD in @Model.LogList)
+                    {
+                        <tr>
+                            <td>@PLD.LogType</td>
+                            <td>@PLD.LoggedTime</td>
+                            <td>@(PLD.IsInTime ? "Start" : "End")</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+
+

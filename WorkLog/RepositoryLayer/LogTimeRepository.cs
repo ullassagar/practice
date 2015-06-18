@@ -89,9 +89,8 @@ namespace Indpro.Attendance.Repository
 
       public static void Add(LogTime logtime)
       {
-          var sql = string.Format(@"INSERT INTO IP_LogTime (EmployeeID ,LoggedTime ,LogTypeID ,IsInTime)
-                                    VALUES({0},'{1}',{2},'{3}')",
-              logtime.EmployeeID, DbHelper.ConvertToSqlDateTime(logtime.LoggedTime), (int)logtime.LogType, logtime.IsInTime);
+          var sql = string.Format(@"INSERT INTO IP_LogTime (LogTimeID,EmployeeID ,LoggedTime ,LogTypeID ,IsInTime)
+                                    VALUES({0},{1},'{2}',{3},'{4}')",logtime.LogTimeID, logtime.EmployeeID, DbHelper.ConvertToSqlDateTime(logtime.LoggedTime), (int)logtime.LogType, logtime.IsInTime);
 
           SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
       }

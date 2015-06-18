@@ -44,8 +44,8 @@
                         <label for="rdoOthers">Others</label>
                     </div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.LogType)</div>
-                    <div class="col-md-3">@Html.Label("Select Date")</div>
-                    <div class="col-md-4">@Html.TextBoxFor(l => l.LogDate, new { @class = "form-control datetimepicker" })</div>
+                    <div class="col-md-2">@Html.Label("Select Date")</div>
+                    <div class="col-md-2">@Html.TextBoxFor(l => l.LogDate, new { @class = "form-control datetimepicker" })</div>
                 </div>
 
                 if (activeStatuses.Contains(IsInTime.True))

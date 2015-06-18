@@ -19,12 +19,12 @@
 
                 <div class="row">
                     <div class="col-md-2">@Html.Label("Employee No")</div>
-                    <div class="col-md-3">@Html.DisplayFor(u => u.EmployeeNo, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.DisplayFor(u => u.EmployeeNo, new { Class = "form-control" })</div>
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Name")</div>
-                    <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeName, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeName, new { Class = "form-control" })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeName)</div>
                 </div>
 
@@ -42,7 +42,7 @@
                 
                  <div class="mt10 row">
                 <div class="col-md-2">@Html.Label("Gender")</div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     @if (Model.Gender == Gender.Male)
                     {
                         <span>Male</span>
@@ -57,46 +57,46 @@
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Designation")</div>
-                    <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeDesignation, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeDesignation, new { Class = "form-control" })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeDesignation)</div>
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Qualification")</div>
-                    <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeQualification, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeQualification, new { Class = "form-control" })</div>
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Date of birth")</div>
-                    <div class="col-md-4">@Html.TextBoxFor(u => u.EmployeeDOB, new {data_provide="datepicker", @class = "form-control datepicker" })</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeDOB, new {data_provide="datepicker", @class = "form-control datepicker" })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeDOB)</div>
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Date of join")</div>
-                    <div class="col-md-3">@Html.DisplayFor(u => u.EmployeeDOJ, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.DisplayFor(u => u.EmployeeDOJ, new { Class = "form-control" })</div>
                     @Html.HiddenFor(e=>e.EmployeeDOJ)
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Address")</div>
-                    <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeAddress, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeAddress, new { Class = "form-control" })</div>
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Mobile")</div>
-                    <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeMobileNo, new { Class = "form-control " })</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeMobileNo, new { Class = "form-control " })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeMobileNo)</div>
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Skype")</div>
-                    <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeSkypeID, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeSkypeID, new { Class = "form-control" })</div>
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Email")</div>
-                    <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeEmailID, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeEmailID, new { Class = "form-control" })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeEmailID)</div>
                 </div>
 

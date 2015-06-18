@@ -29,7 +29,7 @@
 
                     <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Gender")</div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             @Html.RadioButtonFor(e => e.Gender, Gender.Male, new { @id = "rdoMale" })
                             <label for="rdoMale">Male</label>
                             &nbsp;
@@ -51,12 +51,12 @@
                     </div>
                     <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Date of birth")</div>
-                        <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeDOB, new { @class = "form-control datetimepicker" })</div>
+                        <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeDOB, new { @class = "form-control datepicker" })</div>
                         <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeDOB)</div>
                     </div>
                     <div class="mt10 row">
                         <div class="col-md-2">@Html.Label("Date of join")</div>
-                        <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeDOJ, new { @class = "form-control datetimepicker" })</div>
+                        <div class="col-md-2">@Html.TextBoxFor(u => u.EmployeeDOJ, new { @class = "form-control datepicker" })</div>
                         <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeDOJ)</div>
                     </div>
 

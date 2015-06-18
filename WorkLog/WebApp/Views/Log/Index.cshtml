@@ -1,6 +1,14 @@
-﻿@using Indpro.Attendance.Entity
+﻿@using Indpro.Attendance.Business
+@using Indpro.Attendance.Entity
 @model Indpro.Attendance.WebApp.Models.ProfileLogModel
 
+@{
+
+    List<LogType> activeTypes;
+    List<IsInTime> activeStatuses;
+    var user = (User)Session["SessionLoggedInUserIn"];
+    LogTimeHandler.GetActiveLogTypes(user.EmployeeID, Model.LogDate, out activeTypes, out activeStatuses);
+}
 
 <div class="container">
     <div class="row">
@@ -10,10 +18,26 @@
             {
                 <div class="row">
                     <div class="col-md-8">
-                        @Html.RadioButtonFor(l => l.LogType, LogType.Work, new { @id = "rdoWork" })
+                        @if (activeTypes.Contains(LogType.Work))
+                        {
+                            @Html.RadioButtonFor(l => l.LogType, LogType.Work, new { @id = "rdoWork" })
+                        }
+                        else
+                        {
+                            @Html.RadioButtonFor(l => l.LogType, LogType.Work, new { @disabled = "disabled", @id = "rdoWork" })
+                        }
                         <label for="rdoWork">Work</label>&nbsp;&nbsp;
-                        @Html.RadioButtonFor(l => l.LogType, LogType.Tea, new { @id = "rdoTea" })
+
+                        @if (activeTypes.Contains(LogType.Tea))
+                        {
+                            @Html.RadioButtonFor(l => l.LogType, LogType.Tea, new { @id = "rdoTea" })
+                        }
+                        else
+                        {
+                            @Html.RadioButtonFor(l => l.LogType, LogType.Tea, new { @disabled = "disabled", @id = "rdoTea" })
+                        }
                         <label for="rdoTea">Tea</label>&nbsp;&nbsp;
+
                         @Html.RadioButtonFor(l => l.LogType, LogType.Lunch, new { @id = "rdoLunch" })
                         <label for="rdoLunch">Lunch</label>&nbsp;&nbsp;
                         @Html.RadioButtonFor(l => l.LogType, LogType.Others, new { @id = "rdoOthers" })
@@ -24,8 +48,23 @@
                     <div class="col-md-4">@Html.TextBoxFor(l => l.LogDate, new { @class = "form-control datetimepicker" })</div>
                 </div>
 
-                <input type="submit" id="btnIn" name="command" value="Click here to Login Time" /> <span>&nbsp;&nbsp;&nbsp;</span>
-                <input type="submit" id="btnOut" name="command" value="Click here to Logout Time" />
+                if (activeStatuses.Contains(IsInTime.True))
+                {
+                    <input type="submit" id="btnIn" name="command" class="btn bg-primary" value="Click here to Login Time" />
+                }
+                else
+                {
+                    <input type="submit" id="btnIn" name="command" class="btn btn-primary" value="Click here to Login Time" disabled="disabled" />
+                }
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                if (activeStatuses.Contains(IsInTime.False))
+                {
+                    <input type="submit" id="btnOut" name="command" class="btn btn-danger" value="Click here to Logout Time" />
+                }
+                else
+                {
+                    <input type="submit" id="btnOut" name="command" class="btn btn-danger" value="Click here to Logout Time" disabled="disabled" />
+                }
 
                 if (!string.IsNullOrEmpty(@Model.Error))
                 {
@@ -61,7 +100,7 @@
                         <tr>
                             <td>@PLD.LogType</td>
                             <td>@PLD.LoggedTime</td>
-                            <td>@(PLD.IsInTime ? "Start" : "End")</td>
+                            <td>@(PLD.IsInTime ? "Out" : "In")</td>
                         </tr>
                     }
                 </table>

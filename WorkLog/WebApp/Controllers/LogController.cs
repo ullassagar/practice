@@ -31,7 +31,7 @@ namespace Indpro.Attendance.WebApp.Controllers
         public ActionResult Add(ProfileLogModel model, string command)
         {
             LogTime log = new LogTime();
-            log.IsInTime = command == "In";
+            log.IsInTime = command == "Click here to Login Time";
             log.LogType = model.LogType;
             log.LoggedTime = model.LogDate;
 

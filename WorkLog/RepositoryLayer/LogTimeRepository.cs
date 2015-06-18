@@ -49,6 +49,25 @@ namespace Indpro.Attendance.Repository
           return logtime;
       }
 
+      public static LogTime GetEarlierLogTime(int EmployeeID, DateTime dt)
+      {
+          LogTime logTime = null;
+
+          var sql = string.Format(@"SELECT TOP 1 L.LogTimeID, L.EmployeeID, E.EmployeeNo, L.Loggedtime, L.LogTypeID, L.IsInTime 
+                                    FROM IP_logtime L join ip_Employee E ON L.Employeeid=E.Employeeid 
+                                    WHERE  E.EmployeeID={0} AND L.LoggedTime<'{1}' ORDER BY L.LoggedTime DESC", EmployeeID, dt);
+
+          using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
+          {
+              if (reader.Read())
+              {
+                  logTime = LogTime.Load(reader);
+              }
+          }
+
+          return logTime;
+      }
+
       public static List<LogTime> GetLogTimeList(int EmployeeID,DateTime dt)
       {
           List<LogTime> loglist=new List<LogTime>();

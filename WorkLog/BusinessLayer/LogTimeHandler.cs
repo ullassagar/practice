@@ -28,6 +28,71 @@ namespace Indpro.Attendance.Business
             return LogTimeRepository.GetLogTimeList(EmployeeID, dt);
         }
 
+        public static void GetActiveLogTypes(int employeeId, DateTime dateTime, out List<LogType> activeTypes, out List<IsInTime> activeStatuses)
+        {
+            activeTypes = new List<LogType>();
+            activeStatuses = new List<IsInTime>();
+
+            LogTime log = LogTimeRepository.GetEarlierLogTime(employeeId, dateTime);
+
+            if (log == null)
+            {
+                activeTypes.Add(LogType.Work);
+                activeStatuses.Add(IsInTime.True);
+                return;
+            }
+
+            if (log.LogType == LogType.Work && log.IsInTime == false)
+            {
+                activeTypes.Add(LogType.Work);
+                activeStatuses.Add(IsInTime.True);
+                return;
+            } 
+            
+            if (log.LogType == LogType.Work && log.IsInTime == true)
+            {
+                activeTypes.Add(LogType.Work);
+                activeTypes.Add(LogType.Tea);
+                activeTypes.Add(LogType.Lunch);
+                activeTypes.Add(LogType.Others);
+
+                activeStatuses.Add(IsInTime.False);
+                return;
+            }
+
+            if (log.LogType == LogType.Tea && log.IsInTime == false)
+            {
+                activeTypes.Add(LogType.Tea);
+                activeStatuses.Add(IsInTime.True);
+                return;
+            }
+
+            if (log.LogType == LogType.Lunch && log.IsInTime == false)
+            {
+                activeTypes.Add(LogType.Lunch);
+                activeStatuses.Add(IsInTime.True);
+                return;
+            }
+
+            if (log.LogType == LogType.Others && log.IsInTime == false)
+            {
+                activeTypes.Add(LogType.Others);
+                activeStatuses.Add(IsInTime.True);
+                return;
+            }
+
+            if ((log.LogType == LogType.Tea || log.LogType == LogType.Lunch || log.LogType == LogType.Others) && log.IsInTime == true)
+            {
+                activeTypes.Add(LogType.Work);
+                activeTypes.Add(LogType.Tea);
+                activeTypes.Add(LogType.Lunch);
+                activeTypes.Add(LogType.Others);
+
+                activeStatuses.Add(IsInTime.False);
+                return;
+            }
+        }
+
         public static void Add(LogTime logtime)
         {
             LogTimeRepository.Add(logtime);
@@ -40,7 +105,7 @@ namespace Indpro.Attendance.Business
 
         public static void Delete(int id)
         {
-           LogTimeRepository.Delete(id);
+            LogTimeRepository.Delete(id);
         }
     }
 }

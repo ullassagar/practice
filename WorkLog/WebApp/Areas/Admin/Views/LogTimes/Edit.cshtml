@@ -17,7 +17,7 @@
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("LoggedTime")</div>
-                    <div class="col-md-5">@Html.EditorFor(l => l.LoggedTime, new { Class = "form-control" })</div>
+                    <div class="col-md-5">@Html.EditorFor(l => l.LoggedTime, new { Class = "form-control datetimepicker" })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.LoggedTime)</div>
                 </div>
 
@@ -40,9 +40,9 @@
                     <div class="col-md-2">@Html.Label("InTime")</div>
                     <div class="col-md-6">
                         @Html.RadioButtonFor(l => l.IsInTime, IsInTime.True, new { @id = "rdoTrue" })
-                        <label for="rdoTrue">Start</label>
+                        <label for="rdoTrue">In</label>
                         @Html.RadioButtonFor(l => l.IsInTime, IsInTime.False, new { @id = "rdoFalse" })
-                        <label for="rdoFalse">End</label>
+                        <label for="rdoFalse">Out</label>
                     </div>
                 </div>
 

@@ -45,7 +45,7 @@ namespace Indpro.Attendance.WebApp.Areas.Admin.Models
         public DateTime EmployeeDOB { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+       // [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Date of joining Required.")]
         public DateTime EmployeeDOJ { get; set; }
 

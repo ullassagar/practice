@@ -9,6 +9,7 @@ using Indpro.Attendance.Business;
 
 namespace Indpro.Attendance.WebApp.Controllers
 {
+    [AuthorizeUser]
     public class ProfileController : Controller
     {
         public ViewResult Index()

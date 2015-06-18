@@ -28,7 +28,7 @@
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeName)</div>
                 </div>
 
-                <div class="mt10 row">
+                @*<div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Gender")</div>
                     <div class="col-md-3">
                         @Html.RadioButtonFor(e => e.Gender, Gender.Male, new { @id = "rdoMale" })
@@ -38,7 +38,22 @@
                         <label for="rdoFeMale">FeMale</label>
                     </div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.Gender)</div>
+                </div>*@
+                
+                 <div class="mt10 row">
+                <div class="col-md-2">@Html.Label("Gender")</div>
+                <div class="col-md-3">
+                    @if (Model.Gender == Gender.Male)
+                    {
+                        <span>Male</span>
+                    }
+                    else
+                    {
+                        <span>FeMale</span>
+                    }
                 </div>
+            </div>
+
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Designation")</div>
@@ -53,14 +68,14 @@
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Date of birth")</div>
-                    <div class="col-md-4">@Html.EditorFor(u => u.EmployeeDOB, new { Class = "form-control" })</div>
+                    <div class="col-md-4">@Html.TextBoxFor(u => u.EmployeeDOB, new {data_provide="datepicker", @class = "form-control datepicker" })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeDOB)</div>
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Date of join")</div>
-                    <div class="col-md-3">@Html.EditorFor(u => u.EmployeeDOJ, new { Class = "form-control" })</div>
-                    <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeDOJ)</div>
+                    <div class="col-md-3">@Html.DisplayFor(u => u.EmployeeDOJ, new { Class = "form-control" })</div>
+                    @Html.HiddenFor(e=>e.EmployeeDOJ)
                 </div>
 
                 <div class="mt10 row">
@@ -70,7 +85,7 @@
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Mobile")</div>
-                    <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeMobileNo, new { Class = "form-control" })</div>
+                    <div class="col-md-3">@Html.TextBoxFor(u => u.EmployeeMobileNo, new { Class = "form-control " })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmployeeMobileNo)</div>
                 </div>
 

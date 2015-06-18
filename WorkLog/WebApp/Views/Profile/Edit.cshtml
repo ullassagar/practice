@@ -21,7 +21,7 @@
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.Name)</div>
                 </div>
 
-                <div class="mt10 row">
+                @*<div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Gender")</div>
                     <div class="col-md-3">
                         @Html.RadioButtonFor(e => e.Gender, Gender.Male, new { @id = "rdoMale" })
@@ -31,8 +31,23 @@
                         <label for="rdoFeMale">FeMale</label>
                     </div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.Gender)</div>
-                </div>
+                </div>*@
 
+                 <div class="mt10 row">
+                <div class="col-md-2">@Html.Label("Gender")</div>
+                <div class="col-md-3">
+                    @if (Model.Gender == Gender.Male)
+                    {
+                        <span>Male</span>
+                    }
+                    else
+                    {
+                        <span>FeMale</span>
+                    }
+                </div>
+            </div>
+
+                
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Designation")</div>
                     <div class="col-md-3">@Html.DisplayFor(u => u.Designation, new { @class = "form-control" })</div>

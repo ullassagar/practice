@@ -6,6 +6,11 @@ namespace Indpro.Attendance.WebApp.Controllers
 {
     public class AccountController : Controller
     {
+        public ActionResult Login()
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult AdminLogin()
         {
             return View();

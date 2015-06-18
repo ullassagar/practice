@@ -11,7 +11,7 @@
     <link href="@Url.Content("~/css/utility.css")" rel="stylesheet">
     <link href="@Url.Content("~/css/bootstrap.css")" rel="stylesheet">
     <link href="@Url.Content("~/css/jumbotron.css")" rel="stylesheet">
-
+    <link href="@Url.Content("~/Content/bootstrap-datepicker.css")" rel="stylesheet" />
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -49,15 +49,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="@Url.Content("~/js/bootstrap.js")"></script>
     <script src="@Url.Content("~/scripts/moment.js")"></script>
-    @*<script src="@Url.Content("~/Scripts/bootstrap-datepicker.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/bootstrap-datepicker.js")"></script>
     <script src="@Url.Content("~/scripts/bootstrap-datetimepicker.js")"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script type="text/javascript">
-        $('.datetimepicker').datetimepicker();
+        $(function () {
+            $('.datetimepicker').datetimepicker();
+
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            })
+        });
     </script>
+
 </body>
 </html>

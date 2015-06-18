@@ -9,21 +9,23 @@ using Indpro.Attendance.Business;
 
 namespace Indpro.Attendance.WebApp.Controllers
 {
+    [AuthorizeUser]
     public class LogController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string logDate = null, string reportDate = null)
         {
             var model = new ProfileLogModel();
-            model.LogDate = DateTime.Now;
+            model.LogDate = string.IsNullOrEmpty(reportDate) ? DateTime.Now : Convert.ToDateTime(reportDate);
             model.LogType = LogType.Work;
-            model.LogListDate = DateTime.Now;
+            model.LogListDate = string.IsNullOrEmpty(reportDate) ? DateTime.Now : Convert.ToDateTime(reportDate);
+            // model.LogListDate=
 
             var user = (User)Session[Constants.LoggedInUserName];
             var logtmeList = LogTimeHandler.GetLogTimeList(user.EmployeeID, model.LogListDate);
             var profileloglist = ProfileLogMapper.MapToProfileLogDetailList(logtmeList);
             model.LogList = profileloglist;
 
-            return View("Index",model);
+            return View("Index", model);
         }
 
         public ActionResult Add(ProfileLogModel model, string command)
@@ -31,7 +33,7 @@ namespace Indpro.Attendance.WebApp.Controllers
             LogTime log = new LogTime();
             log.IsInTime = command == "In";
             log.LogType = model.LogType;
-            log.LoggedTime = DateTime.Now;
+            log.LoggedTime = model.LogDate;
 
             var user = (User)Session[Constants.LoggedInUserName];
             log.EmployeeID = user.EmployeeID;

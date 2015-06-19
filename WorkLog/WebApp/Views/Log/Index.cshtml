@@ -2,14 +2,6 @@
 @using Indpro.Attendance.Entity
 @model Indpro.Attendance.WebApp.Models.ProfileLogModel
 
-@{
-
-    List<LogType> activeTypes;
-    List<IsInTime> activeStatuses;
-    var user = (User)Session["SessionLoggedInUserIn"];
-    LogTimeHandler.GetActiveLogTypes(user.EmployeeID, Model.LogDate, out activeTypes, out activeStatuses);
-}
-
 <div class="container">
     <div class="row">
         <div class="col-md-8 border">
@@ -18,7 +10,7 @@
             {
                 <div class="row">
                     <div class="col-md-8">
-                        @if (activeTypes.Contains(LogType.Work))
+                        @if (Model.ActiveTypes.Contains(LogType.Work))
                         {
                             @Html.RadioButtonFor(l => l.LogType, LogType.Work, new { @id = "rdoWork" })
                         }
@@ -28,7 +20,7 @@
                         }
                         <label for="rdoWork">Work</label>&nbsp;&nbsp;
 
-                        @if (activeTypes.Contains(LogType.Tea))
+                        @if (Model.ActiveTypes.Contains(LogType.Tea))
                         {
                             @Html.RadioButtonFor(l => l.LogType, LogType.Tea, new { @id = "rdoTea" })
                         }
@@ -38,17 +30,32 @@
                         }
                         <label for="rdoTea">Tea</label>&nbsp;&nbsp;
 
-                        @Html.RadioButtonFor(l => l.LogType, LogType.Lunch, new { @id = "rdoLunch" })
+                        @if (Model.ActiveTypes.Contains(LogType.Lunch))
+                        {
+                            @Html.RadioButtonFor(l => l.LogType, LogType.Lunch, new { @id = "rdoLunch" })
+                        }
+                        else
+                        {
+                            @Html.RadioButtonFor(l => l.LogType, LogType.Lunch, new { @disabled = "disabled", @id = "rdoLunch" })
+                        }
                         <label for="rdoLunch">Lunch</label>&nbsp;&nbsp;
-                        @Html.RadioButtonFor(l => l.LogType, LogType.Others, new { @id = "rdoOthers" })
+
+                        @if (Model.ActiveTypes.Contains(LogType.Others))
+                        {
+                            @Html.RadioButtonFor(l => l.LogType, LogType.Others, new { @id = "rdoOthers" })
+                        }
+                        else
+                        {
+                            @Html.RadioButtonFor(l => l.LogType, LogType.Others, new { @disabled = "disabled", @id = "rdoOthers" })
+                        }
                         <label for="rdoOthers">Others</label>
                     </div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.LogType)</div>
                     <div class="col-md-2">@Html.Label("Select Date")</div>
-                    <div class="col-md-2">@Html.TextBoxFor(l => l.LogDate, new { @class = "form-control datetimepicker" })</div>
+                    <div class="col-md-3">@Html.TextBoxFor(l => l.LogDate, new { @class = "form-control datetimepicker" })</div>
                 </div>
 
-                if (activeStatuses.Contains(IsInTime.True))
+                if (Model.ActiveStatuses.Contains(IsInTime.True))
                 {
                     <input type="submit" id="btnIn" name="command" class="btn bg-primary" value="Click here to Login Time" />
                 }
@@ -57,7 +64,7 @@
                     <input type="submit" id="btnIn" name="command" class="btn btn-primary" value="Click here to Login Time" disabled="disabled" />
                 }
                 <span>&nbsp;&nbsp;&nbsp;</span>
-                if (activeStatuses.Contains(IsInTime.False))
+                if (Model.ActiveStatuses.Contains(IsInTime.False))
                 {
                     <input type="submit" id="btnOut" name="command" class="btn btn-danger" value="Click here to Logout Time" />
                 }
@@ -100,7 +107,7 @@
                         <tr>
                             <td>@PLD.LogType</td>
                             <td>@PLD.LoggedTime</td>
-                            <td>@(PLD.IsInTime ? "Out" : "In")</td>
+                            <td>@(PLD.IsInTime ? "In" : "Out")</td>
                         </tr>
                     }
                 </table>

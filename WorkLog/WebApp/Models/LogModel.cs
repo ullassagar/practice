@@ -16,6 +16,10 @@ namespace Indpro.Attendance.WebApp.Models
         [DataType(DataType.DateTime)]
         public DateTime LogDate { get; set; }
 
+        public List<LogType> ActiveTypes { get; set; }
+
+        public List<IsInTime> ActiveStatuses { get; set; }
+
         [Required(ErrorMessage = "Select LogType")]
         public LogType LogType { get; set; }
 

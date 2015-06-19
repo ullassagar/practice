@@ -14,13 +14,20 @@ namespace Indpro.Attendance.WebApp.Controllers
     {
         public ActionResult Index(string logDate = null, string reportDate = null)
         {
+            LogType suggestedLogType;
+            List<LogType> activeTypes;
+            List<IsInTime> activeStatuses;
+            var user = (User)Session[Constants.LoggedInUserName];
+
             var model = new ProfileLogModel();
             model.LogDate = string.IsNullOrEmpty(reportDate) ? DateTime.Now : Convert.ToDateTime(reportDate);
-            model.LogType = LogType.Work;
+            
+            LogTimeHandler.GetActiveLogTypes(user.EmployeeID, model.LogDate, out suggestedLogType, out activeTypes, out activeStatuses);
+            model.LogType = suggestedLogType;
+            model.ActiveTypes = activeTypes;
+            model.ActiveStatuses = activeStatuses;
             model.LogListDate = string.IsNullOrEmpty(reportDate) ? DateTime.Now : Convert.ToDateTime(reportDate);
-            // model.LogListDate=
 
-            var user = (User)Session[Constants.LoggedInUserName];
             var logtmeList = LogTimeHandler.GetLogTimeList(user.EmployeeID, model.LogListDate);
             var profileloglist = ProfileLogMapper.MapToProfileLogDetailList(logtmeList);
             model.LogList = profileloglist;

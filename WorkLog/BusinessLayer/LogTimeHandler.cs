@@ -1,4 +1,5 @@
-﻿using Indpro.Attendance.Entity;
+﻿using System.ComponentModel.Design;
+using Indpro.Attendance.Entity;
 using Indpro.Attendance.Repository;
 using Microsoft.ApplicationBlocks.Data;
 using System;
@@ -28,8 +29,9 @@ namespace Indpro.Attendance.Business
             return LogTimeRepository.GetLogTimeList(EmployeeID, dt);
         }
 
-        public static void GetActiveLogTypes(int employeeId, DateTime dateTime, out List<LogType> activeTypes, out List<IsInTime> activeStatuses)
+        public static void GetActiveLogTypes(int employeeId, DateTime dateTime, out LogType suggestedLogType, out List<LogType> activeTypes, out List<IsInTime> activeStatuses)
         {
+            suggestedLogType = LogType.Work;
             activeTypes = new List<LogType>();
             activeStatuses = new List<IsInTime>();
 
@@ -37,6 +39,7 @@ namespace Indpro.Attendance.Business
 
             if (log == null)
             {
+                suggestedLogType = LogType.Work;
                 activeTypes.Add(LogType.Work);
                 activeStatuses.Add(IsInTime.True);
                 return;
@@ -44,13 +47,16 @@ namespace Indpro.Attendance.Business
 
             if (log.LogType == LogType.Work && log.IsInTime == false)
             {
+                suggestedLogType = LogType.Work;
                 activeTypes.Add(LogType.Work);
                 activeStatuses.Add(IsInTime.True);
                 return;
-            } 
-            
+            }
+
             if (log.LogType == LogType.Work && log.IsInTime == true)
             {
+                suggestedLogType = LogType.Work;
+
                 activeTypes.Add(LogType.Work);
                 activeTypes.Add(LogType.Tea);
                 activeTypes.Add(LogType.Lunch);
@@ -62,6 +68,7 @@ namespace Indpro.Attendance.Business
 
             if (log.LogType == LogType.Tea && log.IsInTime == false)
             {
+                suggestedLogType = LogType.Tea;
                 activeTypes.Add(LogType.Tea);
                 activeStatuses.Add(IsInTime.True);
                 return;
@@ -69,6 +76,7 @@ namespace Indpro.Attendance.Business
 
             if (log.LogType == LogType.Lunch && log.IsInTime == false)
             {
+                suggestedLogType = LogType.Lunch;
                 activeTypes.Add(LogType.Lunch);
                 activeStatuses.Add(IsInTime.True);
                 return;
@@ -76,6 +84,7 @@ namespace Indpro.Attendance.Business
 
             if (log.LogType == LogType.Others && log.IsInTime == false)
             {
+                suggestedLogType = LogType.Others;
                 activeTypes.Add(LogType.Others);
                 activeStatuses.Add(IsInTime.True);
                 return;
@@ -83,6 +92,8 @@ namespace Indpro.Attendance.Business
 
             if ((log.LogType == LogType.Tea || log.LogType == LogType.Lunch || log.LogType == LogType.Others) && log.IsInTime == true)
             {
+                suggestedLogType = LogType.Work;
+
                 activeTypes.Add(LogType.Work);
                 activeTypes.Add(LogType.Tea);
                 activeTypes.Add(LogType.Lunch);

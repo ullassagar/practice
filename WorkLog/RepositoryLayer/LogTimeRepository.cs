@@ -55,7 +55,7 @@ namespace Indpro.Attendance.Repository
 
           var sql = string.Format(@"SELECT TOP 1 L.LogTimeID, L.EmployeeID, E.EmployeeNo, L.Loggedtime, L.LogTypeID, L.IsInTime 
                                     FROM IP_logtime L join ip_Employee E ON L.Employeeid=E.Employeeid 
-                                    WHERE  E.EmployeeID={0} AND L.LoggedTime<'{1}' ORDER BY L.LoggedTime DESC", EmployeeID, dt);
+                                    WHERE  E.EmployeeID={0} AND L.LoggedTime<='{1}' ORDER BY L.LogTimeID DESC, L.LoggedTime DESC", EmployeeID, dt);
 
           using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
           {
@@ -89,15 +89,15 @@ namespace Indpro.Attendance.Repository
 
       public static void Add(LogTime logtime)
       {
-          var sql = string.Format(@"INSERT INTO IP_LogTime (LogTimeID,EmployeeID ,LoggedTime ,LogTypeID ,IsInTime)
-                                    VALUES({0},{1},'{2}',{3},'{4}')",logtime.LogTimeID, logtime.EmployeeID, DbHelper.ConvertToSqlDateTime(logtime.LoggedTime), (int)logtime.LogType, logtime.IsInTime);
+          var sql = string.Format(@"INSERT INTO IP_LogTime (EmployeeID, LoggedTime, LogTypeID, IsInTime)
+                                    VALUES({0}, '{1}', {2}, {3})", logtime.EmployeeID, DbHelper.ConvertToSqlDateTime(logtime.LoggedTime), (int)logtime.LogType, (logtime.IsInTime ? 1 : 0));
 
           SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
       }
 
       public static void Update(LogTime logtime)
       {
-          var sql = string.Format(@"UPDATE IP_LogTime SET LoggedTime ='{0}',LogTypeID={1}, IsInTime='{2}'
+          var sql = string.Format(@"UPDATE IP_LogTime SET LoggedTime='{0}', LogTypeID={1}, IsInTime={2}
                                     WHERE LogTimeID={3}",
               DbHelper.ConvertToSqlDateTime(logtime.LoggedTime), (int)logtime.LogType, logtime.IsInTime, logtime.LogTimeID);
 

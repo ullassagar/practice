@@ -13,7 +13,9 @@ namespace Indpro.Attendance.WebApp.Models
 
     public class ProfileLogModel : MasterModel
     {
+        [Required]
         [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime LogDate { get; set; }
 
         public List<LogType> ActiveTypes { get; set; }

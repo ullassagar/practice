@@ -12,7 +12,7 @@
 
                 <div class="row">
                     <div class="col-md-2">@Html.Label("Employee No")</div>
-                    <div class="col-md-3">@Html.DisplayFor(u => u.EmployeeNo, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.DisplayFor(u => u.EmployeeNo, new { Class = "form-control" })</div>
                 </div>
 
                 <div class="row">
@@ -20,22 +20,10 @@
                     <div class="col-md-2">@Html.TextBoxFor(u => u.Name, new { @class = "form-control" })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.Name)</div>
                 </div>
-
-                @*<div class="mt10 row">
-                    <div class="col-md-2">@Html.Label("Gender")</div>
-                    <div class="col-md-3">
-                        @Html.RadioButtonFor(e => e.Gender, Gender.Male, new { @id = "rdoMale" })
-                        <label for="rdoMale">Male</label>
-                        &nbsp;
-                        @Html.RadioButtonFor(e => e.Gender, Gender.Female, new { @id = "rdoFeMale" })
-                        <label for="rdoFeMale">FeMale</label>
-                    </div>
-                    <div class="col-md-2">@Html.ValidationMessageFor(u => u.Gender)</div>
-                </div>*@
-
+               
                  <div class="mt10 row">
                 <div class="col-md-2">@Html.Label("Gender")</div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     @if (Model.Gender == Gender.Male)
                     {
                         <span>Male</span>
@@ -50,44 +38,44 @@
                 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Designation")</div>
-                    <div class="col-md-3">@Html.DisplayFor(u => u.Designation, new { @class = "form-control" })</div>
+                    <div class="col-md-2">@Html.DisplayFor(u => u.Designation, new { @class = "form-control" })</div>
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Qualification")</div>
-                    <div class="col-md-3">@Html.TextBoxFor(u => u.Qualification, new { @class = "form-control" })</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.Qualification, new { @class = "form-control" })</div>
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Date of birth")</div>
-                    <div class="col-md-4">@Html.EditorFor(u => u.Dateofbirth, new { @class = "form-control" })</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.Dateofbirth, new { @class = "form-control datepicker" })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.Dateofbirth)</div>
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Date of joining")</div>
-                    <div class="col-md-4">@Html.EditorFor(u => u.Dateofjoining, new { @class = "form-control" })</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.Dateofjoining, new { @class = "form-control datepicker" })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.Dateofjoining)</div>
                 </div>
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Address")</div>
-                    <div class="col-md-3">@Html.TextBoxFor(u => u.Address, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.Address, new { Class = "form-control" })</div>
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Mobile")</div>
-                    <div class="col-md-3">@Html.TextBoxFor(u => u.MobileNo, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.MobileNo, new { Class = "form-control" })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.MobileNo)</div>
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Skype")</div>
-                    <div class="col-md-3">@Html.TextBoxFor(u => u.SkypeID, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.SkypeID, new { Class = "form-control" })</div>
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Email")</div>
-                    <div class="col-md-3">@Html.TextBoxFor(u => u.EmailID, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.TextBoxFor(u => u.EmailID, new { Class = "form-control" })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.EmailID)</div>
                 </div>
 

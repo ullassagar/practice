@@ -3,8 +3,8 @@
 @model Indpro.Attendance.WebApp.Areas.Admin.Models.LogTimeModel
 
 @{
-    Dictionary<int, string> employeenos = UserHandler.GetEmployeeNos();
-    SelectList selectEmployeeNos = new SelectList(employeenos, "Key", "value");
+    Dictionary<int, string> allemployeenos = LogTimeHandler.GetAllEmployeeNos();
+    SelectList allselectEmployeeNos = new SelectList(allemployeenos, "Key", "value");
 }
 
 <div class="container">
@@ -18,12 +18,12 @@
 
                 <div class="row">
                     <div class="col-md-2">@Html.Label("Employee No")</div>
-                    <div class="col-md-2">@Html.DropDownListFor(u => u.EmployeeID, @selectEmployeeNos, new { Class = "form-control" })</div>
+                    <div class="col-md-2">@Html.DropDownListFor(u => u.EmployeeID, @allselectEmployeeNos, new { Class = "form-control" })</div>
                 </div>
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.LabelFor(e => e.LoggedTime)</div>
-                    <div class="col-md-2">@Html.TextBoxFor(l => l.LoggedTime, new { Class = "form-control datetimepicker" })</div>
+                    <div class="col-md-2">@Html.EditorFor(l => l.LoggedTime, new { Class = "form-control" })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.LoggedTime)</div>
                 </div>
 

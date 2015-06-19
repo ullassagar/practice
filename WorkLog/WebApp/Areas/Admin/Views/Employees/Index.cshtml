@@ -10,8 +10,8 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    @Html.CheckBoxFor(m => m.IncludeNonActive)&nbsp;&nbsp;@Html.LabelFor(m => m.IncludeNonActive, "Show non active employees")
-                    <input type="button" value="Show" class="btn btn-info" onclick="loadEmployees();" />
+                    @Html.CheckBoxFor(m => m.IncludeNonActive, new { @onchange = "loadEmployees();" }) &nbsp; &nbsp;
+                    @Html.LabelFor(m => m.IncludeNonActive, "Show non active employees")
                 </div>
             </div><br />
             <div class="row">

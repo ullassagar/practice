@@ -110,5 +110,24 @@ namespace Indpro.Attendance.Repository
 
           SqlHelper.ExecuteNonQuery(SqlHelper.ConnectionString, CommandType.Text, sql);
       }
+
+      public static Dictionary<int, string> GetAllEmployeeNos()
+      {
+          Dictionary<int, string> allemployeenos = new Dictionary<int, string>();
+
+          var sql = string.Format(@"SELECT EmployeeID, EmployeeNo 
+                        FROM IP_Employee 
+                        WHERE IsActive = 1");
+
+          using (SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.ConnectionString, CommandType.Text, sql))
+          {
+              while (reader.Read())
+              {
+                  allemployeenos.Add(Convert.ToInt32(reader["EmployeeID"]), reader["EmployeeNo"].ToString());
+              }
+          }
+
+          return allemployeenos;
+      }
     }
 }

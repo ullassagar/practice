@@ -118,5 +118,10 @@ namespace Indpro.Attendance.Business
         {
             LogTimeRepository.Delete(id);
         }
+
+        public static Dictionary<int, string> GetAllEmployeeNos()
+        {
+            return LogTimeRepository.GetAllEmployeeNos();
+        }
     }
 }

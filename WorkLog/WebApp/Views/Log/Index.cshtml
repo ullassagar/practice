@@ -50,9 +50,8 @@
                         }
                         <label for="rdoOthers">Others</label>
                     </div>
-                    <div class="col-md-2">@Html.ValidationMessageFor(u => u.LogType)</div>
                     <div class="col-md-2">@Html.Label("Select Date")</div>
-                    <div class="col-md-3">@Html.TextBoxFor(l => l.LogDate, new { @class = "form-control datetimepicker" })</div>
+                    <div class="col-md-4">@Html.EditorFor(l => l.LogDate, "0:yyyy-MM-dd hh:mm", new { @class = "form-control " })</div>
                 </div>
 
                 if (Model.ActiveStatuses.Contains(IsInTime.True))
@@ -92,10 +91,9 @@
         <div class="col-md-2">@Html.Label("Select Date")</div>
         <div class="col-md-2">@Html.EditorFor(l => l.LogListDate, "0:yyyy-MM-dd", new { @maxlength = "10", @class = "form-control datepicker" })</div>
         <div class="col-md-2"><input id="btnLoadReport" type="button" value="Show" class="btn btn-info" onclick="LoadLogList();" /></div>
-
+        <br />
         <div class="row">
             <div class="col-md-8 border">
-                <br />
                 <table class="table table-bordered table-striped">
                     <tr>
                         <th>LogType</th>

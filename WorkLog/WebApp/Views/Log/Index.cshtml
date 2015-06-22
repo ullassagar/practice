@@ -51,7 +51,7 @@
                         <label for="rdoOthers">Others</label>
                     </div>
                     <div class="col-md-2">@Html.Label("Select Date")</div>
-                    <div class="col-md-4">@Html.EditorFor(l => l.LogDate, "0:yyyy-MM-dd hh:mm", new { @class = "form-control " })</div>
+                    <div class="col-md-4">@Html.TextBoxFor(l => l.LogDate, new { @class = "form-control datetimepicker" })</div>
                 </div>
 
                 if (Model.ActiveStatuses.Contains(IsInTime.True))
@@ -85,13 +85,13 @@
 </div>
 
 <br />
-
+<br />
 <div class="container">
     <div class="row">
         <div class="col-md-2">@Html.Label("Select Date")</div>
-        <div class="col-md-2">@Html.EditorFor(l => l.LogListDate, "0:yyyy-MM-dd", new { @maxlength = "10", @class = "form-control datepicker" })</div>
+        <div class="col-md-2">@Html.TextBoxFor(l => l.LogListDate, new { @maxlength = "10", @class = "form-control datepicker" })</div>
         <div class="col-md-2"><input id="btnLoadReport" type="button" value="Show" class="btn btn-info" onclick="LoadLogList();" /></div>
-        <br />
+    </div><br />
         <div class="row">
             <div class="col-md-8 border">
                 <table class="table table-bordered table-striped">
@@ -111,10 +111,9 @@
                 </table>
             </div>
         </div>
-    </div>
+    
 </div>
 <script type="text/javascript">
-
     function LoadLogList() {
         location.href = '/Log?reportDate=' + document.getElementById('LogListDate').value;
     }

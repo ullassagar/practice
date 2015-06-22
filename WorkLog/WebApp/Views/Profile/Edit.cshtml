@@ -54,7 +54,7 @@
 
                 <div class="mt10 row">
                     <div class="col-md-2">@Html.Label("Date of joining")</div>
-                    <div class="col-md-2">@Html.TextBoxFor(u => u.Dateofjoining, new { @class = "form-control datepicker" })</div>
+                    <div class="col-md-2">@Html.DisplayFor(u => u.Dateofjoining, new { @class = "form-control" })</div>
                     <div class="col-md-2">@Html.ValidationMessageFor(u => u.Dateofjoining)</div>
                 </div>
                 <div class="mt10 row">
